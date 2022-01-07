@@ -10,6 +10,91 @@
     width: 100vw;
     height: auto;
 }
+
+
+
+#kao2{
+    width: 30%; 
+    height: 100vh;
+    margin-left:0px;    
+    -webkit-transform: skew(-12deg);
+    /*-moz-transform: skew(20deg);*/
+    /*-o-transform: skew(10deg);*/
+    background:#c4cbcf;
+    float:right;
+    left:40%;
+    top:0px;
+	position:relative;
+}
+#kao1{
+	width: 60%;
+    height: 100vh;
+    margin-left:0px;
+    -webkit-transform: skew(-12deg);
+    /*-moz-transform: skew(20deg);*/
+    /*-o-transform: skew(10deg);*/
+    background:#c4cbcf;
+    float:right;
+    left:100%;
+    top:0px;
+	position:relative;
+}
+#kao{
+	width: 10%;
+    height: 100vh;
+    margin-left:0px;
+    -webkit-transform: skew(-12deg);
+    /*-moz-transform: skew(20deg);*/
+    /*-o-transform: skew(10deg);*/
+    background:#c4cbcf;
+    float:left;
+    left:-20%;    
+    top:0px;
+	position:relative;
+}
+
+
+
+
+/*
+.button {
+    position: relative;
+    background-color: #4CAF50;
+    border: none;
+    font-size: 28px;
+    color: #FFFFFF;
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+}
+.button:after {
+    content: "";
+    background: #90EE90;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px!important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+}
+*/
+
+
+
+#kuang{
+    width: 100vw;
+    height: 100vh;
+    position:relative;
+    scroll-snap-align: center;
+}
+
 section{
     height: 100vh;
     background-color: #c4cbcf;
@@ -24,6 +109,7 @@ section{
     background-size: auto;
     background-position: center;
     overflow: hidden;
+    position:absolute;
     background-attachment: fixed;
     background-repeat: no-repeat;
     max-width: 100%;
@@ -32,6 +118,7 @@ section{
 }
 #img1{
     background-image: url(images/1.jpg);
+    /*https://i0.hdslb.com/bfs/album/b52c9d4bf71b59fe0d5c4b040bf9e8a573923ea6.jpg*/
 }
 #img2{
     background-image: url(images/3.jpg);
@@ -39,3 +126,29 @@ section{
 #img3{
     background-image: url(images/6.jpg);
 }
+
+ul {
+    list-style: none;
+    height: 100%;
+    width: 100%;
+    position:relative;
+    float:left;
+    overflow: scroll;
+    left:0px;
+    top:0px;
+  }
+  
+  li {
+    padding: 1em;
+    text-align: center;
+    font-size: 2em;
+    position:relative;
+  }
+  
+  li:nth-child(2n) {
+    background: #ffffff;
+  }
+  
+  li:nth-child(2n + 1) {
+    background: #ffffff;
+  }
