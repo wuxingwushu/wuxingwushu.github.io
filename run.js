@@ -85,3 +85,18 @@ function donghuatuen(){
     }
   }
 }
+
+function ShowFolderList(folderspec)
+{
+var fso, f, fc, s;
+   fso = new ActiveXObject("Scripting.FileSystemObject");
+   f = fso.GetFolder(folderspec);
+   fc = new Enumerator(f.SubFolders);
+   s = "";
+   for (; !fc.atEnd(); fc.moveNext())
+   {
+      s += fc.item();
+      s += "<br>";
+   }
+   alert(s);
+}
