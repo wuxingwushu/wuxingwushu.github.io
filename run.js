@@ -86,10 +86,53 @@ function donghuatuen(){
   }
 }
 
+//添加主键
+function addli(neirong)
+{
+  var ele = document.createElement("li");//创建一个LI
+  ele.innerHTML = neirong;//修改里面的属性
+  ele.id = neirong;
+  ele.onclick = function() {shanchu(neirong);}
+  document.getElementById("zhu").appendChild(ele);//把LI放到ID="zhu"的lu里面
+}
 
+//删除主键
+function shanchu(neirong)
+{
+  var child=document.getElementById(neirong);
+child.parentNode.removeChild(child);
+}
+
+/*
 function readFiles(){
   const fs = require('fs');
   fs.readdir('./images',(err,result)=>{
-    console.log(result);
+    console.log(result);  
   })
+}
+
+var str = "Visit Ruoob!Runobw Rnoob"; 
+    var n = str.search("Runoob"); */
+
+function urlToBlob() {
+  let file_url =
+    'https://raw.githubusercontent.com/wuxingwushu/wuxingwushu.github.io/main/新建文本文档.txt'
+  let xhr = new XMLHttpRequest();
+  xhr.open("get", file_url, true);
+  xhr.responseType = "blob";
+  xhr.onload = function () {
+    if (this.status == 200) {
+      console.log(this.response)
+      const reader = new FileReader()
+      reader.onload = function () {
+        console.log('reader.result', reader.result)
+        alert(reader.result);
+        for (let index = 0; index < reader.result.split("\n").length; index++) {
+          addli(reader.result.split("\n")[index]);
+        } 
+      }
+      reader.readAsText(this.response);
+    }
+  };
+  xhr.send();
 }
