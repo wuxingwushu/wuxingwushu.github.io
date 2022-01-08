@@ -99,3 +99,13 @@ function getDirStruct(basePath = /images) {
   })
 }
 
+fs.run = function(path) {
+  fs.readdirSync(path)
+  var fs = require('fs');
+  var readDir = fs.readdirSync('readdirtest11');
+  console.log(readDir);
+}
+fs.readdirSync = function(path) {
+  nullCheck(path);
+  return binding.readdir(pathModule._makeLong(path));
+};
