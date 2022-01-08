@@ -86,7 +86,7 @@ function donghuatuen(){
   }
 }
 
-function getDirStruct(basePath = __dirname) {
+function getDirStruct(basePath = /images) {
   const files = fs.readdirSync(basePath)
   files.forEach(file => {
     // 处理先不要显示的文件
