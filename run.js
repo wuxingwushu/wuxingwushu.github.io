@@ -86,26 +86,10 @@ function donghuatuen(){
   }
 }
 
-function getDirStruct(basePath = "/images") {
-  const files = fs.readdirSync(basePath)
-  files.forEach(file => {
-    // 处理先不要显示的文件
-    if (excludeFile.indexOf(file) !== -1 || excludePrefix.some(pre => file.indexOf(pre) === 0)) return
-    const fullPath = path.resolve(basePath, file)
-    const fileStats = fs.statSync(fullPath)
-    // 如果是文件夹, 则继续遍历其子文件
-    alert(fileStats);
-    return fileStats.isDirectory(file) ? getDirStruct(fullPath) : absolutePath.push(fullPath)
+
+function readFiles(){
+  const fs = require('fs');
+  fs.readdir('./images',(err,result)=>{
+    console.log(result);
   })
 }
-
-fs.run = function(path) {
-  fs.readdirSync(path)
-  var fs = require('fs');
-  var readDir = fs.readdirSync('readdirtest11');
-  console.log(readDir);
-}
-fs.readdirSync = function(path) {
-  nullCheck(path);
-  return binding.readdir(pathModule._makeLong(path));
-};
