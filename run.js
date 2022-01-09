@@ -150,7 +150,7 @@ function urlToBlob(URss,id,zhujian,id1) {
       reader.onload = function () {
         //console.log('reader.result', reader.result)
 
-        for (let index = 0; index < reader.result.split("\n").length; index=index+2) {
+        for (let index = 0; index < reader.result.split("\n").length-1; index=index+2) {
           addli(zhujian,reader.result.split("\n")[index],id,reader.result.split("\n")[index+1],id1);
         }
         for (let index1 = 0; index1 < 10; index1++) {
