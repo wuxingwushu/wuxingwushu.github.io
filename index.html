@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,78 +7,36 @@
     <script type="text/javascript" defer async="true" src="run.js"></script>
     <title>吾行误述</title>
 	<style>
-      /* 核心样式 */
-      main {
-        scroll-snap-type: y mandatory;
-        /* 需要把滚动条设置到直接父容器，
-        scroll-snap-type 才能生效，
-        默认是在 body 上，现在是 main 上 */
-        overflow: scroll;
-        height: 100vh;
-      }
-      section {
-        width: 100vw;
-        height: 100vh;
-        scroll-snap-align: center;
-		
-		/*position:relative;
-    animation:myfirst 5s linear 2s infinite alternate;*/
-    
-    /*<script type="text/javascript" defer async="true" src="./require.js"></script>*/
-    
-    /*<button class="button">Click Me</button>*/
-
-      }
-
-      ul {
-        scroll-snap-type: y mandatory;
-      }
-
-      li {
-        scroll-snap-align: start;
-      }
-    </style>
+  </style>
 </head>
 <body>
     <div id="container">
 		<main>
       <div id="kuang">
-        <section id="img1" class="img" onclick="donghuakai()">吾行误述的小世界</section>
-        <div id="kao2">
-          <ul id="zhu">
-            <li></li>
-            <li></li>
-            <li onclick="donghuatuen()">3</li>
-            <li>4</li>  
-            <li>5</li>
-            <li>6</li>
-            <li>7</li>
-            <li>8</li>
-            <li>9</li>
-            <li>10</li>
-            <li>11</li>
-            <li>12</li>
-          </ul>
-        </div>
-
-        <div id="kao1" onclick="donghuatuen()"></div>
-        <div id="kao" onclick="donghuatuen()"></div>
-        
-      </div>
-      <div id="kuang" onmouseover="donghuatuen()">
-        <section id="img2" class="img" onclick="urlToBlob()">游戏日志</section>
-        <div id="kao2"></div>
-        <div id="kao3"></div>
+        <section id="img1" class="img">吾行误述的小世界</section>
       </div>
       <div id="kuang">
-        <section id="img3" class="img">绘画</section>
+        <section id="img2" class="img" onclick="donghuakai(0)">游戏日志</section>
+        <div id="2" class="liebiao">
+          <ul id="Game">
+          </ul>
+        </div>
+        <div id="1" class="bianyou" onclick="donghuatuen(0)"><p id="xtxt0" class="xiaoTXT"> </p></div>
+        <div id="0" class="bianzuo" onclick="donghuatuen(0)"></div>
+      </div>
+      <div id="kuang">
+        <section id="img3" class="img" onclick="donghuakai(3)">事记</section>
+        <div id="5" class="liebiao">
+          <ul id="Dentury">
+          </ul>
+        </div>
+        <div id="4" class="bianyou" onclick="donghuatuen(3)"><p id="xtxt1" class="xiaoTXT"> </p></div>
+        <div id="3" class="bianzuo" onclick="donghuatuen(3)"></div>
       </div>
       <div id="kuang">
         <section id="footer" class="img">正在创建新世界</section>
       </div>
 		</main>
     </div>
-    
-	
 </body>
 </html>
