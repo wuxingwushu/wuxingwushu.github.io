@@ -11,46 +11,69 @@
     height: auto;
 }
 
+ /* 核心样式 */
+ main {
+    scroll-snap-type: y mandatory;
+    /* 需要把滚动条设置到直接父容器，
+    scroll-snap-type 才能生效，
+    默认是在 body 上，现在是 main 上 */
+    overflow: scroll;
+    height: 100vh;
+  }
+  section {
+    width: 100vw;
+    height: 100vh;
+    scroll-snap-align: center;
+  }
 
 
-#kao2{
+
+.liebiao{
     width: 30%; 
     height: 100vh;
     margin-left:0px;    
-    -webkit-transform: skew(-12deg);
+    transform: skew(-12deg);
     /*-moz-transform: skew(20deg);*/
     /*-o-transform: skew(10deg);*/
     background:#c4cbcf;
     float:right;
     left:40%;
-    top:0px;
 	position:relative;
 }
-#kao1{
+.bianyou{
 	width: 60%;
     height: 100vh;
     margin-left:0px;
-    -webkit-transform: skew(-12deg);
+    transform: skew(-12deg);
     /*-moz-transform: skew(20deg);*/
     /*-o-transform: skew(10deg);*/
     background:#c4cbcf;
     float:right;
     left:100%;
-    top:0px;
 	position:relative;
 }
-#kao{
+.bianzuo{
 	width: 10%;
     height: 100vh;
     margin-left:0px;
-    -webkit-transform: skew(-12deg);
+    transform: skew(-12deg);
     /*-moz-transform: skew(20deg);*/
     /*-o-transform: skew(10deg);*/
     background:#c4cbcf;
     float:left;
     left:-20%;    
-    top:0px;
 	position:relative;
+}
+
+.xiaoTXT{
+    height: 100vh;
+    background-color: #c4cbcf;
+    color: #fff;
+    font-size: 3vh;
+	place-items: center;
+    display: flex;/*grid*/
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -128,6 +151,7 @@ section{
 }
 
 ul {
+    scroll-snap-type: y mandatory;
     list-style: none;
     height: 100%;
     width: 100%;
@@ -139,6 +163,7 @@ ul {
   }
   
   li {
+    scroll-snap-align: start;
     padding: 1em;
     text-align: center;
     font-size: 2em;
