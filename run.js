@@ -1,8 +1,9 @@
 var bool = 1;
-var shuu = "";
+var ulid = "";
 
 function donghuakai(IDshu){
 
+  ulid=IDshu+3;
   shubiaogundong();
 
 
@@ -183,8 +184,8 @@ function chushihua(TXT,id,id1){
 }
 
 
-chushihua('Game/游戏日志.txt',"Game","xtxt0");
-chushihua('Dentury/事记.txt',"Dentury","xtxt1");
+chushihua('Game/游戏日志.txt',"3","xtxt0");
+chushihua('Dentury/事记.txt',"7","xtxt1");
 //alert("如果无法正常链接Github的数据！\n可以使用Steam++后再次尝试！");
 
 
@@ -197,20 +198,24 @@ var scrollFunction = function(e) {
   e.preventDefault && e.preventDefault(); //禁止浏览器默认事件
   if (e.wheelDelta) { //判断浏览器IE，谷歌滑轮事件
       if (e.wheelDelta > 0) { //当滑轮向上滚动时
-        document.getElementById('Game').scrollTop=document.getElementById('Game').scrollTop-100;
+        ulyidong(100);
       }
       if (e.wheelDelta < 0) { //当滑轮向下滚动时
-        document.getElementById('Game').scrollTop=document.getElementById('Game').scrollTop+100;
+        ulyidong(-100);
       }
 
   } else if (e.detail) { //Firefox滑轮事件
       if (e.detail > 0) { //当滑轮向上滚动时
-        document.getElementById('Game').scrollTop=document.getElementById('Game').scrollTop-100;
+        ulyidong(100);
       }
       if (e.detail < 0) { //当滑轮向下滚动时
-        document.getElementById('Game').scrollTop=document.getElementById('Game').scrollTop+100;
+        ulyidong(-100);
       }
   }
+}
+
+function ulyidong(shu){
+  document.getElementById(ulid).scrollTop=document.getElementById(ulid).scrollTop+shu;
 }
 
 
