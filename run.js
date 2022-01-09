@@ -1,9 +1,10 @@
 var bool = 1;
+var shuu = "";
 
-function donghuakai(){
-  var elem = document.getElementById("kao");
-  var elem1 = document.getElementById("kao1");
-  var elem2 = document.getElementById("kao2");
+function donghuakai(IDshu){
+  var elem = document.getElementById(IDshu);
+  var elem1 = document.getElementById(IDshu+1);
+  var elem2 = document.getElementById(IDshu+2);
 
   var reactObj = elem.getBoundingClientRect();
   var reactObj1 = elem1.getBoundingClientRect();
@@ -43,10 +44,10 @@ function donghuakai(){
   }
 }
 
-function donghuatuen(){
-  var elem = document.getElementById("kao");
-  var elem1 = document.getElementById("kao1");
-  var elem2 = document.getElementById("kao2");
+function donghuatuen(IDshu){
+  var elem = document.getElementById(IDshu);
+  var elem1 = document.getElementById(IDshu+1);
+  var elem2 = document.getElementById(IDshu+2);
 
   var reactObj = elem.getBoundingClientRect();
   var reactObj1 = elem1.getBoundingClientRect();
@@ -86,15 +87,36 @@ function donghuatuen(){
   }
 }
 
+
+
+
+
+
 //添加主键
-function addli(neirong)
+function addli(type,TXT,shu,TXT1,shu1)
 {
-  var ele = document.createElement("li");//创建一个LI
-  ele.innerHTML = neirong;//修改里面的属性
-  ele.id = neirong;
-  ele.onclick = function() {shanchu(neirong);}
-  document.getElementById("zhu").appendChild(ele);//把LI放到ID="zhu"的lu里面
+  var ele = document.createElement(type);//创建一个LI
+  ele.innerHTML = TXT;//修改里面的属性
+  ele.id = TXT;
+  ele.onmouseover = function() {yulan(TXT1,shu1);}
+  document.getElementById(shu).appendChild(ele);//把LI放到ID="zhu"的lu里面
 }
+
+function yulan(TXT,id)
+{
+  var child=document.getElementById(id);
+  child.innerHTML=TXT;
+}
+
+function addlifu(type,shu)
+{
+  var ele = document.createElement(type);//创建一个LI
+  document.getElementById(shu).appendChild(ele);//把LI放到ID="zhu"的lu里面
+}
+
+
+
+
 
 //删除主键
 function shanchu(neirong)
@@ -114,9 +136,10 @@ function readFiles(){
 var str = "Visit Ruoob!Runobw Rnoob"; 
     var n = str.search("Runoob"); */
 
-function urlToBlob() {
-  let file_url =
-    'https://raw.githubusercontent.com/wuxingwushu/wuxingwushu.github.io/main/新建文本文档.txt'
+
+//读取TXT（链接）
+function urlToBlob(URss,id,zhujian,id1) {
+  let file_url = "https://raw.githubusercontent.com/wuxingwushu/wuxingwushu.github.io/main/" + URss;
   let xhr = new XMLHttpRequest();
   xhr.open("get", file_url, true);
   xhr.responseType = "blob";
@@ -125,14 +148,30 @@ function urlToBlob() {
       console.log(this.response)
       const reader = new FileReader()
       reader.onload = function () {
-        console.log('reader.result', reader.result)
-        alert(reader.result);
-        for (let index = 0; index < reader.result.split("\n").length; index++) {
-          addli(reader.result.split("\n")[index]);
-        } 
+        //console.log('reader.result', reader.result)
+
+        for (let index = 0; index < reader.result.split("\n").length; index=index+2) {
+          addli(zhujian,reader.result.split("\n")[index],id,reader.result.split("\n")[index+1],id1);
+        }
+        for (let index1 = 0; index1 < 10; index1++) {
+          addlifu("li",id);
+        }
+
       }
       reader.readAsText(this.response);
     }
   };
   xhr.send();
 }
+
+
+function chushihua(TXT,id,id1){ 
+  for (let index = 0; index < 4; index++){
+    addlifu("li",id);
+  }
+  urlToBlob(TXT,id,"li",id1);
+}
+
+
+chushihua('Game/游戏日志.txt',"Game","xtxt0");
+chushihua('Dentury/事记.txt',"Dentury","xtxt1");
