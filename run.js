@@ -3,6 +3,8 @@ var ulid = "";
 var leixing = ["p","h1","h2","a"];
 var daimaleixing = ["var","#569CD6","case","#569CD6","break","#569CD6","for","#c586c0","switch","#c586c0","function","#569CD6","style","#4fc1ff","if","#c586c0","else","#c586c0"];
 var lieshu = 0;
+var baidu0 = "https://www.baidu.com/s?wd=";
+var baidu1 = "&rsv_spt=1&rsv_iqid=0xff48a07f00019107&issp=1&f=8&rsv_bp=1&rsv_idx=2&ie=utf-8&tn=baiduhome_pg&rsv_enter=1&rsv_dl=tb&rsv_sug3=5&rsv_sug2=0&rsv_btype=i&inputT=1139&rsv_sug4=2271";
 
 function donghuakai(IDshu){
 
@@ -386,6 +388,10 @@ function add(type,TXT,shu)
   }
 
   
+
+  if(TXT.search("《") != -1){
+    TXT = TXT.substr(0,TXT.search("《")+1) + "<a target='view_window' style='color:#00c6ff' href='" + baidu0 + TXT.substr((TXT.search("《")+1),(TXT.search("》")-TXT.search("《")-1)) + baidu1 + "'>" + TXT.substr((TXT.search("《")+1),(TXT.search("》")-TXT.search("《")-1)) + "</a>" + TXT.substr((TXT.search("》")),10000);
+  }
 
 
   var ele = document.createElement(type);//创建一个LI
