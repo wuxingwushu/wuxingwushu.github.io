@@ -2,7 +2,7 @@ a这是一行
 h1这也是一行
 p我这也是一行
 <代码>
-var  function  var var  function function function 我去厉害啊！//这是厉害的注释！
+var  function  var var  function function function 我去,厉害啊！//这是厉害的注释！
 </代码>
 p《乌合之众》
 p<乌合之众>
