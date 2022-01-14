@@ -1,3 +1,19 @@
 a这是一行
 h1这也是一行
 p我这也是一行
+<代码>
+for (let index = 0; index < reader.result.split("\n").length; index++) {
+          for(let lei = 0; lei < leixing.length;lei++){
+            if(reader.result.split("\n")[index].search(leixing[lei]) != -1){
+              add(leixing[lei],reader.result.split("\n")[index],idming);
+            }
+            if(reader.result.split("\n")[index].search("<代码>") != -1){
+              index++;
+              while(reader.result.split("\n")[index].search("<代码>") == -1){
+                addma(leixing[lei],reader.result.split("\n")[index],idming);
+                index++;
+              }
+            }
+          }
+        }
+<代码>
