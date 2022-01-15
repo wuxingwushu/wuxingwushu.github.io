@@ -56,7 +56,8 @@ function donghuakai(IDshu){
 
 function donghuatuen(IDshu){
 
-
+  shanchu(ulid);
+  addp(IDshu);
   shubiaogundong0();
 
 
@@ -104,7 +105,14 @@ function donghuatuen(IDshu){
 
 
 
-
+//添加小标题主键
+function addp(shu)
+{
+  var ele = document.createElement("p");//创建一个LI
+  ele.id = "xtxt" + (shu + 3);
+  ele.style.className = "xiaoTXT";
+  document.getElementById((shu + 1)).appendChild(ele);//把LI放到ID="zhu"的lu里面
+}
 //删除主键
 function shanchu(neirong)
 {
@@ -411,6 +419,7 @@ function adddiv(id)
   ele.id = "xianshineirong" + id;
   ele.style.height = "100%";
   ele.style.width = "100%";
+  ele.style.overflow = "auto";//多出来的内容可以滚动出来
   document.getElementById(id).appendChild(ele);//把LI放到ID="zhu"的lu里面
 }
 
@@ -428,6 +437,12 @@ function duqutxtneirong(URss){
         shanchu("xtxt"+ulid)
         adddiv(ulid-2);
         var idming = "xianshineirong" + (ulid-2);
+
+        
+
+        ulid = idming;
+
+  
 
         for (let index = 0; index < reader.result.split("\n").length; index++) {
           for(let lei = 0; lei < leixing.length;lei++){
