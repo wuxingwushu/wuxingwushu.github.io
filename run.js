@@ -1,4 +1,5 @@
 var bool = 1;
+var fubool = 0;
 var ulid = "";
 var leixing = ["p","h1","h2","a"];
 var daimaleixing = ["var","#569CD6","case","#569CD6","break","#569CD6","for","#c586c0","switch","#c586c0","function","#569CD6","style","#4fc1ff","if","#c586c0","else","#c586c0"];
@@ -6,8 +7,22 @@ var lieshu = 0;
 var baidu0 = "https://www.baidu.com/s?wd=";
 var baidu1 = "&rsv_spt=1&rsv_iqid=0xff48a07f00019107&issp=1&f=8&rsv_bp=1&rsv_idx=2&ie=utf-8&tn=baiduhome_pg&rsv_enter=1&rsv_dl=tb&rsv_sug3=5&rsv_sug2=0&rsv_btype=i&inputT=1139&rsv_sug4=2271";
 
+
+//主界面的菜单出现动画
 function donghuakai(IDshu){
 
+  if(fubool == 1){
+
+    if((IDshu + 3) != ulid){
+      shanchu(ulid);
+      addp(IDshu);
+      ulid=IDshu+3;
+    }
+    
+    fudonghuatuen(IDshu);
+    return;
+  }
+   
   ulid=IDshu+3;
   shubiaogundong();
 
@@ -16,15 +31,11 @@ function donghuakai(IDshu){
   var elem1 = document.getElementById(IDshu+1);
   var elem2 = document.getElementById(IDshu+2);
 
-  var reactObj = elem.getBoundingClientRect();
-  var reactObj1 = elem1.getBoundingClientRect();
-  var reactObj2 = elem2.getBoundingClientRect();
-
   //alert(document.documentElement.scrollWidth); 
 
-  var pos = reactObj.left;
-  var pos1 = reactObj1.left;
-  var pos2 = reactObj2.left;
+  var pos = elem.getBoundingClientRect().left;
+  var pos1 = elem1.getBoundingClientRect().left;
+  var pos2 = elem2.getBoundingClientRect().left;
 
   var id = setInterval(frame, 5);
 
@@ -36,28 +47,31 @@ function donghuakai(IDshu){
       pos = pos + 6; 
       if(bool==1)elem.style.left = pos + "px"; 
     }
-    if (pos1 > kuan*0.255) {
+    if (pos1 > kuan*0.155) {
       pos1 = pos1 - 16;   
       if(bool==1)elem1.style.left = pos1 + "px"; 
     }
-    if (pos2 > -kuan*0.645) {
+    if (pos2 > -kuan*0.745) {
       pos2 = pos2 - 32; 
       if(bool==1)elem2.style.left = pos2 + "px"; 
     }
-    if(pos >= -kuan*0.045 && pos1 <= kuan*0.255 && pos2 <= -kuan*0.645)
+    if(pos >= -kuan*0.045 && pos1 <= kuan*0.155 && pos2 <= -kuan*0.745)
     {
       elem.style.left = -kuan*0.045 + "px";
-      elem1.style.left = kuan*0.254 + "px";
-      elem2.style.left = -kuan*0.645 + "px";
+      elem1.style.left = kuan*0.154 + "px";
+      elem2.style.left = -kuan*0.745 + "px";
       clearInterval(id);
     }
   }
 }
-
+//主界面的菜单退出动画
 function donghuatuen(IDshu){
 
-  shanchu(ulid);
-  addp(IDshu);
+  if(fubool == 1){
+    return;
+  }
+
+  
   shubiaogundong0();
 
 
@@ -65,15 +79,11 @@ function donghuatuen(IDshu){
   var elem1 = document.getElementById(IDshu+1);
   var elem2 = document.getElementById(IDshu+2);
 
-  var reactObj = elem.getBoundingClientRect();
-  var reactObj1 = elem1.getBoundingClientRect();
-  var reactObj2 = elem2.getBoundingClientRect();
-
   //alert(document.documentElement.scrollWidth); 
   var kuan = document.documentElement.scrollWidth;
-  var pos = reactObj.left;
-  var pos1 = reactObj1.left;
-  var pos2 = reactObj2.left-kuan*0.645;
+  var pos = elem.getBoundingClientRect().left;
+  var pos1 = elem1.getBoundingClientRect().left;
+  var pos2 = elem2.getBoundingClientRect().left-kuan*0.645;
 
   var id = setInterval(frame, 5);
 
@@ -102,6 +112,141 @@ function donghuatuen(IDshu){
     }
   }
 }
+
+//主界面的菜单内容显示动画
+function fudonghuakai(IDshu){
+
+  var elem = document.getElementById(IDshu);
+  var elem1 = document.getElementById(IDshu+1);
+  var elem2 = document.getElementById(IDshu+2);
+
+  //alert(document.documentElement.scrollWidth); 
+  var kuan = document.documentElement.scrollWidth;
+  var pos = elem.getBoundingClientRect().left;
+  var pos1 = elem1.getBoundingClientRect().left;
+  var pos2 = elem2.getBoundingClientRect().left-kuan*0.645;
+
+  var id = setInterval(frame, 5);
+
+  fubool = 1;
+  var degshu = -12;
+
+  function frame() {
+    if (pos > -kuan*0.2) {
+      pos = pos - 6; 
+      if(fubool==1)elem.style.left = pos + "px"; 
+    }
+    if (pos1 > kuan*0.05) {
+      pos1 = pos1 - 1;   
+      if(fubool==1){
+        elem1.style.left = pos1 + "px";
+        if(degshu <= 0){
+          degshu = degshu + 0.1;
+          elem1.style.transform = "skew(" + degshu + "deg)";
+        }
+      }
+    }
+    if (pos2 > -kuan*1.1) {
+      pos2 = pos2 - 16; 
+      if(fubool==1)elem2.style.left = pos2 + "px"; 
+    }
+    if(pos <= -kuan*0.2 && pos1 <= kuan*0.05 && pos2 <= -kuan*1.1)
+    {
+      elem.style.left = -kuan*0.2 + "px";
+      elem1.style.left = kuan*0.05 + "px";
+      elem2.style.left = -kuan*1.1 + "px";
+      elem1.style.transform = "skew(0deg)";
+      clearInterval(id);
+    }
+  }
+}
+//主界面的菜单内容退出动画
+function fudonghuatuen(IDshu){
+
+  var elem = document.getElementById(IDshu);
+  var elem1 = document.getElementById(IDshu+1);
+  var elem2 = document.getElementById(IDshu+2);
+
+  //alert(document.documentElement.scrollWidth); 
+  var kuan = document.documentElement.scrollWidth;
+  var pos = elem.getBoundingClientRect().left;
+  var pos1 = elem1.getBoundingClientRect().left;
+  var pos2 = elem2.getBoundingClientRect().left-kuan*0.645;
+
+  var id = setInterval(frame, 5);
+
+  fubool = 0;
+  var degshu = 0;
+
+  function frame() {
+    if (pos < -kuan*0.045) {
+      pos = pos + 6; 
+      if(fubool==0)elem.style.left = pos + "px"; 
+    }
+    if (pos1 < kuan*0.155) {
+      pos1 = pos1 + 1;   
+      if(fubool==0){
+        elem1.style.left = pos1 + "px";
+        if(degshu >= -12){
+          degshu = degshu - 2;
+          elem1.style.transform = "skew(" + degshu + "deg)";
+        }
+      }
+    }
+    if (pos2 < -kuan*0.745) {
+      pos2 = pos2 + 16; 
+      if(fubool==0)elem2.style.left = pos2 + "px"; 
+    }
+    if(pos >= -kuan*0.045 && pos1 >= kuan*0.155 && pos2 >= -kuan*0.745)
+    {
+      elem.style.left = -kuan*0.045 + "px";
+      elem1.style.left = kuan*0.155 + "px";
+      elem2.style.left = -kuan*0.745 + "px";
+      elem1.style.transform = "skew(-12deg)";
+      clearInterval(id);
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -134,7 +279,7 @@ function addli(type,TXT,shu,TXT1,shu1)
     case "7":ul ="Dentury/" + TXT + ".txt";break;
   }
 
-  ele.onclick = function() {duqutxtneirong(ul);}
+  ele.onclick = function() {fudonghuakai((shu-3));duqutxtneirong(ul);}
   document.getElementById(shu).appendChild(ele);//把LI放到ID="zhu"的lu里面
 }
 //添加空建
@@ -175,7 +320,7 @@ function urlToBlob(URss,id,zhujian,id1) {
   xhr.responseType = "blob";
   xhr.onload = function () {
     if (this.status == 200) {
-      console.log(this.response)
+      //console.log(this.response)
       const reader = new FileReader()
       reader.onload = function () {
         //console.log('reader.result', reader.result)
@@ -304,7 +449,7 @@ function addma(type,TXT,shu)
   divt.style.width = "90%";
   divt.style.left = "5%";
   divt.style.position = "relative";
-  divt.style.background = "#303030"
+  divt.style.background = "#303030";
   //divt.style.transform = "skew(12deg)";
   document.getElementById(shu).appendChild(divt);
 
@@ -349,7 +494,7 @@ function addma(type,TXT,shu)
     }
     }
   }
-  console.log(txtdata);
+  //console.log(txtdata);
   var xinTXT = TXT.substr(0,txtdata[0]);
   xinTXT = xinTXT + "<span style='color:" + txtdata[1] + "'>" + TXT.substr(txtdata[0],(txtdata[2]-txtdata[0])) + "</span>";
   for (let index = 3; index < txtdata.length; index=index+3) {
@@ -363,7 +508,7 @@ function addma(type,TXT,shu)
   }
 
 
-  console.log(xinTXT);
+  //console.log(xinTXT);
   var ele = document.createElement("p");//创建一个LI
   ele.style ='white-space:pre;';
   ele.innerHTML = xinTXT;//修改里面的属性s
@@ -433,7 +578,7 @@ function duqutxtneirong(URss){
   xhr.responseType = "blob";
   xhr.onload = function () {
     if (this.status == 200) {
-      console.log(this.response)
+      //console.log(this.response)
       const reader = new FileReader()
       reader.onload = function () {
         
@@ -454,7 +599,6 @@ function duqutxtneirong(URss){
             }
             if(reader.result.split("\n")[index].search("<代码>") != -1){
               index++;
-              console.log("chachacha :  " + reader.result.split("\n")[index].search("</代码>"));
               while(reader.result.split("\n")[index].search("</代码>") == -1){
                 addma(leixing[lei],reader.result.split("\n")[index],idming);
                 index++;
