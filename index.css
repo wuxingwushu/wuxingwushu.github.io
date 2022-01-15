@@ -74,7 +74,17 @@ section {
     left:-20%;    
 	position:relative;
 }
-.xiaoTXT{
+#xtxt3{
+    height: 100vh;
+    background-color: #c4cbcf;
+    color: #ffffff;
+    font-size: 3vh;
+	place-items: center;
+    display: flex;/*grid*/
+    justify-content: center;
+    align-items: center;
+}
+#xtxt7{
     height: 100vh;
     background-color: #c4cbcf;
     color: #ffffff;
