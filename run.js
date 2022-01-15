@@ -297,6 +297,9 @@ function addma(type,TXT,shu)
   var divs = "div" + lieshu;
   var divt = document.createElement("div");//创建一个LI
   divt.id = divs;
+  divt.style.borderStyle = "solid";
+  divt.style.borderWidth = "5px";
+  divt.style.borderColor = "#303030";
   divt.style.height = "auto";
   divt.style.width = "90%";
   divt.style.left = "5%";
