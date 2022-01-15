@@ -39,7 +39,7 @@ section {
 
 
 .liebiao{
-    width: 30%; 
+    width: 20%; 
     height: 100vh;
     margin-left:0px;    
     transform: skew(-12deg);
@@ -47,11 +47,11 @@ section {
     /*-o-transform: skew(10deg);*/
     background:#c4cbcf;
     float:right;
-    left:40%;
+    left:30%;
 	position:relative;
 }
 .bianyou{
-	width: 60%;
+	width: 70%;
     height: 100vh;
     margin-left:0px;
     transform: skew(-12deg);
@@ -59,7 +59,7 @@ section {
     /*-o-transform: skew(10deg);*/
     background:#c4cbcf;
     float:right;
-    left:100%;
+    left:110%;
     position:relative;
 }
 .bianzuo{
