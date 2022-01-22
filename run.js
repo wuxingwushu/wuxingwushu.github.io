@@ -4,7 +4,7 @@ var ulid = "";
 var leixing = ["p","h1","h2","a"];
 var daimaleixing_js = [
   //javascript
-  "var","#569CD6"
+"var","#569CD6"
 ,"case","#569CD6"
 ,"break","#569CD6"
 
@@ -18,15 +18,15 @@ var daimaleixing_js = [
 ];
 var daimaleixing_py = [
 //python
-"from","#cc7832"
-,"import","#cc7832"
+"from ","#cc7832"
+,"import ","#cc7832"
 ," as","#cc7832"
-,"def","#cc7832"
+,"def ","#cc7832"
 ,",","#cc7832"
 ,"elif","#cc7832"
 ,"if","#cc7832"
 ," in","#cc7832"
-,"for","#cc7832"
+,"for ","#cc7832"
 
 ," open","#5a77c5"
 ," str","#5a77c5"
@@ -449,8 +449,9 @@ urlToBlob('Skill/技束.txt',"11","li","xtxt11");
 
 
 //添加代码主键
-function addma(type,TXT,shu,yangshi)
+function addma(type,TXT,shu,xz)
 {
+  var zhushi = ["'",'"']
   var divs = "div" + lieshu;
   var divt = document.createElement("div");//创建一个LI
   divt.id = divs;
@@ -462,17 +463,69 @@ function addma(type,TXT,shu,yangshi)
   divt.style.left = "5%";
   divt.style.position = "relative";
   divt.style.background = "#303030";
-  //divt.style.transform = "skew(12deg)";
   document.getElementById(shu).appendChild(divt);
 
+
   var you = 1;
+  var zhushikaishi = 10000;
 
 
-  var txtdata = [];
+  var zhushis = [];
+  //获取对应语言的装饰
+  switch(xz){
+    case "js":
+      var yangshi=daimaleixing_js;
+      if(TXT.substr(0,10000).search("//") != -1 && TXT.substr(0,TXT.substr(0,10000).search("//")).search('"') == -1){
+        you = 0;
+        zhushikaishi = TXT.substr(0,10000).search("//")
+        zhushis.push(zhushikaishi)
+        zhushis.push("#6a9955");
+        zhushis.push(TXT.substr(0,10000).length);
+      }
+      break;
+    case "py":
+      var yangshi=daimaleixing_py;
+      if(TXT.substr(0,10000).search("# ") != -1){
+        you = 0;
+        zhushikaishi = TXT.substr(0,10000).search("# ")
+        zhushis.push(zhushikaishi)
+        zhushis.push("#6a9955");
+        zhushis.push(TXT.substr(0,10000).length);
+      }
+      break;
+  }
+
+  //装饰字符串
+  for (let index = 0; index < zhushi.length; index++) {
+    var i = 1;
+    var to = 0;
+    while(i){
+      if(TXT.substr(to,10000).search(zhushi[index]) != -1 && TXT.substr(to,10000).search(zhushi[index]) < zhushikaishi){
+        you = 0;
+        to = to + TXT.substr(to,10000).search(zhushi[index]);
+        zhushis.push(to);
+        zhushis.push("#6a9955");
+        to = to + TXT.substr(to+1,10000).search(zhushi[index]) + 2;
+        zhushis.push(to);
+      }
+      else{
+        i = 0;
+      }
+    }
+  }
+
+  //装饰特殊单词
+  var txtdata = zhushis;
   for (let index = 0; index < yangshi.length; index=index+2) {
     var i = 1;
     var to = 0;
     while(i){
+      xsto = to + TXT.substr(to,10000).search(yangshi[index]);
+      for (let indexs = 0; indexs < zhushis.length; indexs=indexs+3){
+        if(xsto > zhushis[indexs] && xsto < zhushis[indexs+2]){
+          to = zhushis[indexs+2]+1;
+        }
+      }
       if(TXT.substr(to,10000).search(yangshi[index]) != -1){
         you = 0;
         to = to + TXT.substr(to,10000).search(yangshi[index]);
@@ -486,6 +539,9 @@ function addma(type,TXT,shu,yangshi)
       }
     }
   }
+
+  
+  //对装饰信息进行大小排序，便于切割字符串。
   var len = txtdata.length;
   var tmp1 = null;
   var tmp2 = null;
@@ -509,36 +565,31 @@ function addma(type,TXT,shu,yangshi)
       }
     }
   }
-  
+
+
+  //是否有装饰
   if(you){
     xinTXT=TXT;
   }
+  //载入装饰
   else{
     var xinTXT = TXT.substr(0,txtdata[0]);
     xinTXT = xinTXT + "<span style='color:" + txtdata[1] + "'>" + TXT.substr(txtdata[0],(txtdata[2]-txtdata[0])) + "</span>";
     for (let index = 3; index < txtdata.length; index=index+3) {
-    xinTXT = xinTXT + TXT.substr(txtdata[index-1],(txtdata[index]-txtdata[index-1]));
-    xinTXT = xinTXT + "<span style='color:" + txtdata[index+1] + "'>" + TXT.substr(txtdata[index],(txtdata[index+2]-txtdata[index])) + "</span>";
+      xinTXT = xinTXT + TXT.substr(txtdata[index-1],(txtdata[index]-txtdata[index-1]));
+      xinTXT = xinTXT + "<span style='color:" + txtdata[index+1] + "'>" + TXT.substr(txtdata[index],(txtdata[index+2]-txtdata[index])) + "</span>";
     }
     xinTXT = xinTXT + TXT.substr(txtdata[txtdata.length-1],10000);
   }
-
-  if(xinTXT.search("//") != -1){
-    xinTXT = xinTXT.substr(0,xinTXT.search("//")) + "<span style='color:#6a9955'>" + xinTXT.substr(xinTXT.search("//"),10000) + "</span>";
-  }
-  if(xinTXT.search("# ") != -1){
-    xinTXT = xinTXT.substr(0,xinTXT.search("#")) + "<span style='color:#6a9955'>" + xinTXT.substr(xinTXT.search("#"),10000) + "</span>";
-  }
+  
 
 
-  //console.log(xinTXT);
   var ele = document.createElement("p");//创建一个LI
   ele.style ='white-space:pre;';
   ele.innerHTML = xinTXT;//修改里面的属性s
-  //ele.style.width = "100%";
+  ele.style.width = "auto";
   ele.style.color = "#ffffff";
   ele.className = type;
-  //ele.style.float = "left";
   document.getElementById(divs).appendChild(ele);//把LI放到ID="zhu"的lu里面
 
 
@@ -550,31 +601,20 @@ function add(type,TXT,shu)
   var divs = "div" + lieshu;
   var divt = document.createElement("div");//创建一个LI
   divt.id = divs;
-  //divt.style.height = "20%";
   divt.style.width = "90%";
   divt.style.left = "5%";
   divt.style.position = "relative";
-  //divt.style.transform = "skew(12deg)";
   document.getElementById(shu).appendChild(divt);
 
-
-  var tiaoguo = "";
-  switch(type){
-    case "p":tiaoguo = 1; break;
-    case "a":tiaoguo = 1; break;
-    case "h1":tiaoguo = 2; break;
-    case "h2":tiaoguo = 2; break;
-  }
-
   
-
+  //对书名加上百度链接
   if(TXT.search("《") != -1){
     TXT = TXT.substr(0,TXT.search("《")+1) + "<a target='view_window' style='color:#00c6ff' href='" + baidu0 + TXT.substr((TXT.search("《")+1),(TXT.search("》")-TXT.search("《")-1)) + baidu1 + "'>" + TXT.substr((TXT.search("《")+1),(TXT.search("》")-TXT.search("《")-1)) + "</a>" + TXT.substr((TXT.search("》")),10000);
   }
 
 
   var ele = document.createElement(type);//创建一个LI
-  ele.innerHTML = TXT.substr(tiaoguo,10000);//修改里面的属性s
+  ele.innerHTML = TXT.substr(type.length,10000);//修改里面的属性s
   //ele.style.width = "100%";
   ele.className = type;
   //ele.style.float = "left";
@@ -614,7 +654,7 @@ function duqutxtneirong(URss){
         ulid = idming;
 
   
-
+        //读取每一行，并根据开头信息，做出不同判断
         for (let index = 0; index < reader.result.split("\n").length; index++) {
           for(let lei = 0; lei < leixing.length;lei++){
             if(reader.result.split("\n")[index].search(leixing[lei]) == 0){
@@ -622,14 +662,10 @@ function duqutxtneirong(URss){
             }
             if(reader.result.split("\n")[index].search("<代码>") == 0){
               index++;
-              var zfc = reader.result.split("\n")[index].substr(0,2);
-              switch(zfc){
-                case "js":var daimayingshi=daimaleixing_js; break;
-                case "py":var daimayingshi=daimaleixing_py; break;
-              }
+              var xz = reader.result.split("\n")[index].substr(0,2);
               index++;
               while(reader.result.split("\n")[index].search("</代码>") != 0){
-                addma(leixing[lei],reader.result.split("\n")[index],idming,daimayingshi);
+                addma(leixing[lei],reader.result.split("\n")[index],idming,xz);
                 index++;
               }
             }
