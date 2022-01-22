@@ -3,7 +3,102 @@ h1这也是一行
 p我这也是一行
 <代码>
 js
-var  function  var var  function function function 我去,厉害啊！//这是厉害的注释！
+//添加代码主键
+function addma(type,TXT,shu,yangshi)
+{
+  var divs = "div" + lieshu;
+  var divt = document.createElement("div");//创建一个LI
+  divt.id = divs;
+  divt.style.borderStyle = "solid";
+  divt.style.borderWidth = "5px";
+  divt.style.borderColor = "#303030";
+  divt.style.height = "auto";
+  divt.style.width = "90%";
+  divt.style.left = "5%";
+  divt.style.position = "relative";
+  divt.style.background = "#303030";
+  //divt.style.transform = "skew(12deg)";
+  document.getElementById(shu).appendChild(divt);
+
+  var you = 1;
+
+
+  var txtdata = [];
+  for (let index = 0; index < yangshi.length; index=index+2) {
+    var i = 1;
+    var to = 0;
+    while(i){
+      if(TXT.substr(to,10000).search(yangshi[index]) != -1){
+        you = 0;
+        to = to + TXT.substr(to,10000).search(yangshi[index]);
+        txtdata.push(to);
+        txtdata.push(yangshi[index+1]);
+        to = to + yangshi[index].length;
+        txtdata.push(to);
+      }
+      else{
+        i = 0;
+      }
+    }
+  }
+  var len = txtdata.length;
+  var tmp1 = null;
+  var tmp2 = null;
+  var tmp3 = null;
+  for(var j=0; j<len-3; j=j+3){
+    for(var i=0; i<len-3-j; i=i+3){
+      if(txtdata[i]>txtdata[i+3]){
+        tmp1 = txtdata[i];
+        tmp2 = txtdata[i+1];
+        tmp3 = txtdata[i+2];
+
+
+        txtdata[i] = txtdata[i+3];
+        txtdata[i+1] = txtdata[i+4];
+        txtdata[i+2] = txtdata[i+5];
+
+
+        txtdata[i+3] = tmp1;
+        txtdata[i+4] = tmp2;
+        txtdata[i+5] = tmp3;
+      }
+    }
+  }
+  
+  if(you){
+    xinTXT=TXT;
+  }
+  else{
+    var xinTXT = TXT.substr(0,txtdata[0]);
+    xinTXT = xinTXT + "<span style='color:" + txtdata[1] + "'>" + TXT.substr(txtdata[0],(txtdata[2]-txtdata[0])) + "</span>";
+    for (let index = 3; index < txtdata.length; index=index+3) {
+    xinTXT = xinTXT + TXT.substr(txtdata[index-1],(txtdata[index]-txtdata[index-1]));
+    xinTXT = xinTXT + "<span style='color:" + txtdata[index+1] + "'>" + TXT.substr(txtdata[index],(txtdata[index+2]-txtdata[index])) + "</span>";
+    }
+    xinTXT = xinTXT + TXT.substr(txtdata[txtdata.length-1],10000);
+  }
+
+  if(xinTXT.search("//") != -1){
+    xinTXT = xinTXT.substr(0,xinTXT.search("//")) + "<span style='color:#6a9955'>" + xinTXT.substr(xinTXT.search("//"),10000) + "</span>";
+  }
+  if(xinTXT.search("# ") != -1){
+    xinTXT = xinTXT.substr(0,xinTXT.search("#")) + "<span style='color:#6a9955'>" + xinTXT.substr(xinTXT.search("#"),10000) + "</span>";
+  }
+
+
+  //console.log(xinTXT);
+  var ele = document.createElement("p");//创建一个LI
+  ele.style ='white-space:pre;';
+  ele.innerHTML = xinTXT;//修改里面的属性s
+  //ele.style.width = "100%";
+  ele.style.color = "#ffffff";
+  ele.className = type;
+  //ele.style.float = "left";
+  document.getElementById(divs).appendChild(ele);//把LI放到ID="zhu"的lu里面
+
+
+  lieshu++;
+}
 </代码>
 p《乌合之众》
 p<乌合之众>
