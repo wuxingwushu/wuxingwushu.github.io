@@ -142,7 +142,9 @@ section{
 #img3{
     background-image: url(images/6.jpg);
 }
-
+#img4{
+    background-image: url(images/9.jpg);
+}
 ul {
     scroll-snap-type: y mandatory;
     list-style: none;
