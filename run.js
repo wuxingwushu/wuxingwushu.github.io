@@ -617,10 +617,10 @@ function duqutxtneirong(URss){
 
         for (let index = 0; index < reader.result.split("\n").length; index++) {
           for(let lei = 0; lei < leixing.length;lei++){
-            if(reader.result.split("\n")[index].search(leixing[lei]) != -1){
+            if(reader.result.split("\n")[index].search(leixing[lei]) == 0){
               add(leixing[lei],reader.result.split("\n")[index],idming);
             }
-            if(reader.result.split("\n")[index].search("<代码>") != -1){
+            if(reader.result.split("\n")[index].search("<代码>") == 0){
               index++;
               var zfc = reader.result.split("\n")[index].substr(0,2);
               switch(zfc){
@@ -628,7 +628,7 @@ function duqutxtneirong(URss){
                 case "py":var daimayingshi=daimaleixing_py; break;
               }
               index++;
-              while(reader.result.split("\n")[index].search("</代码>") == -1){
+              while(reader.result.split("\n")[index].search("</代码>") != 0){
                 addma(leixing[lei],reader.result.split("\n")[index],idming,daimayingshi);
                 index++;
               }
