@@ -8,8 +8,8 @@ p
 h1这些是脚本代码：
 <代码>
 py
-import os #读取系统文件夹的目录
-from PIL import Image #读取照片的长宽
+import os # 读取系统文件夹的目录
+from PIL import Image # 读取照片的长宽
 import numpy as np
 
 # 获取当前文件路径
