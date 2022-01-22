@@ -127,7 +127,7 @@ function donghuatuen(IDshu){
       if(bool==0)elem.style.left = pos + "px"; 
     }
     if (pos1 < kuan) {
-      pos1 = pos1 + 16;   
+      pos1 = pos1 + 16;
       if(bool==0)elem1.style.left = pos1 + "px"; 
     }
     if (pos2 < kuan*0.4) {
@@ -408,6 +408,8 @@ function shubiaogundong0(){
 
 urlToBlob('Game/游戏日志.txt',"3","li","xtxt3");
 urlToBlob('Dentury/事记.txt',"7","li","xtxt7");
+urlToBlob('Skill/技束.txt',"11","li","xtxt11");
+
 
 
 
@@ -620,7 +622,6 @@ function duqutxtneirong(URss){
             if(reader.result.split("\n")[index].search("<代码>") != -1){
               index++;
               var zfc = reader.result.split("\n")[index].substr(0,2);
-              console.log(zfc)
               switch(zfc){
                 case "js":var daimayingshi=daimaleixing_js; break;
                 case "py":var daimayingshi=daimaleixing_py; break;
