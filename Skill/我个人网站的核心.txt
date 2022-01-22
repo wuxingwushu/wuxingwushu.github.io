@@ -1,10 +1,10 @@
 h1便捷的添加和修改文章
-
+p
 p主要内容都写在TXT，剩下的格式js都会按照预算自动添加到网页上去
-
+p
 h1以下是代码
 <代码>
-js
+jsp
 //获取TXT的内容
 function duqutxtneirong(URss){
   let file_url = "https://raw.githubusercontent.com/wuxingwushu/wuxingwushu.github.io/main/" + URss;
