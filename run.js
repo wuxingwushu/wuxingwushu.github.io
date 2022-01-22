@@ -2,10 +2,41 @@ var bool = 1;
 var fubool = 0;
 var ulid = "";
 var leixing = ["p","h1","h2","a"];
-var daimaleixing = ["var","#569CD6","case","#569CD6","break","#569CD6","for","#c586c0","switch","#c586c0","function","#569CD6","style","#4fc1ff","if","#c586c0","else","#c586c0"];
+var daimaleixing_js = [
+  //javascript
+  "var","#569CD6"
+,"case","#569CD6"
+,"break","#569CD6"
+
+,"for","#c586c0"
+,"switch","#c586c0"
+,"function","#569CD6"
+,"if","#c586c0"
+,"else","#c586c0"
+
+,"style","#4fc1ff"
+];
+var daimaleixing_py = [
+//python
+"from","#cc7832"
+,"import","#cc7832"
+," as","#cc7832"
+,"def","#cc7832"
+,",","#cc7832"
+,"elif","#cc7832"
+,"if","#cc7832"
+," in","#cc7832"
+,"for","#cc7832"
+
+," open","#5a77c5"
+," str","#5a77c5"
+];
+
 var lieshu = 0;
 var baidu0 = "https://www.baidu.com/s?wd=";
 var baidu1 = "&rsv_spt=1&rsv_iqid=0xff48a07f00019107&issp=1&f=8&rsv_bp=1&rsv_idx=2&ie=utf-8&tn=baiduhome_pg&rsv_enter=1&rsv_dl=tb&rsv_sug3=5&rsv_sug2=0&rsv_btype=i&inputT=1139&rsv_sug4=2271";
+var TXTGithub = "https://raw.githubusercontent.com/wuxingwushu/wuxingwushu.github.io/main/";
+var TXTGitee = "https://gitee.com/daosheng0/daosheng/raw/master/";
 
 
 //主界面的菜单出现动画
@@ -244,7 +275,12 @@ function fudonghuatuen(IDshu){
 
 
 
-
+//删除主键
+function shanchu(neirong)
+{
+  var child=document.getElementById(neirong);
+  child.parentNode.removeChild(child);
+}
 
 
 
@@ -258,13 +294,6 @@ function addp(shu)
   ele.style.className = "xiaoTXT";
   document.getElementById((shu + 1)).appendChild(ele);//把LI放到ID="zhu"的lu里面
 }
-//删除主键
-function shanchu(neirong)
-{
-  var child=document.getElementById(neirong);
-  child.parentNode.removeChild(child);
-}
-
 //添加主键
 function addli(type,TXT,shu,TXT1,shu1)
 {
@@ -294,24 +323,6 @@ function yulan(TXT,id)
   var child=document.getElementById(id);
   child.innerHTML=TXT;
 }
-
-
-
-
-
-
-/*
-function readFiles(){
-  const fs = require('fs');
-  fs.readdir('./images',(err,result)=>{
-    console.log(result);  
-  })
-}
-
-var str = "Visit Ruoob!Runobw Rnoob"; 
-    var n = str.search("Runoob"); */
-
-
 //读取TXT（链接）
 function urlToBlob(URss,id,zhujian,id1) {
   let file_url = "https://raw.githubusercontent.com/wuxingwushu/wuxingwushu.github.io/main/" + URss;
@@ -397,7 +408,6 @@ function shubiaogundong0(){
 
 urlToBlob('Game/游戏日志.txt',"3","li","xtxt3");
 urlToBlob('Dentury/事记.txt',"7","li","xtxt7");
-//alert("如果无法正常链接Github的数据！\n可以使用Steam++后再次尝试！");
 
 
 
@@ -426,9 +436,8 @@ urlToBlob('Dentury/事记.txt',"7","li","xtxt7");
 
 
 
-function zhifuchuan(shei,shu,TXT){
-  return shei = shei.substr(0,shu) + TXT + shei.substr(shu,10000);
-}
+
+
 
 
 
@@ -437,7 +446,7 @@ function zhifuchuan(shei,shu,TXT){
 
 
 //添加代码主键
-function addma(type,TXT,shu)
+function addma(type,TXT,shu,yangshi)
 {
   var divs = "div" + lieshu;
   var divt = document.createElement("div");//创建一个LI
@@ -453,20 +462,23 @@ function addma(type,TXT,shu)
   //divt.style.transform = "skew(12deg)";
   document.getElementById(shu).appendChild(divt);
 
+  var you = 1;
 
 
   var txtdata = [];
-  for (let index = 0; index < daimaleixing.length; index=index+2) {
+  for (let index = 0; index < yangshi.length; index=index+2) {
     var i = 1;
     var to = 0;
     while(i){
-      if(TXT.substr(to,10000).search(daimaleixing[index]) != -1){
-        to = to + TXT.substr(to,10000).search(daimaleixing[index]);
+      if(TXT.substr(to,10000).search(yangshi[index]) != -1){
+        you = 0;
+        to = to + TXT.substr(to,10000).search(yangshi[index]);
         txtdata.push(to);
-        txtdata.push(daimaleixing[index+1]);
-        to = to + daimaleixing[index].length;
+        txtdata.push(yangshi[index+1]);
+        to = to + yangshi[index].length;
         txtdata.push(to);
-      }else{
+      }
+      else{
         i = 0;
       }
     }
@@ -477,7 +489,7 @@ function addma(type,TXT,shu)
   var tmp3 = null;
   for(var j=0; j<len-3; j=j+3){
     for(var i=0; i<len-3-j; i=i+3){
-    if(txtdata[i]>txtdata[i+3]){
+      if(txtdata[i]>txtdata[i+3]){
         tmp1 = txtdata[i];
         tmp2 = txtdata[i+1];
         tmp3 = txtdata[i+2];
@@ -491,20 +503,28 @@ function addma(type,TXT,shu)
         txtdata[i+3] = tmp1;
         txtdata[i+4] = tmp2;
         txtdata[i+5] = tmp3;
-    }
+      }
     }
   }
-  //console.log(txtdata);
-  var xinTXT = TXT.substr(0,txtdata[0]);
-  xinTXT = xinTXT + "<span style='color:" + txtdata[1] + "'>" + TXT.substr(txtdata[0],(txtdata[2]-txtdata[0])) + "</span>";
-  for (let index = 3; index < txtdata.length; index=index+3) {
+  
+  if(you){
+    xinTXT=TXT;
+  }
+  else{
+    var xinTXT = TXT.substr(0,txtdata[0]);
+    xinTXT = xinTXT + "<span style='color:" + txtdata[1] + "'>" + TXT.substr(txtdata[0],(txtdata[2]-txtdata[0])) + "</span>";
+    for (let index = 3; index < txtdata.length; index=index+3) {
     xinTXT = xinTXT + TXT.substr(txtdata[index-1],(txtdata[index]-txtdata[index-1]));
     xinTXT = xinTXT + "<span style='color:" + txtdata[index+1] + "'>" + TXT.substr(txtdata[index],(txtdata[index+2]-txtdata[index])) + "</span>";
+    }
+    xinTXT = xinTXT + TXT.substr(txtdata[txtdata.length-1],10000);
   }
-  xinTXT = xinTXT + TXT.substr(txtdata[txtdata.length-1],10000);
 
   if(xinTXT.search("//") != -1){
     xinTXT = xinTXT.substr(0,xinTXT.search("//")) + "<span style='color:#6a9955'>" + xinTXT.substr(xinTXT.search("//"),10000) + "</span>";
+  }
+  if(xinTXT.search("# ") != -1){
+    xinTXT = xinTXT.substr(0,xinTXT.search("#")) + "<span style='color:#6a9955'>" + xinTXT.substr(xinTXT.search("#"),10000) + "</span>";
   }
 
 
@@ -599,8 +619,15 @@ function duqutxtneirong(URss){
             }
             if(reader.result.split("\n")[index].search("<代码>") != -1){
               index++;
+              var zfc = reader.result.split("\n")[index].substr(0,2);
+              console.log(zfc)
+              switch(zfc){
+                case "js":var daimayingshi=daimaleixing_js; break;
+                case "py":var daimayingshi=daimaleixing_py; break;
+              }
+              index++;
               while(reader.result.split("\n")[index].search("</代码>") == -1){
-                addma(leixing[lei],reader.result.split("\n")[index],idming);
+                addma(leixing[lei],reader.result.split("\n")[index],idming,daimayingshi);
                 index++;
               }
             }
