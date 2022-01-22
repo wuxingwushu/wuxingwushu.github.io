@@ -94,6 +94,16 @@ section {
     justify-content: center;
     align-items: center;
 }
+#xtxt11{
+    height: 100vh;
+    background-color: #c4cbcf;
+    color: #ffffff;
+    font-size: 3vh;
+	place-items: center;
+    display: flex;/*grid*/
+    justify-content: center;
+    align-items: center;
+}
 #kuang{
     width: 100vw;
     height: 100vh;
@@ -166,18 +176,4 @@ li:nth-child(2n) {
 }
 li:nth-child(2n + 1) {
     background: #ffffff;
-}
-
-
-
-.code-part {
-    background: yellow;
-}
- 
-.code-part li {
-    list-style-position: outside;/*关键处*/
-    background:green;
-    color:black;
-    margin-left:10px;
-    border-left:2px solid #000;
 }
