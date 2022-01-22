@@ -306,6 +306,7 @@ function addli(type,TXT,shu,TXT1,shu1)
   switch(shu){
     case "3":ul ="Game/" + TXT + ".txt";break;
     case "7":ul ="Dentury/" + TXT + ".txt";break;
+    case "11":ul ="Skill/" + TXT + ".txt";break;
   }
 
   ele.onclick = function() {fudonghuakai((shu-3));duqutxtneirong(ul);}
