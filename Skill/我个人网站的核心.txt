@@ -1,0 +1,155 @@
+h1便捷的添加和修改文章
+
+p主要内容都写在TXT，剩下的格式js都会按照预算自动添加到网页上去
+
+h1一下的代码
+<代码>
+js
+//获取TXT的内容
+function duqutxtneirong(URss){
+  let file_url = "https://raw.githubusercontent.com/wuxingwushu/wuxingwushu.github.io/main/" + URss;
+  let xhr = new XMLHttpRequest();
+  xhr.open("get", file_url, true);
+  xhr.responseType = "blob";
+  xhr.onload = function () {
+    if (this.status == 200) {
+      //console.log(this.response)
+      const reader = new FileReader()
+      reader.onload = function () {
+        
+        shanchu("xtxt"+ulid)
+        adddiv(ulid-2);
+        var idming = "xianshineirong" + (ulid-2);
+
+        
+
+        ulid = idming;
+
+  
+        //初步解析
+        for (let index = 0; index < reader.result.split("\n").length; index++) {
+          for(let lei = 0; lei < leixing.length;lei++){
+            if(reader.result.split("\n")[index].search(leixing[lei]) != -1){
+              add(leixing[lei],reader.result.split("\n")[index],idming);
+            }
+            if(reader.result.split("\n")[index].search("<代码>") != -1){
+              index++;
+              var zfc = reader.result.split("\n")[index].substr(0,2);
+              switch(zfc){
+                case "js":var daimayingshi=daimaleixing_js; break;
+                case "py":var daimayingshi=daimaleixing_py; break;
+              }
+              index++;
+              while(reader.result.split("\n")[index].search("</代码>") == -1){
+                addma(leixing[lei],reader.result.split("\n")[index],idming,daimayingshi);
+                index++;
+              }
+            }
+          }
+        }
+
+
+      }
+      reader.readAsText(this.response);
+    }
+  };
+  xhr.send();
+}
+
+//代码主键——详细解析
+function addma(type,TXT,shu,yangshi)
+{
+  var divs = "div" + lieshu;
+  var divt = document.createElement("div");//创建一个LI
+  divt.id = divs;
+  divt.style.borderStyle = "solid";
+  divt.style.borderWidth = "5px";
+  divt.style.borderColor = "#303030";
+  divt.style.height = "auto";
+  divt.style.width = "90%";
+  divt.style.left = "5%";
+  divt.style.position = "relative";
+  divt.style.background = "#303030";
+  //divt.style.transform = "skew(12deg)";
+  document.getElementById(shu).appendChild(divt);
+
+  var you = 1;
+
+
+  var txtdata = [];
+  for (let index = 0; index < yangshi.length; index=index+2) {
+    var i = 1;
+    var to = 0;
+    while(i){
+      if(TXT.substr(to,10000).search(yangshi[index]) != -1){
+        you = 0;
+        to = to + TXT.substr(to,10000).search(yangshi[index]);
+        txtdata.push(to);
+        txtdata.push(yangshi[index+1]);
+        to = to + yangshi[index].length;
+        txtdata.push(to);
+      }
+      else{
+        i = 0;
+      }
+    }
+  }
+  var len = txtdata.length;
+  var tmp1 = null;
+  var tmp2 = null;
+  var tmp3 = null;
+  for(var j=0; j<len-3; j=j+3){
+    for(var i=0; i<len-3-j; i=i+3){
+      if(txtdata[i]>txtdata[i+3]){
+        tmp1 = txtdata[i];
+        tmp2 = txtdata[i+1];
+        tmp3 = txtdata[i+2];
+
+
+        txtdata[i] = txtdata[i+3];
+        txtdata[i+1] = txtdata[i+4];
+        txtdata[i+2] = txtdata[i+5];
+
+
+        txtdata[i+3] = tmp1;
+        txtdata[i+4] = tmp2;
+        txtdata[i+5] = tmp3;
+      }
+    }
+  }
+  
+  if(you){
+    xinTXT=TXT;
+  }
+  else{
+    var xinTXT = TXT.substr(0,txtdata[0]);
+    xinTXT = xinTXT + "<span style='color:" + txtdata[1] + "'>" + TXT.substr(txtdata[0],(txtdata[2]-txtdata[0])) + "</span>";
+    for (let index = 3; index < txtdata.length; index=index+3) {
+    xinTXT = xinTXT + TXT.substr(txtdata[index-1],(txtdata[index]-txtdata[index-1]));
+    xinTXT = xinTXT + "<span style='color:" + txtdata[index+1] + "'>" + TXT.substr(txtdata[index],(txtdata[index+2]-txtdata[index])) + "</span>";
+    }
+    xinTXT = xinTXT + TXT.substr(txtdata[txtdata.length-1],10000);
+  }
+
+  if(xinTXT.search("//") != -1){
+    xinTXT = xinTXT.substr(0,xinTXT.search("//")) + "<span style='color:#6a9955'>" + xinTXT.substr(xinTXT.search("//"),10000) + "</span>";
+  }
+  if(xinTXT.search("# ") != -1){
+    xinTXT = xinTXT.substr(0,xinTXT.search("#")) + "<span style='color:#6a9955'>" + xinTXT.substr(xinTXT.search("#"),10000) + "</span>";
+  }
+
+
+  //console.log(xinTXT);
+  var ele = document.createElement("p");//创建一个LI
+  ele.style ='white-space:pre;';
+  ele.innerHTML = xinTXT;//修改里面的属性s
+  //ele.style.width = "100%";
+  ele.style.color = "#ffffff";
+  ele.className = type;
+  //ele.style.float = "left";
+  document.getElementById(divs).appendChild(ele);//把LI放到ID="zhu"的lu里面
+
+
+  lieshu++;
+}
+</代码>

@@ -1,0 +1,64 @@
+h1以下是训练模型的步骤
+
+p准备训练对象
+p添加正样本和负样本
+p调整一下训练的参数
+p启动BAT
+
+h1这些是脚本代码：
+<代码>
+py
+import os #读取系统文件夹的目录
+from PIL import Image #读取照片的长宽
+import numpy as np
+
+# 获取当前文件路径
+xdlu = [os.path.dirname(os.path.realpath(__file__))]
+# 正负图片的数量
+shuliang = [0,0]
+
+
+# 创建正负两个样本图片路径信息
+pos = open((xdlu[0] + "\\info.dat"),"w")
+neg = open((xdlu[0] + "\\bg.dat"),"w")
+
+# 分析路径内的文件夹和图片
+def duqumulu(lu):
+    for file in os.scandir(lu):
+        # 是文件夹就继续打开
+        if file.is_dir():
+            duqumulu(lu + "\\" + file.name)
+        # 判断是否以一下类型的图片
+        elif (file.name[-3:] == "png") | (file.name[-3:] == "jpg") | (file.name[-3:] == "bmp")| (file.name[-4:] == "jpeg"):
+            tupianduqu(lu + "\\" + file.name)
+
+# 将图片按照对应关系处理
+def tupianduqu(luimg):
+    # 截取出相对路径
+    lu = luimg.split(xdlu[0], 1)[1][1:].replace("\\", '/')
+    # 以灰度图的方式打开图片
+    img = Image.open(luimg).convert('L')
+    w = img.width  # 图片的宽
+    h = img.height  # 图片的高
+    # 判断是否是pos文件下的图片（正样本）
+    if lu[0:3] == "pos":
+        shuliang[0] += 1
+        pos.write(lu + " 1 0 0 " + str(w) + " " + str(h) + "\n")
+    # 判断是否是neg文件下的图片（负样本）
+    elif lu[0:3] == "neg":
+        shuliang[1] += 1
+        neg.write(lu + "\n")
+
+def xunlianjiaoben():
+    xlian = open((xdlu[0] + "\\run.bat"),"w")
+    xlian.write("opencv_createsamples.exe -info info.dat -vec pos.vec -num " + str(shuliang[0]) + " -w 24 -h 24" + "\n")
+    xlian.write("opencv_traincascade.exe -data xml -vec pos.vec -bg bg.dat -numPos " + str(shuliang[0]) + " -numNeg " + str(shuliang[1]) + " -numStages 12 -w 24 -h 24 -mode ALL -mem 3000" + "\n")
+    xlian.close()
+
+
+if __name__ == '__main__':
+    duqumulu(xdlu[0])
+    xunlianjiaoben()
+    pos.close()
+    neg.close()
+</代码>
