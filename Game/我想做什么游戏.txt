@@ -2,11 +2,13 @@ a这是一行
 h1这也是一行
 p我这也是一行
 <代码>
+js
 var  function  var var  function function function 我去,厉害啊！//这是厉害的注释！
 </代码>
 p《乌合之众》
 p<乌合之众>
 <代码>
+py
 import os #读取系统文件夹的目录
 from PIL import Image #读取照片的长宽
 import numpy as np
