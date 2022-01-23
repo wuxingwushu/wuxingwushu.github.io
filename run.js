@@ -495,7 +495,8 @@ function addma(type,TXT,shu,xz)
       break;
   }
 
-  //装饰字符串
+  //单双引号识别
+  var zfc = []
   for (let index = 0; index < zhushi.length; index++) {
     var i = 1;
     var to = 0;
@@ -503,17 +504,50 @@ function addma(type,TXT,shu,xz)
       if(TXT.substr(to,10000).search(zhushi[index]) != -1 && TXT.substr(to,10000).search(zhushi[index]) < zhushikaishi){
         you = 0;
         to = to + TXT.substr(to,10000).search(zhushi[index]);
-        zhushis.push(to);
-        zhushis.push("#6a9955");
-        to = to + TXT.substr(to+1,10000).search(zhushi[index]) + 2;
-        zhushis.push(to);
+        zfc.push(to);
+        if(index){
+          zfc.push('"');
+        }
+        else{
+          zfc.push("'");
+        }
+        to++;
       }
       else{
         i = 0;
       }
     }
   }
-
+  var tmp1 = null;
+  var tmp2 = null;
+  var tmp3 = null;
+  for(var j=0; j<zfc.length-2; j=j+2){
+    for(var i=0; i<zfc.length-2-j; i=i+2){
+      if(zfc[i]>zfc[i+2]){
+        tmp1 = zfc[i];
+        tmp2 = zfc[i+1];
+        zfc[i] = zfc[i+2];
+        zfc[i+1] = zfc[i+3];
+        zfc[i+2] = tmp1;
+        zfc[i+3] = tmp2;
+      }
+    }
+  }
+  for (let index = 0; index < zfc.length; index=index+2) {
+    var i = 2;
+    while(i != 0){
+      if(zfc[index+1] == zfc[index+1+i]){
+        zhushis.push(zfc[index]);
+        zhushis.push("#6a9955");
+        zhushis.push(zfc[index+i]+1);
+        index = index+i;
+        i = 0;
+      }
+      else{
+        i=i+2;
+      }
+    }
+  }
   //装饰特殊单词
   var txtdata = zhushis;
   for (let index = 0; index < yangshi.length; index=index+2) {
@@ -539,13 +573,10 @@ function addma(type,TXT,shu,xz)
       }
     }
   }
-
+  
   
   //对装饰信息进行大小排序，便于切割字符串。
   var len = txtdata.length;
-  var tmp1 = null;
-  var tmp2 = null;
-  var tmp3 = null;
   for(var j=0; j<len-3; j=j+3){
     for(var i=0; i<len-3-j; i=i+3){
       if(txtdata[i]>txtdata[i+3]){
@@ -566,6 +597,7 @@ function addma(type,TXT,shu,xz)
     }
   }
 
+  //console.log(txtdata)
 
   //是否有装饰
   if(you){
@@ -581,7 +613,7 @@ function addma(type,TXT,shu,xz)
     }
     xinTXT = xinTXT + TXT.substr(txtdata[txtdata.length-1],10000);
   }
-  
+  console.log(xinTXT)
 
 
   var ele = document.createElement("p");//创建一个LI
