@@ -463,6 +463,7 @@ function addma(type,TXT,shu,xz)
   divt.style.left = "5%";
   divt.style.position = "relative";
   divt.style.background = "#303030";
+  divt.style.overflow = "auto";
   document.getElementById(shu).appendChild(divt);
 
 
