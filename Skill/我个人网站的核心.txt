@@ -4,7 +4,8 @@ p主要内容都写在TXT，剩下的格式js都会按照预算自动添加到�
 p
 h1以下是代码
 <代码>
-jsp
+js
+"这是代码'"自动分别出"谁是再单'双引号下的"
 //获取TXT的内容
 function duqutxtneirong(URss){
   let file_url = "https://raw.githubusercontent.com/wuxingwushu/wuxingwushu.github.io/main/" + URss;
