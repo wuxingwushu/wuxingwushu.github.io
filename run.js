@@ -646,7 +646,7 @@ function add(type,TXT,shu)
 
 
   var ele = document.createElement(type);//创建一个LI
-  ele.style ='white-space:pre;';
+  ele.style ='white-space:pre-wrap;'
   ele.innerHTML = TXT.substr(type.length,10000);//修改里面的属性s
   //ele.style.width = "100%";
   ele.className = type;
