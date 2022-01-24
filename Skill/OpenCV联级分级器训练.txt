@@ -1,9 +1,9 @@
 h1重点注意事项
-p  OpenCV中有两个程序可以训练级联分类器： opencv_haartraining and opencv_traincascade``。 ``opencv_traincascade 是一个新程序，使用OpenCV 2.x API 以C++ 编写。这二者主要的区别是 opencv_traincascade 支持 Haar [Viola2001] 和 LBP [Liao2007] (Local Binary Patterns) 两种特征，并易于增加其他的特征。与Haar特征相比，LBP特征是整数特征，因此训练和检测过程都会比Haar特征快几倍。LBP和Haar特征用于检测的准确率，是依赖训练过程中的训练数据的质量和训练参数。训练一个与基于Haar特征同样准确度的LBP的分类器是可能的。
-p  opencv_traincascade and opencv_haartraining 所输出的分类器文件格式并不相同。注意，新的级联检测接口（参考 objdetect 模块中的 CascadeClassifier 类）支持这两种格式。 opencv_traincascade 可以旧格式导出选练好的级联分类器。但是在训练过程被中断后再重启训练过程， opencv_traincascade and opencv_haartraining 不能装载与中断前不同的文件格式。
-p  opencv_traincascade 程序使用TBB来处理多线程。如果希望使用多核并行运算加速，请使用TBB来编译OpenCV。
-p  opencv_createsamples 用来准备训练用的正样本数据和测试数据。 opencv_createsamples 能够生成能被 opencv_haartraining 和 opencv_traincascade 程序支持的正样本数据。它的输出为以 *.vec 为扩展名的文件，该文件以二进制方式存储图像。	
-p  opencv_performance 可以用来评估分类器的质量，但只能评估 opencv_haartraining 输出的分类器。它读入一组标注好的图像，运行分类器并报告性能，如检测到物体的数目，漏检的数目，误检的数目，以及其他信息。
+p	OpenCV中有两个程序可以训练级联分类器： opencv_haartraining and opencv_traincascade``。 ``opencv_traincascade 是一个新程序，使用OpenCV 2.x API 以C++ 编写。这二者主要的区别是 opencv_traincascade 支持 Haar [Viola2001] 和 LBP [Liao2007] (Local Binary Patterns) 两种特征，并易于增加其他的特征。与Haar特征相比，LBP特征是整数特征，因此训练和检测过程都会比Haar特征快几倍。LBP和Haar特征用于检测的准确率，是依赖训练过程中的训练数据的质量和训练参数。训练一个与基于Haar特征同样准确度的LBP的分类器是可能的。
+p	opencv_traincascade and opencv_haartraining 所输出的分类器文件格式并不相同。注意，新的级联检测接口（参考 objdetect 模块中的 CascadeClassifier 类）支持这两种格式。 opencv_traincascade 可以旧格式导出选练好的级联分类器。但是在训练过程被中断后再重启训练过程， opencv_traincascade and opencv_haartraining 不能装载与中断前不同的文件格式。
+p	opencv_traincascade 程序使用TBB来处理多线程。如果希望使用多核并行运算加速，请使用TBB来编译OpenCV。
+p	opencv_createsamples 用来准备训练用的正样本数据和测试数据。 opencv_createsamples 能够生成能被 opencv_haartraining 和 opencv_traincascade 程序支持的正样本数据。它的输出为以 *.vec 为扩展名的文件，该文件以二进制方式存储图像。	
+p	opencv_performance 可以用来评估分类器的质量，但只能评估 opencv_haartraining 输出的分类器。它读入一组标注好的图像，运行分类器并报告性能，如检测到物体的数目，漏检的数目，误检的数目，以及其他信息。
 
 
 h1以下是训练模型的步骤
@@ -12,17 +12,17 @@ p 2 调整一下训练的参数
 p 3 启动BAT
 
 h2准备训练素材：
-p  正样本：只有需要识别的目标的图片。
-p  负样本：没有识别的目标的任意图片。
-p  把正样本放入pos文件夹中就可以了，注意图片格式要是（jpg，png，bmp，jpeg）。
-p  把负样本放入neg文件夹中就可以了，注意图片格式要是（jpg，png，bmp，jpeg）。
-p  正样本是需要生成vec文件用于训练。但是脚本已经会自动生成vec文件，调整参数我会仔细说。
+p	正样本：只有需要识别的目标的图片。
+p	负样本：没有识别的目标的任意图片。
+p	把正样本放入pos文件夹中就可以了，注意图片格式要是（jpg，png，bmp，jpeg）。
+p	把负样本放入neg文件夹中就可以了，注意图片格式要是（jpg，png，bmp，jpeg）。
+p	正样本是需要生成vec文件用于训练。但是脚本已经会自动生成vec文件，调整参数我会仔细说。
 
 h2调整一下训练的参数：
 h3
-p  正样本由 opencv_createsamples 生成。正样本可以由包含待检测物体的一张图片生成，也可由一系列标记好的图像生成。
-p  请注意你需要一个很大的负样本库送给训练程序进行训练。如果是绝对刚性的物体，如OpenCV的标志，你只有一张正样本图像；如果是人脸，你需要几百甚至几千个正样本。在待检测物体是人脸的情况下，你需要考虑所有的人种、年龄、表情甚至胡子的样式。
-p  如果只有一张包含物体的图像，如一个公司的标志，那么可以通过对物体图像的随机旋转、改变标志亮度以及将标志放在任意的背景上而获得大量的正样本。生成的正样本数目以及随机的程度都可以通过 opencv_createsamples 的命令行参数控制。
+p	正样本由 opencv_createsamples 生成。正样本可以由包含待检测物体的一张图片生成，也可由一系列标记好的图像生成。
+p	请注意你需要一个很大的负样本库送给训练程序进行训练。如果是绝对刚性的物体，如OpenCV的标志，你只有一张正样本图像；如果是人脸，你需要几百甚至几千个正样本。在待检测物体是人脸的情况下，你需要考虑所有的人种、年龄、表情甚至胡子的样式。
+p	如果只有一张包含物体的图像，如一个公司的标志，那么可以通过对物体图像的随机旋转、改变标志亮度以及将标志放在任意的背景上而获得大量的正样本。生成的正样本数目以及随机的程度都可以通过 opencv_createsamples 的命令行参数控制。
 h4命令行参数：
 p  -vec <vec_file_name>
 p	输出文件，内含用于训练的正样本。
@@ -55,9 +55,9 @@ p  -h <sample_height>
 p	输出样本的高度（以像素为单位）。
 
 
-p  这里的-numPos 不是所谓的正样本的总数。我们需要通过下面这个公式求解-numPos，过程如下：
-p  vec-file number >= (numPos + (numStages-1) * (1 – minHitRate) * numPos) + S;1
-p  vec-file number  就是我们的正样本总数
+p	这里的-numPos 不是所谓的正样本的总数。我们需要通过下面这个公式求解-numPos，过程如下：
+p	vec-file number >= (numPos + (numStages-1) * (1 – minHitRate) * numPos) + S;1
+p	vec-file number  就是我们的正样本总数
 
 h1代码：
 <代码>
