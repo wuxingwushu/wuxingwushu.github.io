@@ -673,7 +673,7 @@ function add(type,TXT,shu)
 function addtu(lu,shu)
 {
   var ele = document.createElement("img");//创建一个LI
-  ele.src = lu;
+  ele.src = "https://images.weserv.nl/?url=" + lu;
   ele.style = "width:90%";
   ele.style.left = "5%";
   ele.style.top = "20px";
