@@ -634,6 +634,7 @@ function add(type,TXT,shu)
   var divs = "div" + lieshu;
   var divt = document.createElement("div");//创建一个LI
   divt.id = divs;
+  divt.style.height = "auto";
   divt.style.width = "90%";
   divt.style.left = "5%";
   divt.style.position = "relative";
@@ -647,9 +648,20 @@ function add(type,TXT,shu)
 
 
   var ele = document.createElement(type);//创建一个LI
-  ele.style ='white-space:pre-wrap;'
+  ele.style.height = "auto";
+  ele.style ='white-space:pre-wrap;margin-top:20px;line-height:40px;'
+
+  //white-space的值：
+  //normal 默认。空白会被浏览器忽略。
+  //pre 空白会被浏览器保留。其行为方式类似 HTML 中的标签
+  //nowrap	文本不会换行，文本会在在同一行上继续，直到遇到标签为止。
+  //pre-wrap	保留空白符序列，但是正常地进行换行。
+  //pre-line	合并空白符序列，但是保留换行符。
+  //inherit	规定应该从父元素继承 white-space 属性的值。
+
   ele.innerHTML = TXT.substr(type.length,10000);//修改里面的属性s
   //ele.style.width = "100%";
+  //ele.style.word.wrap = "break-word"
   ele.className = type;
   //ele.style.float = "left";
   document.getElementById(divs).appendChild(ele);//把LI放到ID="zhu"的lu里面
