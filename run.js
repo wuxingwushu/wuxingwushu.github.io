@@ -669,6 +669,17 @@ function add(type,TXT,shu)
 
   lieshu++;
 }
+//添加图片
+function addtu(lu,shu)
+{
+  var ele = document.createElement("img");//创建一个LI
+  ele.src = lu;
+  ele.style = "width:90%";
+  ele.style.left = "5%";
+  ele.style.top = "20px";
+  ele.style.position = "relative";
+  document.getElementById(shu).appendChild(ele);//把LI放到ID="zhu"的lu里面
+}
 //添加主键
 function adddiv(id)
 {
@@ -706,15 +717,18 @@ function duqutxtneirong(URss){
             if(reader.result.split("\n")[index].search(leixing[lei]) == 0){
               add(leixing[lei],reader.result.split("\n")[index],idming);
             }
-            if(reader.result.split("\n")[index].search("<代码>") == 0){
+          }
+          if(reader.result.split("\n")[index].search("<代码>") == 0){
+            index++;
+            var xz = reader.result.split("\n")[index].substr(0,2);
+            index++;
+            while(reader.result.split("\n")[index].search("</代码>") != 0){
+              addma("p",reader.result.split("\n")[index],idming,xz);
               index++;
-              var xz = reader.result.split("\n")[index].substr(0,2);
-              index++;
-              while(reader.result.split("\n")[index].search("</代码>") != 0){
-                addma(leixing[lei],reader.result.split("\n")[index],idming,xz);
-                index++;
-              }
             }
+          }
+          if(reader.result.split("\n")[index].search("<图片>") == 0){
+            addtu(reader.result.split("\n")[index].substr(4,10000),idming)
           }
         }
 
