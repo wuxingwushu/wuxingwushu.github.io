@@ -1,5 +1,6 @@
 a这是一行
 h1这也是一行
+<图片>https://i0.hdslb.com/bfs/album/b52c9d4bf71b59fe0d5c4b040bf9e8a573923ea6.jpg
 p我这也是一行
 <代码>
 js
