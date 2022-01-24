@@ -1,3 +1,4 @@
+<图片>https://i0.hdslb.com/bfs/album/b52c9d4bf71b59fe0d5c4b040bf9e8a573923ea6.jpg
 h1重点注意事项
 p	OpenCV中有两个程序可以训练级联分类器： opencv_haartraining and opencv_traincascade``。 ``opencv_traincascade 是一个新程序，使用OpenCV 2.x API 以C++ 编写。这二者主要的区别是 opencv_traincascade 支持 Haar [Viola2001] 和 LBP [Liao2007] (Local Binary Patterns) 两种特征，并易于增加其他的特征。与Haar特征相比，LBP特征是整数特征，因此训练和检测过程都会比Haar特征快几倍。LBP和Haar特征用于检测的准确率，是依赖训练过程中的训练数据的质量和训练参数。训练一个与基于Haar特征同样准确度的LBP的分类器是可能的。
 p	opencv_traincascade and opencv_haartraining 所输出的分类器文件格式并不相同。注意，新的级联检测接口（参考 objdetect 模块中的 CascadeClassifier 类）支持这两种格式。 opencv_traincascade 可以旧格式导出选练好的级联分类器。但是在训练过程被中断后再重启训练过程， opencv_traincascade and opencv_haartraining 不能装载与中断前不同的文件格式。
