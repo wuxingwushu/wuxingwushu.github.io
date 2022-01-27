@@ -1,161 +1,48 @@
-a这是一行
-h1这也是一行
-<图片>https://i0.hdslb.com/bfs/album/b52c9d4bf71b59fe0d5c4b040bf9e8a573923ea6.jpg
-p我这也是一行
-<代码>
-js
-//添加代码主键
-function addma(type,TXT,shu,yangshi)
-{
-  var divs = "div" + lieshu;
-  var divt = document.createElement("div");//创建一个LI
-  divt.id = divs;
-  divt.style.borderStyle = "solid";
-  divt.style.borderWidth = "5px";
-  divt.style.borderColor = "#303030";
-  divt.style.height = "auto";
-  divt.style.width = "90%";
-  divt.style.left = "5%";
-  divt.style.position = "relative";
-  divt.style.background = "#303030";
-  //divt.style.transform = "skew(12deg)";
-  document.getElementById(shu).appendChild(divt);
+h1我个人的理想游戏：（我知道不切实际，但是都不敢想那还创新什么）
 
-  var you = 1;
+p	一个生动的模拟世界，虽然是像素方块构建出的世界，但是他有自己的运行法则，给每一个  人  和  物  定义一个规律，让他们自己活动而不是固定的 (运行方法，在定义一些可以自己学习的AI在世界中，让世界自己动起来)
+p	游戏主剧情：无
+p	可以开放一个系统：让玩家自己写自己的剧情，分享给全世界人民一起玩。
+p	主要目标：地图数据生成（有复杂的生态和建筑），生动的生态变化，复杂化的天气变化，让所有都相关联，相互影响，能想到的都加上。
 
+h1游戏的一些设定：（虽然不能完成都是空谈，但是努力去完成不就不是空谈了嘛）
 
-  var txtdata = [];
-  for (let index = 0; index < yangshi.length; index=index+2) {
-    var i = 1;
-    var to = 0;
-    while(i){
-      if(TXT.substr(to,10000).search(yangshi[index]) != -1){
-        you = 0;
-        to = to + TXT.substr(to,10000).search(yangshi[index]);
-        txtdata.push(to);
-        txtdata.push(yangshi[index+1]);
-        to = to + yangshi[index].length;
-        txtdata.push(to);
-      }
-      else{
-        i = 0;
-      }
-    }
-  }
-  var len = txtdata.length;
-  var tmp1 = null;
-  var tmp2 = null;
-  var tmp3 = null;
-  for(var j=0; j<len-3; j=j+3){
-    for(var i=0; i<len-3-j; i=i+3){
-      if(txtdata[i]>txtdata[i+3]){
-        tmp1 = txtdata[i];
-        tmp2 = txtdata[i+1];
-        tmp3 = txtdata[i+2];
+h2基础方块类型：
+p	无机：金属（铁，铜，金，银……），  水  ，  钻石  ，  玻璃  ，  电线  ，  石头   ，  沙子  ，  灯  ，  发光物质   ，放射性物质
+p	有机：木头   ，  草（叶子，花），
+p	化学物质： 酸，碱，毒，等等……
 
+h2多种人物职业：
+p        警察：维护治安，阻止打架，调查非正常死亡，抓小偷，阻止破坏公物的行为，走私。
+p        军人：维护国家安全，击杀城市附近的怪物。
+p        特警：打击恐怖分子（有武器，有害城市）
+p
+p        商人：食品商人：解决肚子问题，
+p              服装商人：解决温度问题，
+p            五金店商人：买一些工具，零件。
+p              电器商人：买一些家用电器。
+p          非法买卖商人：买一些毒品，违禁物品，武器。
+p               （同时你也可以卖对应的东西给他们）
+p
+p     打工人：白领，售货员，清洁工。
+p     艺术家：画家，音乐家，
+p     流浪者：在一些小巷可以避雨的地方。
+p     领导者：住在私人别墅。
+p   技术人员：维护城市的一些公共系统
+p       农民：耕作农作物。
+p       渔夫：海上渔网网鱼。
+p   工地工人：维修建筑物，建房子。
 
-        txtdata[i] = txtdata[i+3];
-        txtdata[i+1] = txtdata[i+4];
-        txtdata[i+2] = txtdata[i+5];
+p坏人：根据NPC的生活情况来转变成：骗子，抢劫，小偷（差钱，生活环境差）
+p                                 杀人（生活环境，心情，生命是否受到威胁，精神）
+p                                 打架（心情，环境）
 
-
-        txtdata[i+3] = tmp1;
-        txtdata[i+4] = tmp2;
-        txtdata[i+5] = tmp3;
-      }
-    }
-  }
-  
-  if(you){
-    xinTXT=TXT;
-  }
-  else{
-    var xinTXT = TXT.substr(0,txtdata[0]);
-    xinTXT = xinTXT + "<span style='color:" + txtdata[1] + "'>" + TXT.substr(txtdata[0],(txtdata[2]-txtdata[0])) + "</span>";
-    for (let index = 3; index < txtdata.length; index=index+3) {
-    xinTXT = xinTXT + TXT.substr(txtdata[index-1],(txtdata[index]-txtdata[index-1]));
-    xinTXT = xinTXT + "<span style='color:" + txtdata[index+1] + "'>" + TXT.substr(txtdata[index],(txtdata[index+2]-txtdata[index])) + "</span>";
-    }
-    xinTXT = xinTXT + TXT.substr(txtdata[txtdata.length-1],10000);
-  }
-
-  if(xinTXT.search("//") != -1){
-    xinTXT = xinTXT.substr(0,xinTXT.search("//")) + "<span style='color:#6a9955'>" + xinTXT.substr(xinTXT.search("//"),10000) + "</span>";
-  }
-  if(xinTXT.search("# ") != -1){
-    xinTXT = xinTXT.substr(0,xinTXT.search("#")) + "<span style='color:#6a9955'>" + xinTXT.substr(xinTXT.search("#"),10000) + "</span>";
-  }
-
-
-  //console.log(xinTXT);
-  var ele = document.createElement("p");//创建一个LI
-  ele.style ='white-space:pre;';
-  ele.innerHTML = xinTXT;//修改里面的属性s
-  //ele.style.width = "100%";
-  ele.style.color = "#ffffff";
-  ele.className = type;
-  //ele.style.float = "left";
-  document.getElementById(divs).appendChild(ele);//把LI放到ID="zhu"的lu里面
-
-
-  lieshu++;
-}
-</代码>
-p《乌合之众》
-p<乌合之众>
-<代码>
-py
-import os #读取系统文件夹的目录
-from PIL import Image #读取照片的长宽
-import numpy as np
-
-# 获取当前文件路径
-xdlu = [os.path.dirname(os.path.realpath(__file__))]
-# 正负图片的数量
-shuliang = [0,0]
-
-
-# 创建正负两个样本图片路径信息
-pos = open((xdlu[0] + "\\info.dat"),"w")
-neg = open((xdlu[0] + "\\bg.dat"),"w")
-
-# 分析路径内的文件夹和图片
-def duqumulu(lu):
-    for file in os.scandir(lu):
-        # 是文件夹就继续打开
-        if file.is_dir():
-            duqumulu(lu + "\\" + file.name)
-        # 判断是否以一下类型的图片
-        elif (file.name[-3:] == "png") | (file.name[-3:] == "jpg") | (file.name[-3:] == "bmp")| (file.name[-4:] == "jpeg"):
-            tupianduqu(lu + "\\" + file.name)
-
-# 将图片按照对应关系处理
-def tupianduqu(luimg):
-    # 截取出相对路径
-    lu = luimg.split(xdlu[0], 1)[1][1:].replace("\\", '/')
-    # 以灰度图的方式打开图片
-    img = Image.open(luimg).convert('L')
-    w = img.width  # 图片的宽
-    h = img.height  # 图片的高
-    # 判断是否是pos文件下的图片（正样本）
-    if lu[0:3] == "pos":
-        shuliang[0] += 1
-        pos.write(lu + " 1 0 0 " + str(w) + " " + str(h) + "\n")
-    # 判断是否是neg文件下的图片（负样本）
-    elif lu[0:3] == "neg":
-        shuliang[1] += 1
-        neg.write(lu + "\n")
-
-def xunlianjiaoben():
-    xlian = open((xdlu[0] + "\\run.bat"),"w")
-    xlian.write("opencv_createsamples.exe -info info.dat -vec pos.vec -num " + str(shuliang[0]) + " -w 24 -h 24" + "\n")
-    xlian.write("opencv_traincascade.exe -data xml -vec pos.vec -bg bg.dat -numPos " + str(shuliang[0]) + " -numNeg " + str(shuliang[1]) + " -numStages 12 -w 24 -h 24 -mode ALL -mem 3000" + "\n")
-    xlian.close()
-
-
-if __name__ == '__main__':
-    duqumulu(xdlu[0])
-    xunlianjiaoben()
-    pos.close()
-    neg.close()
-</代码>
+h2人物心情系统：
+p      
+p       好感度系统：（排除固定的时间安排，如睡觉，吃饭，等等……）
+p                    对环境的好感度：喜欢一个地方会长去
+p                      对人的好感度：喜欢一个人会经常见面
+p         怒气系统：
+p                    对环境的好感度：
+p                      对人的好感度：
+p        NPC的身体：可破坏，某个肢体破坏到一定程度会出现瘫痪（腿瘸，手瘸）（破环像地形一样，可任意破坏）
