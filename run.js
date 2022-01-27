@@ -1,7 +1,7 @@
 var bool = 1;
 var fubool = 0;
 var ulid = "";
-var leixing = ["p","h1","h2","a"];
+var leixing = ["p","h1","h2","a","h3","h4","h5"];
 var daimaleixing_js = [
   //javascript
 "var","#569CD6"
