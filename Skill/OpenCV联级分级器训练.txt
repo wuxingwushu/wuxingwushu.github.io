@@ -70,79 +70,79 @@ p	输出样本的高度（以像素为单位）。
 
 
 
-h2	下面是 opencv_traincascade 的命令行参数，以用途分组介绍：
+h2下面是 opencv_traincascade 的命令行参数，以用途分组介绍：
 
-h3	通用参数：
+h3通用参数：
 
-p	-data <cascade_dir_name>
+p  -data <cascade_dir_name>
 p	目录名，如不存在训练程序会创建它，用于存放训练好的分类器。
 
-p	-vec <vec_file_name>
+p  -vec <vec_file_name>
 p	包含正样本的vec文件名（由 opencv_createsamples 程序生成）。
 
-p	-bg <background_file_name>
+p  -bg <background_file_name>
 p	背景描述文件，也就是包含负样本文件名的那个描述文件。
 
-p	-numPos <number_of_positive_samples>
+p  -numPos <number_of_positive_samples>
 p	每级分类器训练时所用的正样本数目。
 
-p	-numNeg <number_of_negative_samples>
+p  -numNeg <number_of_negative_samples>
 p	每级分类器训练时所用的负样本数目，可以大于 -bg 指定的图片数目。
 
-p	-numStages <number_of_stages>
+p  -numStages <number_of_stages>
 p	训练的分类器的级数。
 
-p	-precalcValBufSize <precalculated_vals_buffer_size_in_Mb>
+p  -precalcValBufSize <precalculated_vals_buffer_size_in_Mb>
 p	缓存大小，用于存储预先计算的特征值(feature values)，单位为MB。
 
-p	-precalcIdxBufSize <precalculated_idxs_buffer_size_in_Mb>
+p  -precalcIdxBufSize <precalculated_idxs_buffer_size_in_Mb>
 p	缓存大小，用于存储预先计算的特征索引(feature indices)，单位为MB。内存越大，训练时间越短。
 
-p	-baseFormatSave
+p  -baseFormatSave
 p	这个参数仅在使用Haar特征时有效。如果指定这个参数，那么级联分类器将以老的格式存储。
 
 
-h3	级联参数：
+h3级联参数：
 
-p	-stageType <BOOST(default)>
+p  -stageType <BOOST(default)>
 p	级别（stage）参数。目前只支持将BOOST分类器作为级别的类型。
 
-p	-featureType<{HAAR(default), LBP}>
+p  -featureType<{HAAR(default), LBP}>
 p	特征的类型： HAAR - 类Haar特征； LBP - 局部纹理模式特征。
 
-p	-w <sampleWidth>
-p	-h <sampleHeight>
+p  -w <sampleWidth>
+p  -h <sampleHeight>
 p	训练样本的尺寸（单位为像素）。必须跟训练样本创建（使用 opencv_createsamples 程序创建）时的尺寸保持一致。
 
 
-h3	Boosted分类器参数：
+h3Boosted分类器参数：
 
-p	-bt <{DAB, RAB, LB, GAB(default)}>
+p  -bt <{DAB, RAB, LB, GAB(default)}>
 p	Boosted分类器的类型： DAB - Discrete AdaBoost, RAB - Real AdaBoost, LB - LogitBoost, GAB - Gentle AdaBoost。
 
-p	-minHitRate <min_hit_rate>
+p  -minHitRate <min_hit_rate>
 p	分类器的每一级希望得到的最小检测率。总的检测率大约为 min_hit_rate^number_of_stages。
 
-p	-maxFalseAlarmRate <max_false_alarm_rate>
+p  -maxFalseAlarmRate <max_false_alarm_rate>
 p	分类器的每一级希望得到的最大误检率。总的误检率大约为 max_false_alarm_rate^number_of_stages.
 
-p	-weightTrimRate <weight_trim_rate>
+p  -weightTrimRate <weight_trim_rate>
 p	Specifies whether trimming should be used and its weight. 一个还不错的数值是0.95。
 
-p	-maxDepth <max_depth_of_weak_tree>
+p  -maxDepth <max_depth_of_weak_tree>
 p	弱分类器树最大的深度。一个还不错的数值是1，是二叉树（stumps）。
 
-p	-maxWeakCount <max_weak_tree_count>
+p  -maxWeakCount <max_weak_tree_count>
 p	每一级中的弱分类器的最大数目。The boosted classifier (stage) will have so many weak trees (<=maxWeakCount), as needed to achieve the given -maxFalseAlarmRate.
 
 
-h3	类Haar特征参数：
+h3类Haar特征参数：
 
-p	-mode <BASIC (default) | CORE | ALL>
+p  -mode <BASIC (default) | CORE | ALL>
 p	选择训练过程中使用的Haar特征的类型。 BASIC 只使用右上特征， ALL 使用所有右上特征和45度旋转特征。更多细节请参考 [Rainer2002] 。
 
 
-h3	LBP特征参数：
+h3LBP特征参数：
 
 p	LBP特征无参数。
 
