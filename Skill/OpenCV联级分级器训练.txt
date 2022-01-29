@@ -1,4 +1,3 @@
-<图片>https://i0.hdslb.com/bfs/album/b52c9d4bf71b59fe0d5c4b040bf9e8a573923ea6.jpg
 h1重点注意事项
 p	OpenCV中有两个程序可以训练级联分类器： opencv_haartraining and opencv_traincascade``。 ``opencv_traincascade 是一个新程序，使用OpenCV 2.x API 以C++ 编写。这二者主要的区别是 opencv_traincascade 支持 Haar [Viola2001] 和 LBP [Liao2007] (Local Binary Patterns) 两种特征，并易于增加其他的特征。与Haar特征相比，LBP特征是整数特征，因此训练和检测过程都会比Haar特征快几倍。LBP和Haar特征用于检测的准确率，是依赖训练过程中的训练数据的质量和训练参数。训练一个与基于Haar特征同样准确度的LBP的分类器是可能的。
 p	opencv_traincascade and opencv_haartraining 所输出的分类器文件格式并不相同。注意，新的级联检测接口（参考 objdetect 模块中的 CascadeClassifier 类）支持这两种格式。 opencv_traincascade 可以旧格式导出选练好的级联分类器。但是在训练过程被中断后再重启训练过程， opencv_traincascade and opencv_haartraining 不能装载与中断前不同的文件格式。
@@ -20,47 +19,144 @@ p	把负样本放入neg文件夹中就可以了，注意图片格式要是（jpg
 p	正样本是需要生成vec文件用于训练。但是脚本已经会自动生成vec文件，调整参数我会仔细说。
 
 h2调整一下训练的参数：
-h3
+
 p	正样本由 opencv_createsamples 生成。正样本可以由包含待检测物体的一张图片生成，也可由一系列标记好的图像生成。
 p	请注意你需要一个很大的负样本库送给训练程序进行训练。如果是绝对刚性的物体，如OpenCV的标志，你只有一张正样本图像；如果是人脸，你需要几百甚至几千个正样本。在待检测物体是人脸的情况下，你需要考虑所有的人种、年龄、表情甚至胡子的样式。
 p	如果只有一张包含物体的图像，如一个公司的标志，那么可以通过对物体图像的随机旋转、改变标志亮度以及将标志放在任意的背景上而获得大量的正样本。生成的正样本数目以及随机的程度都可以通过 opencv_createsamples 的命令行参数控制。
+
 h4命令行参数：
 p  -vec <vec_file_name>
 p	输出文件，内含用于训练的正样本。
+
 p  -img <image_file_name>
 p	输入图像文件名（例如一个公司的标志）。
+
 p  -bg <background_file_name>
 p	背景图像的描述文件，文件中包含一系列的图像文件名，这些图像将被随机选作物体的背景。
+
 p  -num <number_of_samples>
 p	生成的正样本的数目。
+
 p  -bgcolor <background_color>
 p	背景颜色（目前为灰度图）；背景颜色表示透明颜色。因为图像压缩可造成颜色偏差，颜色的容差可以由 -bgthresh 指定。所有处于 bgcolor-bgthresh 和 bgcolor+bgthresh 之间的像素都被设置为透明像素。
+
 p  -bgthresh <background_color_threshold>
 p  -inv
 p	如果指定该标志，前景图像的颜色将翻转。
+
 p  -randinv
 p	如果指定该标志，颜色将随机地翻转。
+
 p  -maxidev <max_intensity_deviation>
 p	前景样本里像素的亮度梯度的最大值。
+
 p  -maxxangle <max_x_rotation_angle>
 p	X轴最大旋转角度，必须以弧度为单位。
+
 p  -maxyangle <max_y_rotation_angle>
 p	Y轴最大旋转角度，必须以弧度为单位。
+
 p  -maxzangle <max_z_rotation_angle>
 p	Z轴最大旋转角度，必须以弧度为单位。
+
 p  -show
 p	很有用的调试选项。如果指定该选项，每个样本都将被显示。如果按下 Esc 键，程序将继续创建样本但不再显示。
+
 p  -w <sample_width>
 p	输出样本的宽度（以像素为单位）。
+
 p  -h <sample_height>
 p	输出样本的高度（以像素为单位）。
 
 
+
+h2	下面是 opencv_traincascade 的命令行参数，以用途分组介绍：
+
+h3	通用参数：
+
+p	-data <cascade_dir_name>
+p	目录名，如不存在训练程序会创建它，用于存放训练好的分类器。
+
+p	-vec <vec_file_name>
+p	包含正样本的vec文件名（由 opencv_createsamples 程序生成）。
+
+p	-bg <background_file_name>
+p	背景描述文件，也就是包含负样本文件名的那个描述文件。
+
+p	-numPos <number_of_positive_samples>
+p	每级分类器训练时所用的正样本数目。
+
+p	-numNeg <number_of_negative_samples>
+p	每级分类器训练时所用的负样本数目，可以大于 -bg 指定的图片数目。
+
+p	-numStages <number_of_stages>
+p	训练的分类器的级数。
+
+p	-precalcValBufSize <precalculated_vals_buffer_size_in_Mb>
+p	缓存大小，用于存储预先计算的特征值(feature values)，单位为MB。
+
+p	-precalcIdxBufSize <precalculated_idxs_buffer_size_in_Mb>
+p	缓存大小，用于存储预先计算的特征索引(feature indices)，单位为MB。内存越大，训练时间越短。
+
+p	-baseFormatSave
+p	这个参数仅在使用Haar特征时有效。如果指定这个参数，那么级联分类器将以老的格式存储。
+
+
+h3	级联参数：
+
+p	-stageType <BOOST(default)>
+p	级别（stage）参数。目前只支持将BOOST分类器作为级别的类型。
+
+p	-featureType<{HAAR(default), LBP}>
+p	特征的类型： HAAR - 类Haar特征； LBP - 局部纹理模式特征。
+
+p	-w <sampleWidth>
+p	-h <sampleHeight>
+p	训练样本的尺寸（单位为像素）。必须跟训练样本创建（使用 opencv_createsamples 程序创建）时的尺寸保持一致。
+
+
+h3	Boosted分类器参数：
+
+p	-bt <{DAB, RAB, LB, GAB(default)}>
+p	Boosted分类器的类型： DAB - Discrete AdaBoost, RAB - Real AdaBoost, LB - LogitBoost, GAB - Gentle AdaBoost。
+
+p	-minHitRate <min_hit_rate>
+p	分类器的每一级希望得到的最小检测率。总的检测率大约为 min_hit_rate^number_of_stages。
+
+p	-maxFalseAlarmRate <max_false_alarm_rate>
+p	分类器的每一级希望得到的最大误检率。总的误检率大约为 max_false_alarm_rate^number_of_stages.
+
+p	-weightTrimRate <weight_trim_rate>
+p	Specifies whether trimming should be used and its weight. 一个还不错的数值是0.95。
+
+p	-maxDepth <max_depth_of_weak_tree>
+p	弱分类器树最大的深度。一个还不错的数值是1，是二叉树（stumps）。
+
+p	-maxWeakCount <max_weak_tree_count>
+p	每一级中的弱分类器的最大数目。The boosted classifier (stage) will have so many weak trees (<=maxWeakCount), as needed to achieve the given -maxFalseAlarmRate.
+
+
+h3	类Haar特征参数：
+
+p	-mode <BASIC (default) | CORE | ALL>
+p	选择训练过程中使用的Haar特征的类型。 BASIC 只使用右上特征， ALL 使用所有右上特征和45度旋转特征。更多细节请参考 [Rainer2002] 。
+
+
+h3	LBP特征参数：
+
+p	LBP特征无参数。
+
+
+
 p	这里的-numPos 不是所谓的正样本的总数。我们需要通过下面这个公式求解-numPos，过程如下：
-p	vec-file number >= (numPos + (numStages-1) * (1 – minHitRate) * numPos) + S;1
+p	vec-file has to contain >= (numPose + (numStages-1) * (1 - minHitRate) * numPose) + S
 p	vec-file number  就是我们的正样本总数
 
-h1代码：
+
+
+
+
+h1生成XML初步数据代码：
 <代码>
 py
 import os #读取系统文件夹的目录
@@ -116,4 +212,82 @@ if __name__ == '__main__':
     xunlianjiaoben()
     pos.close()
     neg.close()
+</代码>
+
+
+h1生成YML代码：
+<代码>
+py
+import os
+import cv2 as cv
+from PIL import Image
+import numpy as np
+
+xdlu = [os.path.dirname(os.path.realpath(__file__))]
+face_detect = cv.CascadeClassifier('xml/cascade.xml')
+
+# yml的临时中间数据储存
+names = {""}# 确保名字不重复
+id = [0]# 按顺序发放ID
+ymlnames = [""]# 储存名字和ID范围
+# yml的临时数据储存
+facesSamples = []
+ids = []
+
+# 分析路径内的文件夹和图片
+def duqumulu(lu):
+    for file in os.scandir(lu):
+        # 是文件夹就继续打开
+        if file.is_dir():
+            duqumulu(lu + "\\" + file.name)
+        # 判断是否以一下类型的图片
+        elif (file.name[-3:] == "png") | (file.name[-3:] == "jpg") | (file.name[-3:] == "bmp")| (file.name[-4:] == "jpeg"):
+            tupianduqu(lu + "\\" + file.name)
+
+def tupianduqu(luimg):
+    # 截取出相对路径
+    lu = luimg.split(xdlu[0], 1)[1][1:].replace("\\", '/')
+    # 判断是否是yml文件下的图片（绑定信息）（以文件夹的名字命名）
+    if lu[0:3] == "yml":
+
+        # 以灰度图的方式打开图片
+        PIL_img = Image.open(luimg).convert('L')
+        # 将yml文件夹当中读取到的灰度图数据储存到facesSamples当中
+        img_numpy = np.array(PIL_img, 'uint8')
+        faces = face_detect.detectMultiScale(img_numpy)
+
+        for x,y,w,h in faces:
+
+            facesSamples.append(img_numpy[y:y+h,x:x+w])
+            ids.append(id[0])
+
+            # 获取名字
+            ls_name = lu[1:].split('/', 2)[1]
+            xxx = {ls_name}
+            # 确保图片的ID和文件夹名字绑定
+            if (xxx.issubset(names) == 0):
+                names.add(ls_name)
+                ymlnames.append(ls_name)
+                ymlnames.append(id[0])
+                id[0] = id[0] + 1
+                ymlnames.append(id[0])
+            else:
+                id[0] = id[0] + 1
+                ymlnames.pop()
+                ymlnames.append(id[0])
+
+
+if __name__ == '__main__':
+    duqumulu(xdlu[0])
+
+    ymlnames.pop(0)
+    # 根据图片的facesSamples和ID绑定生成yml数据
+    recognizer = cv.face.LBPHFaceRecognizer_create()
+    recognizer.train(facesSamples, np.array(ids))
+    recognizer.write('xml/trainer.yml')
+
+    txt = open((xdlu[0] + "\\xml\\names.txt"), "w")
+    for i in ymlnames:
+        txt.write(str(i) + "\n")  # 生成TXT，根据ID获取对应的名字
+    txt.close()
 </代码>
