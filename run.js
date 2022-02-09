@@ -39,6 +39,7 @@ var TXTGithub = "https://raw.githubusercontent.com/wuxingwushu/wuxingwushu.githu
 var TXTGitee = "https://gitee.com/daosheng0/daosheng/raw/master/";
 
 
+
 //主界面的菜单出现动画
 function donghuakai(IDshu){
 
@@ -78,7 +79,7 @@ function donghuakai(IDshu){
       pos = pos + 6; 
       if(bool==1)elem.style.left = pos + "px"; 
     }
-    if (pos1 > kuan*0.155) {
+    if (pos1 > kuan*0.154) {
       pos1 = pos1 - 16;   
       if(bool==1)elem1.style.left = pos1 + "px"; 
     }
@@ -86,7 +87,7 @@ function donghuakai(IDshu){
       pos2 = pos2 - 32; 
       if(bool==1)elem2.style.left = pos2 + "px"; 
     }
-    if(pos >= -kuan*0.045 && pos1 <= kuan*0.155 && pos2 <= -kuan*0.745)
+    if(pos >= -kuan*0.045 && pos1 <= kuan*0.154 && pos2 <= -kuan*0.745)
     {
       elem.style.left = -kuan*0.045 + "px";
       elem1.style.left = kuan*0.154 + "px";
@@ -154,8 +155,9 @@ function fudonghuakai(IDshu){
   //alert(document.documentElement.scrollWidth); 
   var kuan = document.documentElement.scrollWidth;
   var pos = elem.getBoundingClientRect().left;
-  var pos1 = elem1.getBoundingClientRect().left;
+  var pos1 = elem1.getBoundingClientRect().left-kuan*0.04;
   var pos2 = elem2.getBoundingClientRect().left-kuan*0.645;
+
 
   var id = setInterval(frame, 5);
 
@@ -168,7 +170,7 @@ function fudonghuakai(IDshu){
       if(fubool==1)elem.style.left = pos + "px"; 
     }
     if (pos1 > kuan*0.05) {
-      pos1 = pos1 - 1;   
+      pos1 = pos1 - 2;   
       if(fubool==1){
         elem1.style.left = pos1 + "px";
         if(degshu <= 0){
@@ -201,7 +203,7 @@ function fudonghuatuen(IDshu){
   //alert(document.documentElement.scrollWidth); 
   var kuan = document.documentElement.scrollWidth;
   var pos = elem.getBoundingClientRect().left;
-  var pos1 = elem1.getBoundingClientRect().left;
+  var pos1 = elem1.getBoundingClientRect().left-kuan*0.1;
   var pos2 = elem2.getBoundingClientRect().left-kuan*0.645;
 
   var id = setInterval(frame, 5);
@@ -215,11 +217,11 @@ function fudonghuatuen(IDshu){
       if(fubool==0)elem.style.left = pos + "px"; 
     }
     if (pos1 < kuan*0.155) {
-      pos1 = pos1 + 1;   
+      pos1 = pos1 + 2;   
       if(fubool==0){
         elem1.style.left = pos1 + "px";
         if(degshu >= -12){
-          degshu = degshu - 2;
+          degshu = degshu - 0.1;
           elem1.style.transform = "skew(" + degshu + "deg)";
         }
       }
@@ -307,6 +309,7 @@ function addli(type,TXT,shu,TXT1,shu1)
     case "3":ul ="Game/" + TXT + ".txt";break;
     case "7":ul ="Dentury/" + TXT + ".txt";break;
     case "11":ul ="Skill/" + TXT + ".txt";break;
+    case "15":ul ="Files/" + TXT + ".txt";break;
   }
 
   ele.onclick = function() {fudonghuakai((shu-3));duqutxtneirong(ul);}
@@ -326,7 +329,7 @@ function yulan(TXT,id)
 }
 //读取TXT（链接）
 function urlToBlob(URss,id,zhujian,id1) {
-  let file_url = "https://raw.githubusercontent.com/wuxingwushu/wuxingwushu.github.io/main/" + URss;
+  let file_url = TXTGithub + URss;
   let xhr = new XMLHttpRequest();
   xhr.open("get", file_url, true);
   xhr.responseType = "blob";
@@ -410,7 +413,7 @@ function shubiaogundong0(){
 urlToBlob('Game/游戏日志.txt',"3","li","xtxt3");
 urlToBlob('Dentury/事记.txt',"7","li","xtxt7");
 urlToBlob('Skill/技束.txt',"11","li","xtxt11");
-
+urlToBlob('Files/档案馆.txt',"15","li","xtxt15");
 
 
 
@@ -692,7 +695,7 @@ function adddiv(id)
 }
 
 function duqutxtneirong(URss){
-  let file_url = "https://raw.githubusercontent.com/wuxingwushu/wuxingwushu.github.io/main/" + URss;
+  let file_url = TXTGithub + URss;
   let xhr = new XMLHttpRequest();
   xhr.open("get", file_url, true);
   xhr.responseType = "blob";
