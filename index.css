@@ -20,10 +20,17 @@
     overflow: scroll;
     height: 100vh;
 }
+#kuang{
+    width: 100vw;
+    height: 100vh;
+    position:relative;
+    scroll-snap-stop: always;
+    scroll-snap-align: start;
+}
 section {
     width: 100vw;
     height: 100vh;
-    scroll-snap-align: center;
+    /*scroll-snap-align: start;*/
 }
 
 
@@ -104,12 +111,17 @@ section {
     justify-content: center;
     align-items: center;
 }
-#kuang{
-    width: 100vw;
+#xtxt15{
     height: 100vh;
-    position:relative;
-    scroll-snap-align: center;
+    background-color: #c4cbcf;
+    color: #ffffff;
+    font-size: 3vh;
+	place-items: center;
+    display: flex;/*grid*/
+    justify-content: center;
+    align-items: center;
 }
+
 
 section{
     height: 100vh;
@@ -146,10 +158,13 @@ section{
     background-image: url(https://images.weserv.nl/?url=https://i0.hdslb.com/bfs/album/813cfe0cc7c277b9e6a9361d2cdaac7ce43c506c.jpg);
 }
 #img3{
-    background-image: url(https://images.weserv.nl/?url=https://i0.hdslb.com/bfs/album/83f170fc27c0fc466a9d0543235d6eef5167be16.jpg);
+    background-image: url(https://images.weserv.nl/?url=https://i0.hdslb.com/bfs/album/35610c298b024b125c69c4d36e39dbc9af7d9a1c.jpg);
 }
 #img4{
     background-image: url(https://images.weserv.nl/?url=https://i0.hdslb.com/bfs/album/ace9c29e6052d6370e1599f08f0f577567fb4979.jpg);
+}
+#img5{
+    background-image: url(https://images.weserv.nl/?url=https://i0.hdslb.com/bfs/album/83f170fc27c0fc466a9d0543235d6eef5167be16.jpg);
 }
 #footer{
     background-image: url(https://images.weserv.nl/?url=https://i0.hdslb.com/bfs/album/0b2cf44030b23a38c3840bdbcb8f1ebb0f9f0f35.jpg);
