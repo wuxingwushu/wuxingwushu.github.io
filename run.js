@@ -640,6 +640,14 @@ function add(type,TXT,shu)
   divt.style.height = "auto";
   divt.style.width = "90%";
   divt.style.left = "5%";
+  
+  if(TXT.search("<分>") != -1){
+    divt.style.borderStyle = "solid";
+    divt.style.borderWidth = "2px";
+    divt.style.borderColor = "#303030";
+    divt.style.overflow = "auto";
+  }
+
   divt.style.position = "relative";
   document.getElementById(shu).appendChild(divt);
 
@@ -650,10 +658,8 @@ function add(type,TXT,shu)
   }
 
 
-  var ele = document.createElement(type);//创建一个LI
-  ele.style.height = "auto";
-  ele.style ='white-space:pre-wrap;margin-top:20px;line-height:40px;'
 
+  
   //white-space的值：
   //normal 默认。空白会被浏览器忽略。
   //pre 空白会被浏览器保留。其行为方式类似 HTML 中的标签
@@ -662,13 +668,43 @@ function add(type,TXT,shu)
   //pre-line	合并空白符序列，但是保留换行符。
   //inherit	规定应该从父元素继承 white-space 属性的值。
 
-  ele.innerHTML = TXT.substr(type.length,10000);//修改里面的属性s
-  //ele.style.width = "100%";
-  //ele.style.word.wrap = "break-word"
-  ele.className = type;
-  //ele.style.float = "left";
-  document.getElementById(divs).appendChild(ele);//把LI放到ID="zhu"的lu里面
 
+
+  
+  if(TXT.search("<分>") != -1){
+
+    var ele = document.createElement(type);//创建一个LI
+    ele.className = type;
+    ele.style ='white-space:pre-wrap;margin-top:0px;line-height:30px;'
+    ele.style.float = "left";
+    ele.style.width = "50%";
+    ele.innerHTML = TXT.substr(type.length,TXT.search("<分>")-1);
+    ele.style.position = "relative";
+    document.getElementById(divs).appendChild(ele);
+
+    var ele1 = document.createElement(type);//创建一个LI
+    ele1.className = type;
+    ele1.style ='white-space:pre-wrap;margin-top:0px;line-height:30px;'
+    ele1.style.float = "right";
+    ele1.style.width = "50%";
+    ele1.innerHTML = TXT.substr(TXT.search("<分>")+3,10000);
+    ele1.style.position = "relative";
+    document.getElementById(divs).appendChild(ele1);
+
+  }
+  else{
+
+    var ele = document.createElement(type);//创建一个LI
+    ele.className = type;
+    ele.style ='white-space:pre-wrap;margin-top:20px;line-height:40px;'
+    ele.innerHTML = TXT.substr(type.length,10000);//修改里面的属性s
+    //ele.style.width = "100%";
+    //ele.style.word.wrap = "break-word"
+    ele.style.float = "left";
+    ele.style.position = "relative";
+    document.getElementById(divs).appendChild(ele);//把LI放到ID="zhu"的lu里面
+
+  }
 
   lieshu++;
 }
