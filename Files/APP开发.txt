@@ -97,7 +97,7 @@ h1ProgressBar  进度条
 p	max：<分>进度条的最大值
 p	progress：<分>进度条己完成进度值
 p	indeterminate：<分>如果设置成true，则进度条不精确显示进度
-p	style="?android:attr/progressBarStyleHorizontal"进度条样式
+p	style="?android:attr/progressBarStyleHorizontal"<分>进度条样式
 
 
 
