@@ -34,7 +34,6 @@ p	非容器控件标签中放<requestFocus />标签，表示将当前控件设�
 h1BUTTON  按钮
 
 p	onClick：<分>添加事件。
-p	
 p	drawable：<分>引用的Drawable位图
 p	state_focused：<分>是否获得焦点
 p	state_pressed：<分>控件是否被按下
@@ -57,7 +56,7 @@ p	drawableLeft：<分>在输入框的指定方位添加图片
 p	drawablePadding：<分>设置内容与输入内容的间距
 p	paddingLeft：<分>设置内容与边框的间距
 p	background：<分>背景色
-p	
+
 p	我们可以通过xml中的属性android:backgroundTint和android:backgroundTintMode来设置，android:backgroundTintMode这个属性传的值就是刚刚上面那些PorterDuff.Mode中的值，效果的话上面的图也展示了。android:backgroundTint的话就是传color的值。
 p	那么android:background和android:backgroundTint有什么区别呢？
 p	如果设置了android:background，那么控件的背景颜色就会直接修改。
