@@ -265,6 +265,26 @@ function fudonghuatuen(IDshu){
 
 
 
+//音效播放器
+  function playSound(src){
+    var a = document.getElementById('audio');
+         a.src = src;
+         a.play();
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -312,7 +332,9 @@ function addli(type,TXT,shu,TXT1,shu1)
     case "15":ul ="Files/" + TXT + ".txt";break;
   }
 
-  ele.onclick = function() {fudonghuakai((shu-3));duqutxtneirong(ul);}
+  var mp3 = "https://wuxingwushu.github.io/Tap1.mp3"
+
+  ele.onclick = function() {fudonghuakai((shu-3));duqutxtneirong(ul);playSound(mp3)}
   document.getElementById(shu).appendChild(ele);//把LI放到ID="zhu"的lu里面
 }
 //添加空建
