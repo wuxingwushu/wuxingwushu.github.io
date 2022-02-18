@@ -273,36 +273,9 @@ function fudonghuatuen(IDshu){
 
 
 //音效播放器
-  function playSound(src){
-    var a = document.getElementById('audio');
-         a.src = src;
-         a.play();
-         //.pause();暂停
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function playSound(){
+  document.getElementById('audio').play();
+}
 
 
 //删除主键
@@ -340,9 +313,8 @@ function addli(type,TXT,shu,TXT1,shu1)
     case "15":ul ="Files/" + TXT + ".txt";break;
   }
 
-  var mp3 = "https://wuxingwushu.github.io/Natural/Tap1.mp3"
 
-  ele.onclick = function() {fudonghuakai((shu-3));duqutxtneirong(ul);playSound(mp3)}
+  ele.onclick = function() {fudonghuakai((shu-3));duqutxtneirong(ul);playSound()}
   document.getElementById(shu).appendChild(ele);//把LI放到ID="zhu"的lu里面
 }
 //添加空建
