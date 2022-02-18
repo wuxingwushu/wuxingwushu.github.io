@@ -270,6 +270,7 @@ function fudonghuatuen(IDshu){
     var a = document.getElementById('audio');
          a.src = src;
          a.play();
+         //.pause();暂停
   }
 
 
@@ -799,4 +800,37 @@ function duqutxtneirong(URss){
     }
   };
   xhr.send();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function bofang()
+{
+  document.getElementById("bofang").style.display="none";
+  document.getElementById("zhanting").style.display="block";
+
+  var a = document.getElementById('yinyue');
+  a.src = "https://wuxingwushu.github.io/%E7%81%B0%E6%BE%88%20-%20%E6%98%9F%E8%8C%B6%E4%BC%9A.mp3";
+  a.play();//播放
+}
+
+function zhanting()
+{
+  document.getElementById("zhanting").style.display="none";
+  document.getElementById("bofang").style.display="block";
+
+  var a = document.getElementById('yinyue');
+  a.src = "https://wuxingwushu.github.io/%E7%81%B0%E6%BE%88%20-%20%E6%98%9F%E8%8C%B6%E4%BC%9A.mp3";
+  a.pause();//暂停
 }
