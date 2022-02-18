@@ -97,19 +97,75 @@ section {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*音乐播放图标*/
 #icon{
     position:fixed;
-    right: 0px;
-    top:2px;
+    right: 10px;
+    top:10px;
     width: 64px;
     height: 64px;
 }
 #icon_shadow{
-    position:relative;
-    right: 2px;
-    top:-70px;
+    position:fixed;
+    right: 10px;
+    top:10px;
 }
+#icon_zhen{
+    position:fixed;
+    right: 12px;
+    top:8px;
+}
+
+
+
+/*音乐播放进度*/
+.totalProgress{
+    position: fixed;
+    top: 35px;
+    right: 76px;
+    width: 200px;
+    height: 8px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0  2vh rgba(0, 255, 115, 0.57);
+}
+.currentProgress{
+    width: 0;
+    height: 100%;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: #00a1d6;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
