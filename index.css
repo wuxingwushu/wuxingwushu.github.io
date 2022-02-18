@@ -81,6 +81,39 @@ section {
     left:-20%;    
 	position:relative;
 }
+
+
+
+/*导航*/
+#lan{
+    position:fixed;
+    right: 60px;
+    top:90px;
+    width: 50px;
+    height: 80%;
+    background-color: #f6f9fa;
+    border: #e5e9ef;
+}
+
+
+
+/*音乐播放图标*/
+#icon{
+    position:fixed;
+    right: 0px;
+    top:2px;
+    width: 64px;
+    height: 64px;
+}
+#icon_shadow{
+    position:relative;
+    right: 2px;
+    top:-70px;
+}
+
+
+
+
 #xtxt3{
     height: 100vh;
     background-color: #c4cbcf;
