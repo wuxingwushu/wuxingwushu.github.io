@@ -39,6 +39,13 @@ var TXTGithub = "https://wuxingwushu.github.io/";
 var TXTGitee = "https://gitee.com/daosheng0/daosheng/raw/master/";
 
 
+//音乐播放器
+var timer;//计时器
+var audio = document.getElementById('yinyue');
+var totalProgress = $('.totalProgress');
+var currentProgress = $('.currentProgress');
+
+
 
 //主界面的菜单出现动画
 function donghuakai(IDshu){
@@ -333,7 +340,7 @@ function addli(type,TXT,shu,TXT1,shu1)
     case "15":ul ="Files/" + TXT + ".txt";break;
   }
 
-  var mp3 = "https://wuxingwushu.github.io/Tap1.mp3"
+  var mp3 = "https://wuxingwushu.github.io/Natural/Tap1.mp3"
 
   ele.onclick = function() {fudonghuakai((shu-3));duqutxtneirong(ul);playSound(mp3)}
   document.getElementById(shu).appendChild(ele);//把LI放到ID="zhu"的lu里面
@@ -821,8 +828,23 @@ function bofang()
   document.getElementById("zhanting").style.display="block";
 
   var a = document.getElementById('yinyue');
-  a.src = "https://wuxingwushu.github.io/%E7%81%B0%E6%BE%88%20-%20%E6%98%9F%E8%8C%B6%E4%BC%9A.mp3";
+  a.src = "https://wuxingwushu.github.io/Music/%E7%81%B0%E6%BE%88%20-%20%E6%98%9F%E8%8C%B6%E4%BC%9A.mp3";
   a.play();//播放
+
+
+  timer = setInterval(function () {
+    if (audio.ended) {
+        //如果音频播放结束
+        $('.play').css({'display': 'block'});
+        $('.pause').css({'display': 'none'});
+    } else {
+        //更改进度条
+        var ratio = audio.currentTime / audio.duration;
+        currentProgress.css({'width': ratio * 100 + '%'});
+    }
+  }, 100)
+
+
 }
 
 function zhanting()
@@ -831,6 +853,64 @@ function zhanting()
   document.getElementById("bofang").style.display="block";
 
   var a = document.getElementById('yinyue');
-  a.src = "https://wuxingwushu.github.io/%E7%81%B0%E6%BE%88%20-%20%E6%98%9F%E8%8C%B6%E4%BC%9A.mp3";
   a.pause();//暂停
+}
+
+
+function xianshijindu(){
+  document.getElementById("icon").style.width="264px";
+  document.getElementById("jindu").style.display="block";
+}
+function xianshijinduf(){
+  document.getElementById("icon").style.width="64px";
+  document.getElementById("jindu").style.display="none";
+}
+
+
+
+
+/*单击进度条更改进度*/
+totalProgress.on('click', function (ev) {
+  //获取百分比
+  var ratio = getRatio(ev);
+  currentProgress.css({'width': ratio * 100 + '%'});
+  //更改音频进度
+  audio.currentTime = audio.duration * ratio;
+});
+
+function getRatio(ev) {
+  //总进度条的实际宽度
+  var totalWidth = totalProgress[0].offsetWidth;
+  //总进度条的X坐标
+  var totalX = totalProgress.offset().left;
+  //鼠标的X坐标
+  var mouseX = ev.clientX;
+  //求出百分比
+  var ratio = (mouseX - totalX) / totalWidth;
+  return ratio;
+}
+
+
+
+//格式化时间
+function formatTime(time) {
+  //取整
+  time = ~~time;
+  var formatTime;
+  if (time < 10) {
+      formatTime = '00:0' + time;
+  } else if (time < 60) {
+      formatTime = '00:' + time;
+  } else {
+      var m = ~~(time / 60);
+      if (m < 10) {
+          m = '0' + m;
+      }
+      var s = time % 60;
+      if (s < 10) {
+          s = '0' + s;
+      }
+      formatTime = m + ':' + s;
+  }
+  return formatTime;
 }
