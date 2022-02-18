@@ -722,7 +722,7 @@ function add(type,TXT,shu)
     ele.innerHTML = TXT.substr(type.length,10000);//修改里面的属性s
     //ele.style.width = "100%";
     //ele.style.word.wrap = "break-word"
-    ele.style.float = "left";
+    //ele.style.float = "left";
     ele.style.position = "relative";
     document.getElementById(divs).appendChild(ele);//把LI放到ID="zhu"的lu里面
 
