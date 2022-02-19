@@ -10,6 +10,4 @@ p	镜头来源：Taitohimea
 p	Taitohimea的PlayBox主页：https://www.aplaybox.com/u/152371643
 p	使用软件：MikuMikuDance，C4D，PR，Marvelous Designer。
 
-
-
 <自定义><video  width="100%" controls="controls" name="media"><source src="https://wuxingwushu.github.io/Video/miku.mp4" type="video/mp4"></video>
