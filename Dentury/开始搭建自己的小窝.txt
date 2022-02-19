@@ -38,3 +38,5 @@ p	The Wavers - Warma
 p	Vexento - Anesthesia
 p	
 p	修复了暂停后继续播放不再原来位置继续播放的BUG
+p	
+p	添加了自定义html的样式的标签：<自定义>
