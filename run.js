@@ -830,7 +830,7 @@ var gemulu = []//歌曲的目录
 
 
 function duqutxtgemulu(){
-  let file_url = TXTGithub + "Music/Music.txt";
+  let file_url = TXTGithub + "Muisic/Music.txt";
   let xhr = new XMLHttpRequest();
   xhr.open("get", file_url, true);
   xhr.responseType = "blob";
@@ -841,8 +841,8 @@ function duqutxtgemulu(){
       reader.onload = function () {
 
         //读取每一行歌名并将其处理成SRC链接存储到gemulu[]当中
-        for (let index = 0; index < reader.result.split("\n").length-1; index=index+2) {
-          gemulu.push(reader.result.split("\n")[index+1]);//获取歌的目录
+        for (let index = 0; index < reader.result.split("\n").length-1; index++) {
+          gemulu.push(TXTGithub + "Muisic/" + reader.result.split("\n")[index]);//获取歌的目录
         }
 
       }
