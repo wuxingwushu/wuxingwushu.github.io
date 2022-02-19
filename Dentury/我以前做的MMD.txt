@@ -13,4 +13,3 @@ p	使用软件：MikuMikuDance，C4D，PR，Marvelous Designer。
 
 
 <自定义><source src="https://wuxingwushu.github.io/miku.mp4" type="video/mp4">
-p	<iframe src="https://wuxingwushu.github.io/miku.mp4" data-value="120" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" height=900 style="width:100%"> </iframe>
