@@ -1,0 +1,15 @@
+h12020/12/7尝试做的MMD视频
+p	因为技术有限，所以MMD视频渲染出来的效果特别的拉跨，再加上视频被压缩了才可以放入Github所以更加拉跨了
+p	不怕，等我有时间心血来潮，我还会再来挑战MMD的制作的（到时候肯定会有更好的效果）
+
+p	歌曲来源：作者——金请夏		制作的	Stay Tonight
+p	人物来源：作者——Modeller 	制作的  Sour暄
+p	场景来源：作者——椛暗		制作的	椛暗式
+p	动作来源：Taitohimea
+p	镜头来源：Taitohimea
+p	Taitohimea的PlayBox主页：https://www.aplaybox.com/u/152371643
+p	使用软件：MikuMikuDance，C4D，PR，Marvelous Designer。
+
+
+
+<自定义><iframe src="https://wuxingwushu.github.io/miku.mp4" data-value="120" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" height=900 style="width:100%"> </iframe>
