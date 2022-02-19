@@ -110,7 +110,6 @@ section {
 
 
 
-
 /*音乐播放图标*/
 #icon{
     position:fixed;
@@ -243,7 +242,7 @@ section{
 }
 /*图片无法加载在链接前面加这段试试*/
 /*https://images.weserv.nl/?url=*/
-
+/*
 #img1{
     background-image: url(https://gzc-download.ftn.qq.com/ftn_handler/0035c63374930e9c2635604f7c9e3137e7812a9dfe92d6ff98c752734164bb8cfee21988f7c8b548fd4fe3ac47134987de27fcf7d379ef8f5b3c61c8b07de3fc/?fname=1.jpg&xffz=1530630&k=cfcb663206dd765efdb81e3230376534366f273232376534151b05530651510003021d0157530319040d55571f55035009195650510301555451095653036034011a5a4255233e60c846ac8398ec37182249a1f95507bbba5ee6&code=040227e4);
 }
@@ -262,29 +261,29 @@ section{
 #footer{
     background-image: url(https://gzc-download.ftn.qq.com/ftn_handler/748242ce93cfd8ec7aff5e5551b5fe0b729b068d91167d85f86e2af9d3545c6c9f713c9c549683c690f6a9cfbd10baf33d94ef2433c577728a766043c6f1f7ba/?fname=0.jpg&xffz=2041736&k=cccc6f3550882252febf173566623138bb14263564623138161c0d010003085e0301145456040315070b580c495a545a0b1e0a535450520e07575c0d51003438031d534503763a14c77309875e5af2bc38e8f2ba7ad93ea73c06&code=3395db18);
 }
+*/
 
-/*
 
 #img1{
-    background-image: url(./images/1.jpg);
+    background-image: url(https://wx2.sinaimg.cn/mw2000/008d4Tvygy1gzj9x2v94vj31hc0u04lr.jpg);
 }
 #img2{
-    background-image: url(./images/2.jpg);
+    background-image: url(https://wx3.sinaimg.cn/mw2000/008d4Tvygy1gzj9x6s8kbj31hc0u01kx.jpg);
 }
 #img3{
-    background-image: url(./images/3.jpg);
+    background-image: url(https://wx3.sinaimg.cn/mw2000/008d4Tvygy1gzj9x93jq4j31hc0u0x0o.jpg);
 }
 #img4{
-    background-image: url(./images/4.jpg);
+    background-image: url(https://wx4.sinaimg.cn/mw2000/008d4Tvygy1gzj9xcbnb2j31qy0zf1kx.jpg);
 }
 #img5{
-    background-image: url(./images/5.jpg);
+    background-image: url(https://wx1.sinaimg.cn/mw2000/008d4Tvygy1gzj9xdub1cj31hc0u0ts4.jpg);
 }
 #footer{
-    background-image: url(./images/0.jpg);
+    background-image: url(https://wx2.sinaimg.cn/mw2000/008d4Tvygy1gzj9x0tnt0j31jk0uk7wh.jpg);
 }
 
-*/
+
 
 ul {
     scroll-snap-type: y mandatory;
