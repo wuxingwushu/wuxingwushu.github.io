@@ -17,7 +17,7 @@ p 	4 我还没想好，就先这样吧！
 
 h22022/2/18  网站增加了新的  TXT样式，音效以及音乐播放
 
-p	TXT支持了下面的样式生成
+p	TXT支持了下面的样式生成，标签：<分>
 p	名称<分>内容
 p	 
 p	给按键添加了音效（phigros的按键音效）
@@ -30,6 +30,7 @@ h22022/2/19  网站修改以及添加！
 
 p	添加了更多的歌曲
 p	灰澈 - 星茶会
+p	Veris(N2V Remix)
 p	Angeart - Capricieux Fille
 p	enchanted love
 p	future james - pure imagination (dotan negrin x prismatic mantis flip)
