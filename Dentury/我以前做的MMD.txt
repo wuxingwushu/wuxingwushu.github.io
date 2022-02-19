@@ -12,4 +12,4 @@ p	使用软件：MikuMikuDance，C4D，PR，Marvelous Designer。
 
 
 
-<自定义><video controls="" autoplay="" name="media"><source src="https://wuxingwushu.github.io/miku.mp4" type="video/mp4"></video>
+<自定义><video  width="100%" controls="controls" name="media"><source src="https://wuxingwushu.github.io/miku.mp4" type="video/mp4"></video>
