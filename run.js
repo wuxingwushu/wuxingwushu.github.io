@@ -830,7 +830,7 @@ var gemulu = []//歌曲的目录
 
 
 function duqutxtgemulu(){
-  let file_url = TXTGithub + "Muisic/Music.txt";
+  let file_url = TXTGithub + "Muisic/音乐.txt";
   let xhr = new XMLHttpRequest();
   xhr.open("get", file_url, true);
   xhr.responseType = "blob";
