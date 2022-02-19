@@ -842,7 +842,7 @@ function duqutxtgemulu(){
 
         //读取每一行歌名并将其处理成SRC链接存储到gemulu[]当中
         for (let index = 0; index < reader.result.split("\n").length-1; index++) {
-          gemulu.push(TXTGithub + "Muisic/" + reader.result.split("\n")[index]);//获取歌的目录
+          gemulu.push(TXTGithub + "Music/" + reader.result.split("\n")[index]);//获取歌的目录
         }
 
       }
