@@ -850,7 +850,7 @@ function bofang()
         //如果音频播放结束
         shijian_T=0;//从头开始
         geid++;//下一首歌
-        if(geid=gemulu.length)
+        if(geid==gemulu.length)
         {
           geid=0;
         }
