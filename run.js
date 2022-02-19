@@ -40,7 +40,6 @@ var TXTGitee = "https://gitee.com/daosheng0/daosheng/raw/master/";
 
 
 //音乐播放器
-var timer;//计时器
 var audio = document.getElementById('yinyue');
 var totalProgress = $('.totalProgress');
 var currentProgress = $('.currentProgress');
@@ -794,21 +793,69 @@ function duqutxtneirong(URss){
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+var shijian_T = 0;//歌曲暂停的位置
+var ge_Tion;//歌曲的总时长
+var geid = 0;//播放那一首歌
+var gemulu = []//歌曲的目录
+
+
+function duqutxtgemulu(){
+  let file_url = TXTGithub + "Music/Music.txt";
+  let xhr = new XMLHttpRequest();
+  xhr.open("get", file_url, true);
+  xhr.responseType = "blob";
+  xhr.onload = function () {
+    if (this.status == 200) {
+      //console.log(this.response)
+      const reader = new FileReader()
+      reader.onload = function () {
+
+        //读取每一行歌名并将其处理成SRC链接存储到gemulu[]当中
+        for (let index = 0; index < reader.result.split("\n").length-1; index++) {
+          gemulu.push(TXTGithub + "Music/" + reader.result.split("\n")[index] + ".mp3");//获取歌的目录
+        }
+
+      }
+      reader.readAsText(this.response);
+    }
+  };
+  xhr.send();
+}
+
+
+
 function bofang()
 {
   document.getElementById("bofang").style.display="none";
   document.getElementById("zhanting").style.display="block";
 
-  var a = document.getElementById('yinyue');
-  a.src = "https://wuxingwushu.github.io/Music/%E7%81%B0%E6%BE%88%20-%20%E6%98%9F%E8%8C%B6%E4%BC%9A.mp3";
-  a.play();//播放
+  audio.src = gemulu[geid];
+  audio.play();//播放
 
 
   timer = setInterval(function () {
     if (audio.ended) {
         //如果音频播放结束
-        $('.play').css({'display': 'block'});
-        $('.pause').css({'display': 'none'});
+        shijian_T=0;//从头开始
+        geid++;//下一首歌
+        if(geid=gemulu.length)
+        {
+          geid=0;
+        }
+        audio.src = gemulu[geid];//拿到下一首歌的SRC
+        audio.play();//播放
     } else {
         //更改进度条
         var ratio = audio.currentTime / audio.duration;
@@ -816,7 +863,7 @@ function bofang()
     }
   }, 100)
 
-
+  audio.currentTime = shijian_T;
 }
 
 function zhanting()
@@ -824,8 +871,9 @@ function zhanting()
   document.getElementById("zhanting").style.display="none";
   document.getElementById("bofang").style.display="block";
 
-  var a = document.getElementById('yinyue');
-  a.pause();//暂停
+  audio.pause();//暂停
+
+  shijian_T = audio.currentTime;
 }
 
 
@@ -863,26 +911,4 @@ function getRatio(ev) {
 }
 
 
-
-//格式化时间
-function formatTime(time) {
-  //取整
-  time = ~~time;
-  var formatTime;
-  if (time < 10) {
-      formatTime = '00:0' + time;
-  } else if (time < 60) {
-      formatTime = '00:' + time;
-  } else {
-      var m = ~~(time / 60);
-      if (m < 10) {
-          m = '0' + m;
-      }
-      var s = time % 60;
-      if (s < 10) {
-          s = '0' + s;
-      }
-      formatTime = m + ':' + s;
-  }
-  return formatTime;
-}
+duqutxtgemulu();
