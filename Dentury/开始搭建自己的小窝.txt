@@ -22,4 +22,19 @@ p	名称<分>内容
 p	 
 p	给按键添加了音效（phigros的按键音效）
 p 	 
-p 添加了音乐播放按钮，可自由拉动音乐进度
+p	添加了音乐播放按钮，可自由拉动音乐进度
+
+
+
+h22022/2/19  网站修改以及添加！
+
+p	添加了更多的歌曲
+p	灰澈 - 星茶会
+p	Angeart - Capricieux Fille
+p	enchanted love
+p	future james - pure imagination (dotan negrin x prismatic mantis flip)
+p	Lil Nickle - SAD(instrumental）
+p	The Wavers - Warma
+p	Vexento - Anesthesia
+p	
+p	修复了暂停后继续播放不再原来位置继续播放的BUG
