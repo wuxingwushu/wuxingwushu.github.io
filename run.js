@@ -39,6 +39,7 @@ var TXTGithub = "https://wuxingwushu.github.io/";
 var TXTGitee = "https://gitee.com/daosheng0/daosheng/raw/master/";
 
 
+
 //音乐播放器
 var audio = document.getElementById('yinyue');
 var totalProgress = $('.totalProgress');
