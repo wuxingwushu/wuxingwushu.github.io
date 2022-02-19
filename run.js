@@ -720,6 +720,21 @@ function addtu(lu,shu)
   ele.style.position = "relative";
   document.getElementById(shu).appendChild(ele);//把LI放到ID="zhu"的lu里面
 }
+//添加自定义内容
+function addzidinyi(lu,shu)
+{
+  var divs = "div" + lieshu;
+  var divt = document.createElement("div");//创建一个LI
+  divt.id = divs;
+  divt.style.height = "auto";
+  divt.style.width = "90%";
+  divt.style.left = "5%";
+  divt.style.position = "relative";
+  divt.innerHTML = lu;
+  document.getElementById(shu).appendChild(divt);
+
+  lieshu++;
+}
 //添加主键
 function adddiv(id)
 {
@@ -769,6 +784,9 @@ function duqutxtneirong(URss){
           }
           if(reader.result.split("\n")[index].search("<图片>") == 0){
             addtu(reader.result.split("\n")[index].substr(4,10000),idming)
+          }
+          if(reader.result.split("\n")[index].search("<自定义>") == 0){
+            addzidinyi(reader.result.split("\n")[index].substr(5,10000),idming)
           }
         }
 
