@@ -968,4 +968,4 @@ xhr.onreadystatechange = function(){
           console.log(text);
       }
 };
-xhr.send(postData);
+//xhr.send(postData);
