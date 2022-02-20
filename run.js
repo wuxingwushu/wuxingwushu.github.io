@@ -35,7 +35,7 @@ var daimaleixing_py = [
 var lieshu = 0;
 var baidu0 = "https://www.baidu.com/s?wd=";
 var baidu1 = "&rsv_spt=1&rsv_iqid=0xff48a07f00019107&issp=1&f=8&rsv_bp=1&rsv_idx=2&ie=utf-8&tn=baiduhome_pg&rsv_enter=1&rsv_dl=tb&rsv_sug3=5&rsv_sug2=0&rsv_btype=i&inputT=1139&rsv_sug4=2271";
-var TXTGithub = "https://cdn.jsdelivr.net/gh/wuxingwushu/wuxingwushu.github.io/";
+var TXTGithub = "https://wuxingwushu.github.io/";
 var TXTGitee = "https://gitee.com/daosheng0/daosheng/raw/master/";
 
 
@@ -842,7 +842,7 @@ function duqutxtgemulu(){
 
         //读取每一行歌名并将其处理成SRC链接存储到gemulu[]当中
         for (let index = 0; index < reader.result.split("\n").length-1; index++) {
-          gemulu.push(TXTGithub + "Music/" + reader.result.split("\n")[index]);//获取歌的目录
+          gemulu.push("https://cdn.jsdelivr.net/gh/wuxingwushu/wuxingwushu.github.io/Music/" + reader.result.split("\n")[index]);//获取歌的目录
         }
 
       }
