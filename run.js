@@ -201,10 +201,9 @@ function fudonghuakai(IDshu){
 }
 //主界面的菜单内容退出动画
 function fudonghuatuen(IDshu){
-
-  document.getElementById("daohang").innerHTML="";//清空导航
-  document.getElementById("lan").style.display="none";//隐藏导航
+  //document.getElementById("lan").style.display="none";//隐藏导航
   daohang_jin(0)
+  document.getElementById("daohang").innerHTML="";//清空导航
 
 
   var elem = document.getElementById(IDshu);
@@ -754,7 +753,7 @@ function addzidinyi(lu,shu)
 //添加导航
 function adddaohang(nr,shu)
 {
-  document.getElementById("lan").style.display="block";
+  //document.getElementById("lan").style.display="block";
   daohang_jin(150);
 
 
