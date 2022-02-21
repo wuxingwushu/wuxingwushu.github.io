@@ -83,9 +83,9 @@ function donghuakai(IDshu){
   var kuan = document.documentElement.scrollWidth;
 
   function frame() {
-    if (pos < -kuan*0.045) {
+    if (pos < -kuan*0.044) {
       pos = pos + 6; 
-      if(bool==1)elem.style.left = pos + "px"; 
+      if(bool==1)elem.style.left = pos + "px";
     }
     if (pos1 > kuan*0.154) {
       pos1 = pos1 - 16;   
@@ -95,9 +95,9 @@ function donghuakai(IDshu){
       pos2 = pos2 - 32; 
       if(bool==1)elem2.style.left = pos2 + "px"; 
     }
-    if(pos >= -kuan*0.045 && pos1 <= kuan*0.154 && pos2 <= -kuan*0.745)
+    if(pos >= -kuan*0.044 && pos1 <= kuan*0.154 && pos2 <= -kuan*0.745)
     {
-      elem.style.left = -kuan*0.045 + "px";
+      elem.style.left = -kuan*0.044 + "px";
       elem1.style.left = kuan*0.154 + "px";
       elem2.style.left = -kuan*0.745 + "px";
       clearInterval(id);
