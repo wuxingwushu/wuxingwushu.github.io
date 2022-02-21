@@ -383,6 +383,7 @@ li:nth-child(2n + 1) {
     height: 80%;
     background-color: #f6f9fa;
     border: #e5e9ef;
+    border-radius: 10px;
 }
 .daohang_li{
     color: #000000;
