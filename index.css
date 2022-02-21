@@ -5,8 +5,9 @@
 ::-webkit-scrollbar{
     display: none;
 }
+
 #container{
-    width: 100vw;
+    width: 100%;
     height: auto;
 }
 
@@ -16,19 +17,20 @@
     /* 需要把滚动条设置到直接父容器，
     scroll-snap-type 才能生效，
     默认是在 body 上，现在是 main 上 */
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;/*禁止横向滚动*/
     height: 100vh;
 }
 #kuang{
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     position:relative;
     scroll-snap-stop: always;
     scroll-snap-align: start;
 }
 section {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     /*scroll-snap-align: start;*/
 }
 
@@ -47,6 +49,33 @@ section {
 
 
 
+/*主界面*/
+.zhujiemian{
+    background-size: auto;
+    background-position: center;
+    overflow: hidden;
+    position:absolute;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    max-width: 100%;
+    user-select: none;
+    cursor: default;
+
+    text-shadow:  
+    0px 1px 0px #c0c0c0,  
+    0px 2px 0px #b0b0b0,  
+    0px 3px 0px #b5ffa7,  
+    0px 4px 0px #87fa81,  
+    0px 5px 10px rgba(54, 247, 141, 0.9);
+}
+
+
+
+
+
+
+
+/*菜单三div*/
 .liebiao{
     width: 20%; 
     height: 100vh;
@@ -233,24 +262,7 @@ section{
     justify-content: center;
     align-items: center;
 }
-.img{
-    background-size: auto;
-    background-position: center;
-    overflow: hidden;
-    position:absolute;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    max-width: 100%;
-    user-select: none;
-    cursor: default;
 
-    text-shadow:  
-    0px 1px 0px #c0c0c0,  
-    0px 2px 0px #b0b0b0,  
-    0px 3px 0px #b5ffa7,  
-    0px 4px 0px #87fa81,  
-    0px 5px 10px rgba(54, 247, 141, 0.9);
-}
 
 
 
@@ -309,6 +321,7 @@ li {
     height: 10vh;
     display:flex;  /*盒子模型*/
     flex-direction: row;  /*横向*/
+    white-space:pre;
     justify-content: space-around; /*主轴居中*/
     align-items: center; /*纵轴居中*/
     font-size: 2em;
@@ -319,6 +332,8 @@ li:hover{
 }
 li:active{
     box-shadow: 0 0  2vh rgba(0, 255, 115, 0.57) inset;
+
+    text-shadow: 1px 1px 5px rgba(54, 247, 141, 0.9);
 }
 
 
@@ -399,7 +414,6 @@ li:active{
     display: flex;/*grid*/
     justify-content: center;
     align-items: center;
-    white-space:pre;
     /*background-color: rgba(246, 249, 250, 0.2);*/
 }
 
