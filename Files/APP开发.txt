@@ -1,4 +1,4 @@
-h1TextView  文本
+<导航>TextView  文本
 
 p	id：<分>为TextView设置一个组件ID
 p	layout_width：<分>组件的宽度
@@ -10,14 +10,14 @@ p	textSize：<分>字体大小，单位一般是用SP
 p	background：<分>控制的背景颜色，可以理解为填充整个控件的颜色，可以是图片（一般是用@color/NAME来引用，统一管理：在colors.xml当中）
 p	addingLeft：<分>设置内容与边框的间距gravity：设置控件中内容的对齐方向，TextView中是文字，lmageView中是图片等等
 
-h1TextView  阴影
+<导航>TextView  阴影
 
 p	shadowColor：<分>设置阴影颜色，需要与shadowRadius一起使用
 p	shadowRadius：<分>设置阴影的模糊程度，设为0.1就变成原字体的样式，建议使用3.0
 p	shadowDx：<分>设置阴影在水平方向的偏移，就是水平方向阴影开始的横坐标位置
 p	shadowDy：<分>设置阴影在坚直方向的偏移，就是坚直方向阴影开始的纵坐标位置
 
-h1TextView  滚动
+<导航>TextView  滚动
 
 p	singleLine：<分>内容单行显示
 p	ellipsize：<分>在哪里省略文本
@@ -31,9 +31,10 @@ p	非容器控件标签中放<requestFocus />标签，表示将当前控件设�
 
 
 
-h1BUTTON  按钮
+<导航>BUTTON  按钮
 
 p	onClick：<分>添加事件。
+p	
 p	drawable：<分>引用的Drawable位图
 p	state_focused：<分>是否获得焦点
 p	state_pressed：<分>控件是否被按下
@@ -47,7 +48,7 @@ p	state_checkedle：<分>控件是否被勾选，eg:checkbox
 
 
 
-h1EditText  输入框
+<导航>EditText  输入框
 
 p	hint：<分>输入提示
 p	textColorHint：<分>输入提示文字的颜色
@@ -56,7 +57,7 @@ p	drawableLeft：<分>在输入框的指定方位添加图片
 p	drawablePadding：<分>设置内容与输入内容的间距
 p	paddingLeft：<分>设置内容与边框的间距
 p	background：<分>背景色
-
+p	
 p	我们可以通过xml中的属性android:backgroundTint和android:backgroundTintMode来设置，android:backgroundTintMode这个属性传的值就是刚刚上面那些PorterDuff.Mode中的值，效果的话上面的图也展示了。android:backgroundTint的话就是传color的值。
 p	那么android:background和android:backgroundTint有什么区别呢？
 p	如果设置了android:background，那么控件的背景颜色就会直接修改。
@@ -67,7 +68,7 @@ p	如果设置了android:backgroundTint，那么就会将设置的颜色和原�
 
 
 
-h1ImageView  图片
+<导航>ImageView  图片
 
 p	src：<分>设置图片资源
 p	maxHeight：<分>最大高度，和adjustViewBounds一起使用才有效
@@ -75,7 +76,7 @@ p	maxWidth：<分>最大宽度，和adjustViewBounds一起使用才有效
 p	adjustViewBounds：<分>调整View的界限
 p	scaleType：<分>设置图片缩放类型
 
-h1scaleType  有的类型
+<导航>scaleType  有的类型
 
 p	fitStart：<分>保持宽高比缩放图片，直到较长的边与lmage的边长相等，缩放完成后将图片放在lmageView的左上角。
 p	fitCenter：<分>默认值，同上，缩放后放中间。
@@ -92,12 +93,12 @@ p	matrix：<分>不改变原图的大小，从lmageView的左上角开始绘制�
 
 
 
-h1ProgressBar  进度条
+<导航>ProgressBar  进度条
 
 p	max：<分>进度条的最大值
 p	progress：<分>进度条己完成进度值
 p	indeterminate：<分>如果设置成true，则进度条不精确显示进度
-p	style="?android:attr/progressBarStyleHorizontal"<分>进度条样式
+p	style="?android:attr/progressBarStyleHorizontal"进度条样式
 
 
 
@@ -107,7 +108,7 @@ p	style="?android:attr/progressBarStyleHorizontal"<分>进度条样式
 
 
 
-h1通知的设置
+<导航>通知的设置
 
 p	setContentTitle("道生发的通知")<分>设置标题
 p	setContentText("还不认真学习，还在玩！！！")<分>设置文本内容
@@ -124,7 +125,7 @@ p	setWhen()	<分>设置通知被创建的时间
 
 
 
-h1Toolbar  标题栏
+<导航>Toolbar  标题栏
 
 p	android:background="#4C4C4C"<分>设置背景颜色
 p	app:navigationIcon="@drawable/ic_baseline_chevron_left_24"	<分>设置标题栏的图标
@@ -140,7 +141,7 @@ p	app:logo="@mipmap/ic_launcher_2"<分>设置主标题的LOGO
 
 
 
-h1Builder  构建AlertDialog的各种参数
+<导航>Builder  构建AlertDialog的各种参数
 
 p	.setIcon()<分>添加ICON图标
 p	.setTitle()<分>添加标题
