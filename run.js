@@ -224,7 +224,7 @@ function fudonghuatuen(IDshu){
   var degshu = 0;
 
   function frame() {
-    if (pos < -kuan*0.045) {
+    if (pos < -kuan*0.043) {
       pos = pos + 6; 
       if(fubool==0)elem.style.left = pos + "px"; 
     }
@@ -238,15 +238,15 @@ function fudonghuatuen(IDshu){
         }
       }
     }
-    if (pos2 < -kuan*0.745) {
+    if (pos2 < -kuan*0.744) {
       pos2 = pos2 + 16; 
       if(fubool==0)elem2.style.left = pos2 + "px"; 
     }
-    if(pos >= -kuan*0.045 && pos1 >= kuan*0.155 && pos2 >= -kuan*0.745)
+    if(pos >= -kuan*0.043 && pos1 >= kuan*0.155 && pos2 >= -kuan*0.744)
     {
-      elem.style.left = -kuan*0.045 + "px";
+      elem.style.left = -kuan*0.043 + "px";
       elem1.style.left = kuan*0.155 + "px";
-      elem2.style.left = -kuan*0.745 + "px";
+      elem2.style.left = -kuan*0.744 + "px";
       elem1.style.transform = "skew(-12deg)";
       clearInterval(id);
     }
