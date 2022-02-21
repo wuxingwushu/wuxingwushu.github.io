@@ -1,7 +1,7 @@
 var bool = 1;
 var fubool = 0;
 var ulid = "";
-var leixing = ["p","h1","h2","a","h3","h4","h5"];
+var leixing = ["p","a","h1","h2","h3","h4","h5"];
 var daimaleixing_js = [
   //javascript
 "var","#569CD6"
@@ -202,6 +202,11 @@ function fudonghuakai(IDshu){
 //主界面的菜单内容退出动画
 function fudonghuatuen(IDshu){
 
+  document.getElementById("daohang").innerHTML="";//清空导航
+  document.getElementById("lan").style.display="none";//隐藏导航
+  daohang_jin(0)
+
+
   var elem = document.getElementById(IDshu);
   var elem1 = document.getElementById(IDshu+1);
   var elem2 = document.getElementById(IDshu+2);
@@ -247,6 +252,54 @@ function fudonghuatuen(IDshu){
   }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//导航动画
+function daohang_jin(kuan){
+  var kuan_shu = document.getElementById("lan").getBoundingClientRect().width;
+  var width = document.getElementById("lan");
+  var id = setInterval(frame, 5);
+  function frame() {
+    if(kuan > kuan_shu){
+      kuan_shu++;
+      width.style.width = kuan_shu + "px"
+    }
+    if(kuan == kuan_shu){
+      clearInterval(id);
+    }
+    if(kuan < kuan_shu){
+      kuan_shu--;
+      width.style.width = kuan_shu + "px"
+    }
+  }
+}
+function daohang_tuei(){
+  
+}
 
 
 
@@ -459,15 +512,7 @@ function addma(type,TXT,shu,xz)
   var divs = "div" + lieshu;
   var divt = document.createElement("div");//创建一个LI
   divt.id = divs;
-  divt.style.borderStyle = "solid";
-  divt.style.borderWidth = "5px";
-  divt.style.borderColor = "#303030";
-  divt.style.height = "auto";
-  divt.style.width = "90%";
-  divt.style.left = "5%";
-  divt.style.position = "relative";
-  divt.style.background = "#303030";
-  divt.style.overflow = "auto";
+  divt.classList.add("daima_div");
   document.getElementById(shu).appendChild(divt);
 
 
@@ -622,14 +667,11 @@ function addma(type,TXT,shu,xz)
 
 
   var ele = document.createElement("p");//创建一个LI
-  ele.style ='white-space:pre;';
-  ele.innerHTML = xinTXT;//修改里面的属性s
-  ele.style.width = "auto";
-  ele.style.color = "#ffffff";
-  ele.className = type;
+  ele.classList.add("daima_txt");
+  ele.innerHTML = xinTXT;//修改里面的属性
   document.getElementById(divs).appendChild(ele);//把LI放到ID="zhu"的lu里面
 
-
+  
   lieshu++;
 }
 //添加文字主键
@@ -638,18 +680,12 @@ function add(type,TXT,shu)
   var divs = "div" + lieshu;
   var divt = document.createElement("div");//创建一个LI
   divt.id = divs;
-  divt.style.height = "auto";
-  divt.style.width = "90%";
-  divt.style.left = "5%";
+  divt.classList.add("neirong_div");
   
   if(TXT.search("<分>") != -1){
-    divt.style.borderStyle = "solid";
-    divt.style.borderWidth = "2px";
-    divt.style.borderColor = "#303030";
-    divt.style.overflow = "auto";
+    divt.classList.add("neirong_div_fen");
   }
 
-  divt.style.position = "relative";
   document.getElementById(shu).appendChild(divt);
 
   
@@ -675,34 +711,23 @@ function add(type,TXT,shu)
   if(TXT.search("<分>") != -1){
 
     var ele = document.createElement(type);//创建一个LI
-    ele.className = type;
-    ele.style ='white-space:pre-wrap;margin-top:0px;line-height:30px;'
     ele.style.float = "left";
-    ele.style.width = "50%";
+    ele.classList.add("neirong_txt_fen");
     ele.innerHTML = TXT.substr(type.length,TXT.search("<分>")-1);
-    ele.style.position = "relative";
     document.getElementById(divs).appendChild(ele);
 
     var ele1 = document.createElement(type);//创建一个LI
-    ele1.className = type;
-    ele1.style ='white-space:pre-wrap;margin-top:0px;line-height:30px;'
     ele1.style.float = "right";
-    ele1.style.width = "50%";
+    ele1.classList.add("neirong_txt_fen");
     ele1.innerHTML = TXT.substr(TXT.search("<分>")+3,10000);
-    ele1.style.position = "relative";
     document.getElementById(divs).appendChild(ele1);
 
   }
   else{
 
     var ele = document.createElement(type);//创建一个LI
-    ele.className = type;
-    ele.style ='white-space:pre-wrap;margin-top:20px;line-height:40px;'
+    ele.classList.add("neirong_txt");
     ele.innerHTML = TXT.substr(type.length,10000);//修改里面的属性s
-    //ele.style.width = "100%";
-    //ele.style.word.wrap = "break-word"
-    //ele.style.float = "left";
-    ele.style.position = "relative";
     document.getElementById(divs).appendChild(ele);//把LI放到ID="zhu"的lu里面
 
   }
@@ -713,27 +738,47 @@ function add(type,TXT,shu)
 function addtu(lu,shu)
 {
   var ele = document.createElement("img");//创建一个LI
-  ele.src = "https://images.weserv.nl/?url=" + lu;
-  ele.style = "width:90%";
-  ele.style.left = "5%";
+  ele.src = "https://images.weserv.nl/?url=" + lu;//设置图片的链接
   ele.style.top = "20px";
-  ele.style.position = "relative";
+  ele.classList.add("neirong_div");
   document.getElementById(shu).appendChild(ele);//把LI放到ID="zhu"的lu里面
 }
 //添加自定义内容
 function addzidinyi(lu,shu)
 {
-  var divs = "div" + lieshu;
   var divt = document.createElement("div");//创建一个LI
-  divt.id = divs;
-  divt.style.height = "auto";
-  divt.style.width = "90%";
-  divt.style.left = "5%";
-  divt.style.position = "relative";
-  divt.innerHTML = lu;
+  divt.classList.add("neirong_div");
+  divt.innerHTML = lu;//你定义的内容直接放在<div>里面
+  document.getElementById(shu).appendChild(divt);
+}
+//添加导航
+function adddaohang(nr,shu)
+{
+  document.getElementById("lan").style.display="block";
+  daohang_jin(150);
+
+
+
+  var divt = document.createElement("h2");//创建一个LI
+  divt.classList.add("neirong_txt");
+  divt.classList.add("neirong_div");
+  divt.classList.add("daohang_biao");
+  divt.innerHTML = nr;//你定义的内容直接放在<div>里面
   document.getElementById(shu).appendChild(divt);
 
-  lieshu++;
+  var ele = document.createElement("li");//创建一个LI
+  //ele.id = "daohang_shu"
+  ele.classList.add("daohang_li");
+  ele.innerHTML = nr;//修改里面的属性
+
+  ele.onclick = function() {
+    var index = $(this).index();//获取点的是第几个li
+    var top = $(".daohang_biao").eq(index).offset().top;//获得第几个".daohang_biao"的位置高度
+    document.getElementById(ulid).scrollTop=document.getElementById(ulid).scrollTop+top;//调整页面位置
+  }
+  //ele.onmouseover = function(){daohang_jin(200);}
+
+  document.getElementById("daohang").appendChild(ele);//把LI放到ID="zhu"的lu里面
 }
 //添加主键
 function adddiv(id)
@@ -743,7 +788,7 @@ function adddiv(id)
   ele.style.height = "100%";
   ele.style.width = "100%";
   ele.style.overflow = "auto";//多出来的内容可以滚动出来
-  document.getElementById(id).appendChild(ele);//把LI放到ID="zhu"的lu里面
+  document.getElementById(id).appendChild(ele);//把LI放到ID="zhu"的lu里面 
 }
 
 function duqutxtneirong(URss){
@@ -787,6 +832,9 @@ function duqutxtneirong(URss){
           }
           if(reader.result.split("\n")[index].search("<自定义>") == 0){
             addzidinyi(reader.result.split("\n")[index].substr(5,10000),idming)
+          }
+          if(reader.result.split("\n")[index].search("<导航>") == 0){
+            adddaohang(reader.result.split("\n")[index].substr(4,10000),idming)
           }
         }
 
@@ -856,10 +904,12 @@ function duqutxtgemulu(){
 
 function bofang()
 {
+  //切换图案
   document.getElementById("bofang").style.display="none";
   document.getElementById("zhanting").style.display="block";
 
-  audio.src = gemulu[geid];
+  audio.src = gemulu[geid];//获取歌的链接
+  audio.currentTime = shijian_T;//从哪里开始播放
   audio.play();//播放
 
 
@@ -868,7 +918,7 @@ function bofang()
         //如果音频播放结束
         shijian_T=0;//从头开始
         geid++;//下一首歌
-        if(geid==gemulu.length)
+        if(geid==gemulu.length)//列表循环
         {
           geid=0;
         }
@@ -880,21 +930,21 @@ function bofang()
         currentProgress.css({'width': ratio * 100 + '%'});
     }
   }, 100)
-
-  audio.currentTime = shijian_T;
 }
 
 function zhanting()
 {
+  //切换图案
   document.getElementById("zhanting").style.display="none";
   document.getElementById("bofang").style.display="block";
 
   audio.pause();//暂停
 
-  shijian_T = audio.currentTime;
+  shijian_T = audio.currentTime;//获取暂停播放位置
 }
 
 
+//显示歌曲进度条的控制范围
 function xianshijindu(){
   document.getElementById("icon").style.width="264px";
   document.getElementById("jindu").style.display="block";
@@ -928,20 +978,8 @@ function getRatio(ev) {
   return ratio;
 }
 
-
+//获取歌曲目录
 duqutxtgemulu();
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
