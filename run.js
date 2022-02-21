@@ -44,6 +44,8 @@ var audio = document.getElementById('yinyue');
 var totalProgress = $('.totalProgress');
 var currentProgress = $('.currentProgress');
 
+var daohang_sf = 1;
+
 
 
 //主界面的菜单出现动画
@@ -436,7 +438,11 @@ var scrollFunction = function(e) {
   }
 }
 function ulyidong(shu){
-  document.getElementById(ulid).scrollTop=document.getElementById(ulid).scrollTop+shu;
+  if(daohang_sf == 1){
+    document.getElementById(ulid).scrollTop=document.getElementById(ulid).scrollTop+shu;
+  }else{
+    document.getElementById("daohang").scrollTop=document.getElementById("daohang").scrollTop+shu;
+  }
 }
 //禁止浏览器默认事件
 function shubiaogundong(){
@@ -775,7 +781,13 @@ function adddaohang(nr,shu)
     var top = $(".daohang_biao").eq(index).offset().top;//获得第几个".daohang_biao"的位置高度
     document.getElementById(ulid).scrollTop=document.getElementById(ulid).scrollTop+top;//调整页面位置
   }
-  //ele.onmouseover = function(){daohang_jin(200);}
+  ele.onmouseover = function(){
+    //daohang_jin(200);
+    daohang_sf = 0;
+  }
+  ele.onmouseout = function(){
+    daohang_sf = 1;
+  }
 
   document.getElementById("daohang").appendChild(ele);//把LI放到ID="zhu"的lu里面
 }
