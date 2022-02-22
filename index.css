@@ -168,10 +168,26 @@ section {
     right: 12px;
     top:8px;
 }
+#shangyishou{
+    position:fixed;
+    right: 100px;
+    top:15px;
+}
+#xiayishou{
+    position:fixed;
+    right: 60px;
+    top:15px;
+}
+#qiege_shadow{
+    position:relative;
+    right: 35px;
+    top:1px;
+}
+
 /*音乐播放进度*/
 .totalProgress{
     position: fixed;
-    top: 35px;
+    top: 50px;
     right: 76px;
     width: 200px;
     height: 8px;
@@ -356,12 +372,16 @@ li:active{
 .neirong_div_fen{
     border-style: solid;
     border-width: 2px;
-    border-color: #303030;
+    width: 90%;
+    left: 5%;
+    position: relative;
+    border-color: rgba(0, 0, 0, 0.05);
     overflow: auto;
 }
 .neirong_txt_fen{
     position: relative;
     white-space:pre-wrap;
+    height: auto;
     margin-top:0px;
     line-height:30px;
 }
