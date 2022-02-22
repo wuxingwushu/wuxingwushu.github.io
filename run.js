@@ -514,13 +514,6 @@ urlToBlob('Files/档案馆.txt',"15","li","xtxt15");
 function addma(type,TXT,shu,xz)
 {
   var zhushi = ["'",'"']
-  var divs = "div" + lieshu;
-  var divt = document.createElement("div");//创建一个LI
-  divt.id = divs;
-  divt.classList.add("daima_div");
-  //document.getElementById(shu).appendChild(divt);
-
-
   var you = 1;
   var zhushikaishi = 10000;
 
@@ -675,10 +668,9 @@ function addma(type,TXT,shu,xz)
   ele.classList.add("daima_txt");
   ele.innerHTML = xinTXT;//修改里面的属性
   document.getElementById(shu).appendChild(ele);//把LI放到ID="zhu"的lu里面
-
-  
-  lieshu++;
 }
+
+
 //添加文字主键
 function add(type,TXT,shu)
 {
@@ -707,12 +699,14 @@ function add(type,TXT,shu)
   ele.innerHTML = TXT.substr(type.length,10000);//修改里面的属性s
   document.getElementById(shu).appendChild(ele);//把LI放到ID="zhu"的lu里面
 }
+
+
 //表格
 function addbiaoge(type,TXT,shu){
   var divs = "div" + lieshu;
   var divt = document.createElement("div");//创建一个LI
   divt.id = divs;
-  divt.classList.add("neirong_div");
+  divt.classList.add("neirong_div_fen");
   document.getElementById(shu).appendChild(divt);
 
 
@@ -736,15 +730,17 @@ function addbiaoge(type,TXT,shu){
   for (let index = 0; index < zfc.length - 1; index++) {
     var ele = document.createElement(type);//创建一个LI
     ele.style.float = "left";
+    //if(zfc.length - 1 == index){ele.style.float = "right";}
     ele.style.width = kuan_fen + "%"
     ele.classList.add("neirong_txt_fen");
-    //alert(TXT.substr(zfc[index]+3,zfc[index+1]) + ":" + zfc[index]+3 + ":" + zfc[index+1])
     ele.innerHTML = TXT.substr(zfc[index]+3,(zfc[index+1] - zfc[index] - 3));
     document.getElementById(divs).appendChild(ele);
   }
 
   lieshu++;
 }
+
+
 //添加图片
 function addtu(lu,shu)
 {
@@ -754,6 +750,8 @@ function addtu(lu,shu)
   ele.classList.add("neirong_div");
   document.getElementById(shu).appendChild(ele);//把LI放到ID="zhu"的lu里面
 }
+
+
 //添加自定义内容
 function addzidinyi(lu,shu)
 {
@@ -762,6 +760,8 @@ function addzidinyi(lu,shu)
   divt.innerHTML = lu;//你定义的内容直接放在<div>里面
   document.getElementById(shu).appendChild(divt);
 }
+
+
 //添加导航
 function adddaohang(nr,shu)
 {
@@ -797,6 +797,8 @@ function adddaohang(nr,shu)
 
   document.getElementById("daohang").appendChild(ele);//把LI放到ID="zhu"的lu里面
 }
+
+
 //添加主键
 function adddiv(id)
 {
@@ -807,6 +809,7 @@ function adddiv(id)
   ele.style.overflow = "auto";//多出来的内容可以滚动出来
   document.getElementById(id).appendChild(ele);//把LI放到ID="zhu"的lu里面 
 }
+
 
 function duqutxtneirong(URss){
   let file_url = TXTGithub + URss;
@@ -827,17 +830,58 @@ function duqutxtneirong(URss){
 
         ulid = idming;
 
+        var hang = reader.result.split("\n");
+
   
         //读取每一行，并根据开头信息，做出不同判断
-        for (let index = 0; index < reader.result.split("\n").length; index++) {
+        for (let index = 0; index < hang.length; index++) {
+
+          if(hang[index].substr(0,1) == "<"){
+            var biaoqian = hang[index].substr(0,hang[index].search(">")+1);
+
+            switch(biaoqian){
+              case"<代码>":
+
+                      index++;
+                      var xz = hang[index].substr(0,2);
+                      index++;
+          
+                      var divs = "div" + lieshu;
+                      var divt = document.createElement("div");//创建一个LI
+                      divt.id = divs;
+                      divt.classList.add("daima_div");
+                      document.getElementById(idming).appendChild(divt);
+  
+                      lieshu++;
+  
+                      while(hang[index].search("</代码>") != 0){
+                        addma("p",hang[index],divs,xz);
+                        index++;
+                      }
+                      break;
+
+              case"<图片>":addtu(hang[index].substr(4,10000),idming);break;
+
+              case"<自定义>":addzidinyi(hang[index].substr(5,10000),idming);break;
+
+              case"<导航>":adddaohang(hang[index].substr(4,10000),idming);break;
+
+              case"<分>":addbiaoge("p",hang[index].substr(3,10000),idming);break;
+            }
+
+          }
+
           for(let lei = 0; lei < leixing.length;lei++){
-            if(reader.result.split("\n")[index].search(leixing[lei]) == 0){
-              add(leixing[lei],reader.result.split("\n")[index],idming);
+            if(hang[index].search(leixing[lei]) == 0){
+              add(leixing[lei],hang[index],idming);
             }
           }
-          if(reader.result.split("\n")[index].search("<代码>") == 0){
+
+
+          /*
+          if(hang[index].search("<代码>") == 0){
             index++;
-            var xz = reader.result.split("\n")[index].substr(0,2);
+            var xz = hang[index].substr(0,2);
             index++;
 
             var divs = "div" + lieshu;
@@ -846,23 +890,28 @@ function duqutxtneirong(URss){
             divt.classList.add("daima_div");
             document.getElementById(idming).appendChild(divt);
 
-            while(reader.result.split("\n")[index].search("</代码>") != 0){
-              addma("p",reader.result.split("\n")[index],divs,xz);
+            lieshu++;
+
+            while(hang[index].search("</代码>") != 0){
+              addma("p",hang[index],divs,xz);
               index++;
             }
           }
-          if(reader.result.split("\n")[index].search("<图片>") == 0){
-            addtu(reader.result.split("\n")[index].substr(4,10000),idming)
+          if(hang[index].search("<图片>") == 0){
+            addtu(hang[index].substr(4,10000),idming)
           }
-          if(reader.result.split("\n")[index].search("<自定义>") == 0){
-            addzidinyi(reader.result.split("\n")[index].substr(5,10000),idming)
+          if(hang[index].search("<自定义>") == 0){
+            addzidinyi(hang[index].substr(5,10000),idming)
           }
-          if(reader.result.split("\n")[index].search("<导航>") == 0){
-            adddaohang(reader.result.split("\n")[index].substr(4,10000),idming)
+          if(hang[index].search("<导航>") == 0){
+            adddaohang(hang[index].substr(4,10000),idming)
           }
-          if(reader.result.split("\n")[index].search("<分>") == 0){
-            addbiaoge("p",reader.result.split("\n")[index].substr(3,10000),idming)
+          if(hang[index].search("<分>") == 0){
+            addbiaoge("p",hang[index].substr(3,10000),idming)
           }
+          */
+
+
         }
 
 
@@ -970,15 +1019,38 @@ function zhanting()
   shijian_T = audio.currentTime;//获取暂停播放位置
 }
 
+function shangyishou(){
+  geid--;
+  if(geid==-1)//列表循环
+  {
+    geid=gemulu.length-1;
+  }
+  audio.src = gemulu[geid];//获取歌的链接
+  audio.play();//播放
+}
+
+function xiayishou(){
+  geid++;
+  if(geid==gemulu.length)//列表循环
+  {
+    geid=0;
+  }
+  audio.src = gemulu[geid];//获取歌的链接
+  audio.play();//播放
+}
 
 //显示歌曲进度条的控制范围
 function xianshijindu(){
   document.getElementById("icon").style.width="264px";
   document.getElementById("jindu").style.display="block";
+  document.getElementById("shangyishou").style.display="block";
+  document.getElementById("xiayishou").style.display="block";
 }
 function xianshijinduf(){
   document.getElementById("icon").style.width="64px";
   document.getElementById("jindu").style.display="none";
+  document.getElementById("shangyishou").style.display="none";
+  document.getElementById("xiayishou").style.display="none";
 }
 
 
