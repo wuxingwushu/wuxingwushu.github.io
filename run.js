@@ -518,7 +518,7 @@ function addma(type,TXT,shu,xz)
   var divt = document.createElement("div");//创建一个LI
   divt.id = divs;
   divt.classList.add("daima_div");
-  document.getElementById(shu).appendChild(divt);
+  //document.getElementById(shu).appendChild(divt);
 
 
   var you = 1;
@@ -674,7 +674,7 @@ function addma(type,TXT,shu,xz)
   var ele = document.createElement("p");//创建一个LI
   ele.classList.add("daima_txt");
   ele.innerHTML = xinTXT;//修改里面的属性
-  document.getElementById(divs).appendChild(ele);//把LI放到ID="zhu"的lu里面
+  document.getElementById(shu).appendChild(ele);//把LI放到ID="zhu"的lu里面
 
   
   lieshu++;
@@ -682,18 +682,6 @@ function addma(type,TXT,shu,xz)
 //添加文字主键
 function add(type,TXT,shu)
 {
-  var divs = "div" + lieshu;
-  var divt = document.createElement("div");//创建一个LI
-  divt.id = divs;
-  divt.classList.add("neirong_div");
-  
-  if(TXT.search("<分>") != -1){
-    divt.classList.add("neirong_div_fen");
-  }
-
-  document.getElementById(shu).appendChild(divt);
-
-  
   //对书名加上百度链接
   if(TXT.search("《") != -1){
     TXT = TXT.substr(0,TXT.search("《")+1) + "<a target='view_window' style='color:#00c6ff' href='" + baidu0 + TXT.substr((TXT.search("《")+1),(TXT.search("》")-TXT.search("《")-1)) + baidu1 + "'>" + TXT.substr((TXT.search("《")+1),(TXT.search("》")-TXT.search("《")-1)) + "</a>" + TXT.substr((TXT.search("》")),10000);
@@ -712,29 +700,47 @@ function add(type,TXT,shu)
 
 
 
-  
-  if(TXT.search("<分>") != -1){
 
+  var ele = document.createElement(type);//创建一个LI
+  ele.classList.add("neirong_txt");
+  ele.classList.add("neirong_div");
+  ele.innerHTML = TXT.substr(type.length,10000);//修改里面的属性s
+  document.getElementById(shu).appendChild(ele);//把LI放到ID="zhu"的lu里面
+}
+//表格
+function addbiaoge(type,TXT,shu){
+  var divs = "div" + lieshu;
+  var divt = document.createElement("div");//创建一个LI
+  divt.id = divs;
+  divt.classList.add("neirong_div");
+  document.getElementById(shu).appendChild(divt);
+
+
+
+  var zfc = [-3]
+  var i = 1;
+  var to = 0;
+  while(i){
+    if(TXT.substr(to,10000).search("<分>") != -1){
+      to = to + TXT.substr(to,10000).search("<分>");
+      zfc.push(to);
+      to++;
+    }
+    else{
+      i = 0;
+    }
+  }
+  var kuan_fen = 100 / zfc.length;
+  zfc.push(10000);
+
+  for (let index = 0; index < zfc.length - 1; index++) {
     var ele = document.createElement(type);//创建一个LI
     ele.style.float = "left";
+    ele.style.width = kuan_fen + "%"
     ele.classList.add("neirong_txt_fen");
-    ele.innerHTML = TXT.substr(type.length,TXT.search("<分>")-1);
+    //alert(TXT.substr(zfc[index]+3,zfc[index+1]) + ":" + zfc[index]+3 + ":" + zfc[index+1])
+    ele.innerHTML = TXT.substr(zfc[index]+3,(zfc[index+1] - zfc[index] - 3));
     document.getElementById(divs).appendChild(ele);
-
-    var ele1 = document.createElement(type);//创建一个LI
-    ele1.style.float = "right";
-    ele1.classList.add("neirong_txt_fen");
-    ele1.innerHTML = TXT.substr(TXT.search("<分>")+3,10000);
-    document.getElementById(divs).appendChild(ele1);
-
-  }
-  else{
-
-    var ele = document.createElement(type);//创建一个LI
-    ele.classList.add("neirong_txt");
-    ele.innerHTML = TXT.substr(type.length,10000);//修改里面的属性s
-    document.getElementById(divs).appendChild(ele);//把LI放到ID="zhu"的lu里面
-
   }
 
   lieshu++;
@@ -833,8 +839,15 @@ function duqutxtneirong(URss){
             index++;
             var xz = reader.result.split("\n")[index].substr(0,2);
             index++;
+
+            var divs = "div" + lieshu;
+            var divt = document.createElement("div");//创建一个LI
+            divt.id = divs;
+            divt.classList.add("daima_div");
+            document.getElementById(idming).appendChild(divt);
+
             while(reader.result.split("\n")[index].search("</代码>") != 0){
-              addma("p",reader.result.split("\n")[index],idming,xz);
+              addma("p",reader.result.split("\n")[index],divs,xz);
               index++;
             }
           }
@@ -846,6 +859,9 @@ function duqutxtneirong(URss){
           }
           if(reader.result.split("\n")[index].search("<导航>") == 0){
             adddaohang(reader.result.split("\n")[index].substr(4,10000),idming)
+          }
+          if(reader.result.split("\n")[index].search("<分>") == 0){
+            addbiaoge("p",reader.result.split("\n")[index].substr(3,10000),idming)
           }
         }
 
