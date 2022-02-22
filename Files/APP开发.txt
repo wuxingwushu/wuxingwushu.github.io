@@ -58,10 +58,10 @@ p
 <分>	paddingLeft：<分>设置内容与边框的间距
 <分>	background：<分>背景色
 p	
-<分>	我们可以通过xml中的属性android:backgroundTint和android:backgroundTintMode来设置，android:backgroundTintMode这个属性传的值就是刚刚上面那些PorterDuff.Mode中的值，效果的话上面的图也展示了。android:backgroundTint的话就是传color的值。
-<分>	那么android:background和android:backgroundTint有什么区别呢？
-<分>	如果设置了android:background，那么控件的背景颜色就会直接修改。
-<分>	如果设置了android:backgroundTint，那么就会将设置的颜色和原来的背景进行一个叠加的过程，至于如何叠加，就是上面的mode。
+p	我们可以通过xml中的属性android:backgroundTint和android:backgroundTintMode来设置，android:backgroundTintMode这个属性传的值就是刚刚上面那些PorterDuff.Mode中的值，效果的话上面的图也展示了。android:backgroundTint的话就是传color的值。
+p	那么android:background和android:backgroundTint有什么区别呢？
+p	如果设置了android:background，那么控件的背景颜色就会直接修改。
+p	如果设置了android:backgroundTint，那么就会将设置的颜色和原来的背景进行一个叠加的过程，至于如何叠加，就是上面的mode。
 
 
 
