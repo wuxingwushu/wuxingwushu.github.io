@@ -148,6 +148,8 @@ section {
 
 
 
+
+
 /*音乐播放图标*/
 #icon{
     position:fixed;
@@ -358,7 +360,6 @@ li:active{
     overflow: auto;
 }
 .neirong_txt_fen{
-    width: 50%;
     position: relative;
     white-space:pre-wrap;
     margin-top:0px;
