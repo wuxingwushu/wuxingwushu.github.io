@@ -1162,6 +1162,20 @@ setInterval(()=>{
 
 
 
+//标题切换
+document.addEventListener('visibilitychange',function(){
+  if(document.hidden){
+    document.title = "o(≧口≦)o 你给我回来~~"
+  }else{
+    document.title = " =￣ω￣=   吾行误述"
+  }
+},false);
+
+
+
+
+
+
 
 
 
