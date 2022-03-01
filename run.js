@@ -31,6 +31,61 @@ var daimaleixing_py = [
 ," open","#5a77c5"
 ," str","#5a77c5"
 ];
+var daimaleixing_ja = [
+  //java
+  "public","#569cd6",
+  "class","#569cd6",
+  "static","#569cd6",
+  "super","#569cd6",
+  "this","#569cd6",
+  "goto","#569cd6",
+  "const","#569cd6",
+  "import","#569cd6",
+  "package","#569cd6",
+  "instanceof","#569cd6",
+  "native","#569cd6",
+  "synchronized","#569cd6",
+  "strictfp","#569cd6",
+  "final","#569cd6",
+  "abstract","#569cd6",
+  "transient","#569cd6",
+
+  "System","#4ec9b0",
+  "String","#4ec9b0",
+  "void","#4ec9b0",
+  "int","#4ec9b0",
+  "float","#4ec9b0",
+  "char","#4ec9b0",
+  "byte","#4ec9b0",
+  "boolean","#4ec9b0",
+  "double","#4ec9b0",
+  "long","#4ec9b0",
+  "short","#4ec9b0",
+
+  "out","#9cdcfe",
+  "args","#9cdcfe",
+
+  "try","#c586c0",
+  "throw","#c586c0",
+  "finally","#c586c0",
+  "catch","#c586c0",
+  "assert","#c586c0",
+  "while","#c586c0",
+  "switch","#c586c0",
+  "return","#c586c0",
+  "if","#c586c0",
+  "for","#c586c0",
+  "else","#c586c0",
+  "do","#c586c0",
+  "default","#c586c0",
+  "continue","#c586c0",
+  "case","#c586c0",
+  "break","#c586c0",
+  "new","#c586c0",
+  
+
+  "println","#dcdcaa",
+];
 
 var lieshu = 0;
 var baidu0 = "https://www.baidu.com/s?wd=";
@@ -541,6 +596,16 @@ function addma(type,TXT,shu,xz)
         zhushis.push(TXT.substr(0,10000).length);
       }
       break;
+    case "ja":
+      var yangshi=daimaleixing_ja;
+      if(TXT.substr(0,10000).search("//") != -1 && TXT.substr(0,TXT.substr(0,10000).search("//")).search('"') == -1){
+        you = 0;
+        zhushikaishi = TXT.substr(0,10000).search("//")
+        zhushis.push(zhushikaishi)
+        zhushis.push("#6a9955");
+        zhushis.push(TXT.substr(0,10000).length);
+      }
+      break;
   }
 
   //单双引号识别
@@ -678,20 +743,6 @@ function add(type,TXT,shu)
   if(TXT.search("《") != -1){
     TXT = TXT.substr(0,TXT.search("《")+1) + "<a target='view_window' style='color:#00c6ff' href='" + baidu0 + TXT.substr((TXT.search("《")+1),(TXT.search("》")-TXT.search("《")-1)) + baidu1 + "'>" + TXT.substr((TXT.search("《")+1),(TXT.search("》")-TXT.search("《")-1)) + "</a>" + TXT.substr((TXT.search("》")),10000);
   }
-
-
-
-  
-  //white-space的值：
-  //normal 默认。空白会被浏览器忽略。
-  //pre 空白会被浏览器保留。其行为方式类似 HTML 中的标签
-  //nowrap	文本不会换行，文本会在在同一行上继续，直到遇到标签为止。
-  //pre-wrap	保留空白符序列，但是正常地进行换行。
-  //pre-line	合并空白符序列，但是保留换行符。
-  //inherit	规定应该从父元素继承 white-space 属性的值。
-
-
-
 
   var ele = document.createElement(type);//创建一个LI
   ele.classList.add("neirong_txt");
@@ -1162,14 +1213,23 @@ setInterval(()=>{
 
 
 
+
 //标题切换
 document.addEventListener('visibilitychange',function(){
   if(document.hidden){
-    document.title = "o(≧口≦)o 你给我回来~~"
+    document.title = "o(≧口≦)o你给我回来~~"
   }else{
-    document.title = " =￣ω￣=   吾行误述"
+    document.title = "(=￣ω￣=)吾行误述"
   }
 },false);
+
+
+
+
+
+
+
+
 
 
 
