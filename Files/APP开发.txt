@@ -152,3 +152,118 @@ p	如果设置了android:backgroundTint，那么就会将设置的颜色和原�
 <分>	.setNeutralButton()<分>添加中间按键
 <分>	.create()<分>创建AlertDialog
 <分>	.show();<分>显示
+
+
+
+
+
+<导航>PopupWindow  设置弹窗
+
+<分>	setContentView(View contentView)<分>设置PopupWindow显示的View
+<分>	showAsDropDown(View anchor)<分>相对某个控件的位置（正左下方），无偏转。
+<分>	showAsDropDown(View anchor,int xoff,int yoff)<分>相对某个控件的位置，有偏转。
+<分>	setFocusable(boolean focusable)<分>设置是否获得焦点
+<分>	setBackgroundDrawable(Drawable background)<分>设置背景
+<分>	dismiss()<分>关闭弹窗
+<分>	setAnimationStyle(int animationStyle)<分>设置加载动画
+<分>	setTouchable(boolean touchable)<分>设置触摸使能
+<分>	setOutsideTouchable(boolean touchable)<分>设置PopupWindow外面的触摸使能
+
+
+
+
+
+<导航>LinearLayout  线性布局
+
+<分>	orientation:<分>布局中组件的排列方式
+<分>	gravity:<分>控制该组件所包含的子元素的对其方式，可多个组合
+<分>	layout_gravity:<分>控制该组件在父容器里的对其方式
+<分>	background:<分>为该组件设置一个背景图片，或者是直接用颜色覆盖
+<分>	divider:<分>分割线
+<分>	showDividers:<分>设置分割线所在的位置，none(无),beginning(开始),end(结束),middle(每两个组件间)
+<分>	dividerPadding:<分>设置分割线的padding
+<分>	layout_weight(权重):<分>该属性是用来等比例的划分区域（针对orientation排列方式分配的剩余空间）
+
+
+
+
+
+<导航>RelativeLayout  相对布局
+
+h4根据父容器定位
+<分>	layout_alignParentLeft:<分>左对齐
+<分>	layout_alignParentRigh:<分>右对齐
+<分>	layout_alignParentTop:<分>顶部对齐
+<分>	layout_alignParentBottom:<分>底部对齐
+<分>	layout_centerHorizontal:<分>水平对齐
+<分>	layout_centerVertical:<分>垂直居中
+<分>	layout_centerinParent:<分>中间位置
+
+h4根据兄弟组件定位
+<分>	layout_toLeftOf:<分>放置于参考组件的左边
+<分>	layout_toRightOf:<分>放置于参考组件的右边
+<分>	layout_above:<分>放置于参考组件的上方
+<分>	layout_below:<分>放置于组件的下方
+<分>	layout_alignTop:<分>对齐参考组件的上边界
+<分>	layout_alignBottom:<分>对齐参考组件的下边界
+<分>	layout_alignLeft:<分>对齐参考组件的左边界
+<分>	layout_alignRight:<分>对齐参考组件的有边界
+
+h4设置组件与父容器的边距
+
+<分>	layout_margin:<分>上下左右
+<分>	layout_marginLeft:<分>左
+<分>	layout_marginRight:<分>右
+<分>	layout_marginTop:<分>上
+<分>	layout_marginBottom:<分>下
+
+h4padding  设置组件内部元素的边距
+
+
+
+
+
+<导航>FrameLayout  框架布局
+
+<分>	foreground:<分>设置前景
+<分>	foregroundGravity:<分>设置前景位置
+
+
+
+
+
+<导航>TableLayout  表格布局
+
+<分>	collapseColumns:<分>设置需要被隐藏的列的序号，从0开始
+<分>	stretchColumns:<分>设置允许被拉伸的列的序列号，从0开始
+<分>	shrinkColumns:<分>设置允许被收缩的列的序列号，从0开始
+
+h4子控件设置属性
+<分>	layout_column:<分>显示在第几列
+<分>	layout_span:<分>横向跨几列
+
+
+
+
+
+<导航>GridLayout  网格布局
+
+h4父控件属性
+<分>	orientation:<分>设置水平显示还是垂直显示
+<分>	columnCount:<分>设置行的显示个数
+<分>	rowCount:<分>设置列的显示个数
+
+h4子控件属性
+<分>	layout_column:<分>显示在第几列
+<分>	layout_columnSpan:<分>横向跨几列
+<分>	layout_columnWeight:<分>横向剩余空间分配方式
+<分>	layout_gravity:<分>在网格中的显示位置
+<分>	layout_row:<分>显示在第几行
+<分>	layout_rowSpan:<分>横向跨几行
+<分>	layout_rowWeight:<分>纵向剩余空间分配方式
+
+
+
+
+
+<导航>ConstraintLayout  限制布局（可视化布局）
