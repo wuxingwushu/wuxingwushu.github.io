@@ -3,7 +3,7 @@ p主要内容都写在TXT，剩下的格式js都会按照预算自动添加到�
 h1以下是代码
 
 <代码>
-c
+ja
 
 #include "oled.h"
 #include "oledfont.h"  	 
