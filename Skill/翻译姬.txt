@@ -1,5 +1,8 @@
 <导航>翻译姬介绍
-p	我个人英语特别差几乎不会，但是别人代码和一些开源的引擎里注释都是英文，我想要翻译但是我是偶尔需要小范围翻译，打开网页或软件翻译但是我个人感觉不方便而且功能东一个西一个用起来不方便所以就想着自己写一个翻译软件，虽然没有比人专业效果也不一定有人家好，但是自己写的软件可以随时改成自己想要的样式也是很方便的也有成就感，刚刚好也知道一些翻译有关内容
+p	我个人英语特别差几乎不会，但是别人代码和一些开源的引擎里注释都是英文，我想要翻译，但是我只是偶尔需要小范围翻译，打开网页或翻译软件我个人感觉不方便，而且功能东一个西一个用起来不方便，所以就想着自己写一个翻译软件，虽然没有比别人专业，效果不一定有人家好，但是自己写的软件可以随时改成自己想要的样式很方便的也很有成就感，刚刚好也想到一些实现翻译代码逻辑
+p	主要两点
+p	1 爬虫，把要翻译的内容用百度和有道翻译在用爬虫，在把翻译结果取出来
+p	2 <a target='view_window' style='color:#00c6ff' href="https://tesseract-ocr.github.io/tessdoc/Home.html#binaries">Tesseract-OCR</a>，可以实现识别图片文字
 <导航>环境配置
 <代码>
 py
@@ -18,7 +21,7 @@ pip install pyautogui==0.9.53
 pip install pynput==1.7.6
 </代码>
 <导航>源码
-p	源码当作有注释自行理解
+p	源码当中有注释自行理解
 <代码>
 py
 # 正则表达式 处理字符串
@@ -433,4 +436,7 @@ while key_switch["软件总开关"]:
         pass
 </代码>
 <导航>打包EXE
-p	
+p	自己百度：<a target='view_window' style='color:#00c6ff' href="https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&tn=68018901_39_oem_dg&wd=python%20%E6%89%93%E5%8C%85%20exe&oq=python%2520%25E6%2589%2593%25E5%258C%2585&rsv_pq=bbf492580000cd40&rsv_t=6fb7RfSv61IMeAwoAE0C6ijQb3DRD8%2Fd%2BEUs%2Fq69Y6Z7d5Vcx3SU61ViwC6snjGHs9zmuUi83%2FTF&rqlang=cn&rsv_enter=0&rsv_dl=tb&rsv_btype=t&inputT=119255&rsv_sug3=23&rsv_sug1=31&rsv_sug7=100&rsv_sug4=121099">Python 打包 exe</a>
+P	这是我打包好的翻译姬：
+P	链接：https://pan.baidu.com/s/1x4QDlbN3tgnUuuEQJQ8Yig?pwd=vh1n 
+P	提取码：vh1n
