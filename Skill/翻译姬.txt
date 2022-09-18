@@ -436,11 +436,11 @@ while key_switch["软件总开关"]:
         pass
 </代码>
 <导航>打包EXE
-p	自己百度：<a target='view_window' style='color:#00c6ff' href="https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&tn=68018901_39_oem_dg&wd=python%20%E6%89%93%E5%8C%85%20exe&oq=python%2520%25E6%2589%2593%25E5%258C%2585&rsv_pq=bbf492580000cd40&rsv_t=6fb7RfSv61IMeAwoAE0C6ijQb3DRD8%2Fd%2BEUs%2Fq69Y6Z7d5Vcx3SU61ViwC6snjGHs9zmuUi83%2FTF&rqlang=cn&rsv_enter=0&rsv_dl=tb&rsv_btype=t&inputT=119255&rsv_sug3=23&rsv_sug1=31&rsv_sug7=100&rsv_sug4=121099">Python 打包 exe</a>
 P	这是我打包好的翻译姬：
 P	链接：https://pan.baidu.com/s/1x4QDlbN3tgnUuuEQJQ8Yig?pwd=vh1n 
 P	提取码：vh1n
 P        (っ °Д °;)っ
+p	自己百度：<a target='view_window' style='color:#00c6ff' href="https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&tn=68018901_39_oem_dg&wd=python%20%E6%89%93%E5%8C%85%20exe&oq=python%2520%25E6%2589%2593%25E5%258C%2585&rsv_pq=bbf492580000cd40&rsv_t=6fb7RfSv61IMeAwoAE0C6ijQb3DRD8%2Fd%2BEUs%2Fq69Y6Z7d5Vcx3SU61ViwC6snjGHs9zmuUi83%2FTF&rqlang=cn&rsv_enter=0&rsv_dl=tb&rsv_btype=t&inputT=119255&rsv_sug3=23&rsv_sug1=31&rsv_sug7=100&rsv_sug4=121099">Python 打包 exe</a>
 P        
 P        
 P        
