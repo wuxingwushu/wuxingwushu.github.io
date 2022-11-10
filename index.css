@@ -292,22 +292,22 @@ section{
 /*https://cdn.jsdelivr.net/gh/wuxingwushu/*/
 
 #img1{
-    background-image: url(https://images.weserv.nl/?url=./images/1.jpg);
+    background-image: url(./images/1.jpg);
 }
 #img2{
-    background-image: url(https://images.weserv.nl/?url=https://cdn.jsdelivr.net/gh/wuxingwushu/wuxingwushu.github.io/images/2.jpg);
+    background-image: url(./images/2.jpg);
 }
 #img3{
-    background-image: url(https://images.weserv.nl/?url=https://cdn.jsdelivr.net/gh/wuxingwushu/wuxingwushu.github.io/images/3.jpg);
+    background-image: url(./images/3.jpg);
 }
 #img4{
-    background-image: url(https://images.weserv.nl/?url=https://cdn.jsdelivr.net/gh/wuxingwushu/wuxingwushu.github.io/images/4.jpg);
+    background-image: url(./images/4.jpg);
 }
 #img5{
-    background-image: url(https://images.weserv.nl/?url=https://cdn.jsdelivr.net/gh/wuxingwushu/wuxingwushu.github.io/images/5.jpg);
+    background-image: url(./images/5.jpg);
 }
 #footer{
-    background-image: url(https://images.weserv.nl/?url=https://cdn.jsdelivr.net/gh/wuxingwushu/wuxingwushu.github.io/images/0.jpg);
+    background-image: url(./images/0.jpg);
 }
 
 
