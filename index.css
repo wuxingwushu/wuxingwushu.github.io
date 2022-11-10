@@ -292,7 +292,7 @@ section{
 /*https://cdn.jsdelivr.net/gh/wuxingwushu/*/
 
 #img1{
-    background-image: url(https://images.weserv.nl/?url=https://cdn.jsdelivr.net/gh/wuxingwushu/wuxingwushu.github.io/images/1.jpg);
+    background-image: url(./images/1.jpg);
 }
 #img2{
     background-image: url(https://images.weserv.nl/?url=https://cdn.jsdelivr.net/gh/wuxingwushu/wuxingwushu.github.io/images/2.jpg);
