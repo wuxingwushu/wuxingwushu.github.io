@@ -398,6 +398,7 @@ li:active{
     border-color: #303030;
 }
 .daima_txt{
+    word-break:break-all;
     white-space:pre;
     color:#ffffff;
 }

@@ -331,10 +331,10 @@ function addli(type,TXT,shu,TXT1,shu1)
 
   var ul = ""
   switch(shu){
-    case "3":ul ="Game/" + TXT + ".txt";break;
-    case "7":ul ="Dentury/" + TXT + ".txt";break;
-    case "11":ul ="Skill/" + TXT + ".txt";break;
-    case "15":ul ="Files/" + TXT + ".txt";break;
+    case "3":ul ="Game/" + TXT + ".md";break;
+    case "7":ul ="Dentury/" + TXT + ".md";break;
+    case "11":ul ="Skill/" + TXT + ".md";break;
+    case "15":ul ="Files/" + TXT + ".md";break;
   }
 
 
@@ -370,6 +370,7 @@ function urlToBlob(URss,id,zhujian,id1) {
           addlifu("li",id);
         }
         for (let index = 0; index < reader.result.split("\n").length-1; index=index+2) {
+          console.log(reader.result.split("\n")[index]);
           addli(zhujian,reader.result.split("\n")[index],id,reader.result.split("\n")[index+1],id1);
         }
         for (let index1 = 0; index1 < 5; index1++) {
@@ -601,11 +602,10 @@ function duqutxtneirong(URss){
 
         //读取每一行，并根据开头信息，做出不同判断
         for (let index = 0; index < hang.length; index++) {
-            var biaoqian = hang[index].substr(0,2);
-            
+            var biaoqian = hang[index].substr(0,3);
             switch(biaoqian){
               case"```":
-                      var xz = hang[index].substr(2,20);
+                      var xz = hang[index].substr(3,20);
                       index++;
           
                       var divs = "div" + lieshu;
@@ -617,32 +617,30 @@ function duqutxtneirong(URss){
                       lieshu++;
                       var strings;
                       while(hang[index].search("```") != 0){
-                        strings += hang[index];
+                        strings += hang[index] + "\n";
                         index++;
                       }
 
                       strings = "<pre><code class=" + xz + ">" + strings + "</code></pre>"
 
                       var ele = document.createElement("div");//创建一个LI
-                      ele.classList.add("daima_txt");
+                      //ele.classList.add("daima_div");
                       ele.innerHTML = strings;//修改里面的属性
                       document.getElementById(divs).appendChild(ele);//把LI放到ID="zhu"的lu里面
                       break;
 
-              case"<导航>":adddaohang(hang[index].substr(4,10000),idming);break;
+              //case"<导航>":adddaohang(hang[index].substr(4,10000),idming);break;
 
-              case"<分>":addbiaoge("p",hang[index].substr(3,10000),idming);break;
+              //case"<分>":addbiaoge("p",hang[index].substr(3,10000),idming);break;
 
               default:
+                      console.log(marked.parse("#我靠"));
                       var ele = document.createElement("div");//创建一个LI
-                      ele.classList.add("daima_txt");
                       ele.innerHTML = marked.parse(hang[index]);//修改里面的属性
-                      document.getElementById(divs).appendChild(ele);
+                      document.getElementById(idming).appendChild(ele);
                       break;
             }
-          
-
-          hljs.initHighlightingOnLoad();
+            hljs.initHighlightingOnLoad();
         }
       }
       reader.readAsText(this.response);
