@@ -2,90 +2,6 @@ var bool = 1;
 var fubool = 0;
 var ulid = "";
 var leixing = ["p","a","h1","h2","h3","h4","h5"];
-var daimaleixing_js = [
-  //javascript
-"var","#569CD6"
-,"case","#569CD6"
-,"break","#569CD6"
-
-,"for","#c586c0"
-,"switch","#c586c0"
-,"function","#569CD6"
-,"if","#c586c0"
-,"else","#c586c0"
-
-,"style","#4fc1ff"
-];
-var daimaleixing_py = [
-//python
-"from ","#cc7832"
-,"import ","#cc7832"
-," as","#cc7832"
-,"def ","#cc7832"
-,",","#cc7832"
-,"elif","#cc7832"
-,"if","#cc7832"
-," in","#cc7832"
-,"for ","#cc7832"
-
-," open","#5a77c5"
-," str","#5a77c5"
-];
-var daimaleixing_ja = [
-  //java
-  "public","#569cd6",
-  "class","#569cd6",
-  "static","#569cd6",
-  "super","#569cd6",
-  "this","#569cd6",
-  "goto","#569cd6",
-  "const","#569cd6",
-  "import","#569cd6",
-  "package","#569cd6",
-  "instanceof","#569cd6",
-  "native","#569cd6",
-  "synchronized","#569cd6",
-  "strictfp","#569cd6",
-  "final","#569cd6",
-  "abstract","#569cd6",
-  "transient","#569cd6",
-
-  "System","#4ec9b0",
-  "String","#4ec9b0",
-  "void","#4ec9b0",
-  "int","#4ec9b0",
-  "float","#4ec9b0",
-  "char","#4ec9b0",
-  "byte","#4ec9b0",
-  "boolean","#4ec9b0",
-  "double","#4ec9b0",
-  "long","#4ec9b0",
-  "short","#4ec9b0",
-
-  "out","#9cdcfe",
-  "args","#9cdcfe",
-
-  "try","#c586c0",
-  "throw","#c586c0",
-  "finally","#c586c0",
-  "catch","#c586c0",
-  "assert","#c586c0",
-  "while","#c586c0",
-  "switch","#c586c0",
-  "return","#c586c0",
-  "if","#c586c0",
-  "for","#c586c0",
-  "else","#c586c0",
-  "do","#c586c0",
-  "default","#c586c0",
-  "continue","#c586c0",
-  "case","#c586c0",
-  "break","#c586c0",
-  "new","#c586c0",
-  
-
-  "println","#dcdcaa",
-];
 
 var lieshu = 0;
 var baidu0 = "https://www.baidu.com/s?wd=";
@@ -753,44 +669,8 @@ function duqutxtneirong(URss){
             }
           }
 
-
-          /*
-          if(hang[index].search("<代码>") == 0){
-            index++;
-            var xz = hang[index].substr(0,2);
-            index++;
-
-            var divs = "div" + lieshu;
-            var divt = document.createElement("div");//创建一个LI
-            divt.id = divs;
-            divt.classList.add("daima_div");
-            document.getElementById(idming).appendChild(divt);
-
-            lieshu++;
-
-            while(hang[index].search("</代码>") != 0){
-              addma("p",hang[index],divs,xz);
-              index++;
-            }
-          }
-          if(hang[index].search("<图片>") == 0){
-            addtu(hang[index].substr(4,10000),idming)
-          }
-          if(hang[index].search("<自定义>") == 0){
-            addzidinyi(hang[index].substr(5,10000),idming)
-          }
-          if(hang[index].search("<导航>") == 0){
-            adddaohang(hang[index].substr(4,10000),idming)
-          }
-          if(hang[index].search("<分>") == 0){
-            addbiaoge("p",hang[index].substr(3,10000),idming)
-          }
-          */
-
-
+          
         }
-
-
       }
       reader.readAsText(this.response);
     }
