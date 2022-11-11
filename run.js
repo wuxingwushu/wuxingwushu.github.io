@@ -546,22 +546,10 @@ function addzidinyi(lu,shu)
 
 
 //添加导航
-function adddaohang(nr,shu)
+function adddaohang(nr)
 {
-  //document.getElementById("lan").style.display="block";
   daohang_jin(150);
-
-
-
-  var divt = document.createElement("h2");//创建一个LI
-  divt.classList.add("neirong_txt");
-  divt.classList.add("neirong_div");
-  divt.classList.add("daohang_biao");
-  divt.innerHTML = nr;//你定义的内容直接放在<div>里面
-  document.getElementById(shu).appendChild(divt);
-
   var ele = document.createElement("li");//创建一个LI
-  //ele.id = "daohang_shu"
   ele.classList.add("daohang_li");
   ele.innerHTML = nr;//修改里面的属性
 
@@ -608,25 +596,16 @@ function duqutxtneirong(URss){
         shanchu("xtxt"+ulid)
         adddiv(ulid-2);
         var idming = "xianshineirong" + (ulid-2);
-
-        
-
         ulid = idming;
-
         var hang = reader.result.split("\n");
 
-  
         //读取每一行，并根据开头信息，做出不同判断
         for (let index = 0; index < hang.length; index++) {
-
-          if(hang[index].substr(0,1) == "<"){
-            var biaoqian = hang[index].substr(0,hang[index].search(">")+1);
-
+            var biaoqian = hang[index].substr(0,2);
+            
             switch(biaoqian){
-              case"<代码>":
-
-                      index++;
-                      var xz = hang[index].substr(0,2);
+              case"```":
+                      var xz = hang[index].substr(2,20);
                       index++;
           
                       var divs = "div" + lieshu;
@@ -637,12 +616,12 @@ function duqutxtneirong(URss){
   
                       lieshu++;
                       var strings;
-                      while(hang[index].search("</代码>") != 0){
+                      while(hang[index].search("```") != 0){
                         strings += hang[index];
                         index++;
                       }
 
-                      strings = "<pre><code class=" + "python" + ">" + strings + "</code></pre>"
+                      strings = "<pre><code class=" + xz + ">" + strings + "</code></pre>"
 
                       var ele = document.createElement("div");//创建一个LI
                       ele.classList.add("daima_txt");
@@ -650,26 +629,20 @@ function duqutxtneirong(URss){
                       document.getElementById(divs).appendChild(ele);//把LI放到ID="zhu"的lu里面
                       break;
 
-              case"<图片>":addtu(hang[index].substr(4,10000),idming);break;
-
-              case"<自定义>":addzidinyi(hang[index].substr(5,10000),idming);break;
-
               case"<导航>":adddaohang(hang[index].substr(4,10000),idming);break;
 
               case"<分>":addbiaoge("p",hang[index].substr(3,10000),idming);break;
-            }
 
-          }
+              default:
+                      var ele = document.createElement("div");//创建一个LI
+                      ele.classList.add("daima_txt");
+                      ele.innerHTML = marked.parse(hang[index]);//修改里面的属性
+                      document.getElementById(divs).appendChild(ele);
+                      break;
+            }
+          
 
           hljs.initHighlightingOnLoad();
-
-          for(let lei = 0; lei < leixing.length;lei++){
-            if(hang[index].search(leixing[lei]) == 0){
-              add(leixing[lei],hang[index],idming);
-            }
-          }
-
-          
         }
       }
       reader.readAsText(this.response);
