@@ -552,190 +552,6 @@ urlToBlob('Files/档案馆.txt',"15","li","xtxt15");
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-//添加代码主键
-function addma(type,TXT,shu,xz)
-{
-  var zhushi = ["'",'"']
-  var you = 1;
-  var zhushikaishi = 10000;
-
-
-  var zhushis = [];
-  //获取对应语言的装饰
-  switch(xz){
-    case "js":
-      var yangshi=daimaleixing_js;
-      if(TXT.substr(0,10000).search("//") != -1 && TXT.substr(0,TXT.substr(0,10000).search("//")).search('"') == -1){
-        you = 0;
-        zhushikaishi = TXT.substr(0,10000).search("//")
-        zhushis.push(zhushikaishi)
-        zhushis.push("#6a9955");
-        zhushis.push(TXT.substr(0,10000).length);
-      }
-      break;
-    case "py":
-      var yangshi=daimaleixing_py;
-      if(TXT.substr(0,10000).search("# ") != -1){
-        you = 0;
-        zhushikaishi = TXT.substr(0,10000).search("# ")
-        zhushis.push(zhushikaishi)
-        zhushis.push("#6a9955");
-        zhushis.push(TXT.substr(0,10000).length);
-      }
-      break;
-    case "ja":
-      var yangshi=daimaleixing_ja;
-      if(TXT.substr(0,10000).search("//") != -1 && TXT.substr(0,TXT.substr(0,10000).search("//")).search('"') == -1){
-        you = 0;
-        zhushikaishi = TXT.substr(0,10000).search("//")
-        zhushis.push(zhushikaishi)
-        zhushis.push("#6a9955");
-        zhushis.push(TXT.substr(0,10000).length);
-      }
-      break;
-  }
-
-  //单双引号识别
-  var zfc = []
-  for (let index = 0; index < zhushi.length; index++) {
-    var i = 1;
-    var to = 0;
-    while(i){
-      if(TXT.substr(to,10000).search(zhushi[index]) != -1 && TXT.substr(to,10000).search(zhushi[index]) < zhushikaishi){
-        you = 0;
-        to = to + TXT.substr(to,10000).search(zhushi[index]);
-        zfc.push(to);
-        if(index){
-          zfc.push('"');
-        }
-        else{
-          zfc.push("'");
-        }
-        to++;
-      }
-      else{
-        i = 0;
-      }
-    }
-  }
-  var tmp1 = null;
-  var tmp2 = null;
-  var tmp3 = null;
-  for(var j=0; j<zfc.length-2; j=j+2){
-    for(var i=0; i<zfc.length-2-j; i=i+2){
-      if(zfc[i]>zfc[i+2]){
-        tmp1 = zfc[i];
-        tmp2 = zfc[i+1];
-        zfc[i] = zfc[i+2];
-        zfc[i+1] = zfc[i+3];
-        zfc[i+2] = tmp1;
-        zfc[i+3] = tmp2;
-      }
-    }
-  }
-  for (let index = 0; index < zfc.length; index=index+2) {
-    var i = 2;
-    while(i != 0){
-      if(zfc[index+1] == zfc[index+1+i]){
-        zhushis.push(zfc[index]);
-        zhushis.push("#6a9955");
-        zhushis.push(zfc[index+i]+1);
-        index = index+i;
-        i = 0;
-      }
-      else{
-        i=i+2;
-      }
-    }
-  }
-  //装饰特殊单词
-  var txtdata = zhushis;
-  for (let index = 0; index < yangshi.length; index=index+2) {
-    var i = 1;
-    var to = 0;
-    while(i){
-      xsto = to + TXT.substr(to,10000).search(yangshi[index]);
-      for (let indexs = 0; indexs < zhushis.length; indexs=indexs+3){
-        if(xsto > zhushis[indexs] && xsto < zhushis[indexs+2]){
-          to = zhushis[indexs+2]+1;
-        }
-      }
-      if(TXT.substr(to,10000).search(yangshi[index]) != -1){
-        you = 0;
-        to = to + TXT.substr(to,10000).search(yangshi[index]);
-        txtdata.push(to);
-        txtdata.push(yangshi[index+1]);
-        to = to + yangshi[index].length;
-        txtdata.push(to);
-      }
-      else{
-        i = 0;
-      }
-    }
-  }
-  
-  
-  //对装饰信息进行大小排序，便于切割字符串。
-  var len = txtdata.length;
-  for(var j=0; j<len-3; j=j+3){
-    for(var i=0; i<len-3-j; i=i+3){
-      if(txtdata[i]>txtdata[i+3]){
-        tmp1 = txtdata[i];
-        tmp2 = txtdata[i+1];
-        tmp3 = txtdata[i+2];
-
-
-        txtdata[i] = txtdata[i+3];
-        txtdata[i+1] = txtdata[i+4];
-        txtdata[i+2] = txtdata[i+5];
-
-
-        txtdata[i+3] = tmp1;
-        txtdata[i+4] = tmp2;
-        txtdata[i+5] = tmp3;
-      }
-    }
-  }
-
-  //console.log(txtdata)
-
-  //是否有装饰
-  if(you){
-    xinTXT=TXT;
-  }
-  //载入装饰
-  else{
-    var xinTXT = TXT.substr(0,txtdata[0]);
-    xinTXT = xinTXT + "<span style='color:" + txtdata[1] + "'>" + TXT.substr(txtdata[0],(txtdata[2]-txtdata[0])) + "</span>";
-    for (let index = 3; index < txtdata.length; index=index+3) {
-      xinTXT = xinTXT + TXT.substr(txtdata[index-1],(txtdata[index]-txtdata[index-1]));
-      xinTXT = xinTXT + "<span style='color:" + txtdata[index+1] + "'>" + TXT.substr(txtdata[index],(txtdata[index+2]-txtdata[index])) + "</span>";
-    }
-    xinTXT = xinTXT + TXT.substr(txtdata[txtdata.length-1],10000);
-  }
-  console.log(xinTXT)
-
-
-  var ele = document.createElement("p");//创建一个LI
-  ele.classList.add("daima_txt");
-  ele.innerHTML = xinTXT;//修改里面的属性
-  document.getElementById(shu).appendChild(ele);//把LI放到ID="zhu"的lu里面
-}
-
-
 //添加文字主键
 function add(type,TXT,shu)
 {
@@ -904,11 +720,18 @@ function duqutxtneirong(URss){
                       document.getElementById(idming).appendChild(divt);
   
                       lieshu++;
-  
+                      var strings;
                       while(hang[index].search("</代码>") != 0){
-                        addma("p",hang[index],divs,xz);
+                        strings += hang[index];
                         index++;
                       }
+
+                      strings = "<pre><code class=" + "python" + ">" + strings + "</code></pre>"
+
+                      var ele = document.createElement("div");//创建一个LI
+                      ele.classList.add("daima_txt");
+                      ele.innerHTML = strings;//修改里面的属性
+                      document.getElementById(divs).appendChild(ele);//把LI放到ID="zhu"的lu里面
                       break;
 
               case"<图片>":addtu(hang[index].substr(4,10000),idming);break;
@@ -921,6 +744,8 @@ function duqutxtneirong(URss){
             }
 
           }
+
+          hljs.initHighlightingOnLoad();
 
           for(let lei = 0; lei < leixing.length;lei++){
             if(hang[index].search(leixing[lei]) == 0){

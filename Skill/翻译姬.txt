@@ -5,7 +5,7 @@ p	1 爬虫，把要翻译的内容用百度和有道翻译在用爬虫，在把�
 p	2 <a target='view_window' style='color:#00c6ff' href="https://tesseract-ocr.github.io/tessdoc/Home.html#binaries">Tesseract-OCR</a>，可以实现识别图片文字
 <导航>环境配置
 <代码>
-py
+python
 Python==3.7.13
 pip install pyinstaller==4.5.1
 pip install virtualenv==20.16.5
@@ -20,10 +20,14 @@ pip install keyboard==0.13.5
 pip install pyautogui==0.9.53
 pip install pynput==1.7.6
 </代码>
+p	
+
 <导航>源码
 p	源码当中有注释自行理解
+p	
+
 <代码>
-py
+python
 # 正则表达式 处理字符串
 import re
 # 获取键盘信息

@@ -158,7 +158,7 @@ p	vec-file number  就是我们的正样本总数
 
 <导航>生成XML初步数据代码：
 <代码>
-py
+python
 import os #读取系统文件夹的目录
 from PIL import Image #读取照片的长宽
 import numpy as np
@@ -217,7 +217,7 @@ if __name__ == '__main__':
 
 <导航>生成YML代码：
 <代码>
-py
+python
 import os
 import cv2 as cv
 from PIL import Image
