@@ -634,8 +634,8 @@ function duqutxtneirong(URss){
               //case"<分>":addbiaoge("p",hang[index].substr(3,10000),idming);break;
 
               default:
-                      console.log(marked.parse("#我靠"));
                       var ele = document.createElement("div");//创建一个LI
+                      ele.classList.add("neirong_div");
                       ele.innerHTML = marked.parse(hang[index]);//修改里面的属性
                       document.getElementById(idming).appendChild(ele);
                       break;

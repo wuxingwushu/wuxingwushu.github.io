@@ -367,6 +367,15 @@ li:active{
     position: relative;
 }
 
+blockquote {
+    border-left:.5em solid rgb(147, 201, 158);
+    padding: 0 2em;
+    margin-left:0;
+    
+}
+
+
+
 /*文本 <分> 的样式*/
 .neirong_div_fen{
     border-style: solid;
