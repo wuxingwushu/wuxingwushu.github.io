@@ -2,9 +2,6 @@
 这是我的个人网站正在建设！
 
 
-我展示的是一级标题
-=================
-
 我展示的是二级标题
 -----------------
 
@@ -46,10 +43,6 @@ GOOGLE.COM
 
 
 
-
-创建脚注格式类似这样 [^RUNOOBx]。
-
-[^RUNOOBx]: 菜鸟教程 -- 学的不仅是技术，更是梦想！！！
 
 
 
@@ -126,13 +119,6 @@ $(document).ready(function () {
 
 
 
-这个链接用 1 作为网址变量 [Google][1]
-这个链接用 runoob 作为网址变量 [Runoob][runoob]
-然后在文档的结尾为变量赋值（网址）
-
-[1]: http://www.google.com/
-[runoob]: http://www.runoob.com/
-
 
 
 ![RUNOOB 图标](http://static.runoob.com/images/runoob-logo.png)
@@ -141,48 +127,4 @@ $(document).ready(function () {
 
 
 
-这个链接用 1 作为网址变量 [RUNOOB][1].
-然后在文档的结尾为变量赋值（网址）
-
-[1]: http://static.runoob.com/images/runoob-logo.png
-<img decoding="async" src="http://static.runoob.com/images/runoob-logo.png" width="50%">
-
-
-
-
-|  表头   | 表头  |
-|  ----  | ----  |
-| 单元格  | 单元格 |
-| 单元格  | 单元格 |
-
-
-| 左对齐 | 右对齐 | 居中对齐 |
-| :-----| ----: | :----: |
-| 单元格 | 单元格 | 单元格 |
-| 单元格 | 单元格 | 单元格 |
-
-
-
 使用 <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Del</kbd> 重启电脑
-
-
-
-公式
-Markdown Preview Enhanced 使用 KaTeX 或者 MathJax 来渲染数学表达式。
-
-KaTeX 拥有比 MathJax 更快的性能，但是它却少了很多 MathJax 拥有的特性。你可以查看 KaTeX supported functions/symbols 来了解 KaTeX 支持那些符号和函数。
-
-
-$$
-\begin{Bmatrix}
-   a & b \\
-   c & d
-\end{Bmatrix}
-$$
-$$
-\begin{CD}
-   A @>a>> B \\
-@VbVV @AAcA \\
-   C @= D
-\end{CD}
-$$
