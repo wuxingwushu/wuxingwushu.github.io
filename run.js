@@ -319,6 +319,7 @@ function addp(shu)
   var ele = document.createElement("p");//创建一个LI
   ele.id = "xtxt" + (shu + 3);
   ele.style.className = "xiaoTXT";
+  
   document.getElementById((shu + 1)).appendChild(ele);//把LI放到ID="zhu"的lu里面
 }
 //添加主键
@@ -327,6 +328,7 @@ function addli(type,TXT,shu,TXT1,shu1)
   var ele = document.createElement(type);//创建一个LI
   ele.innerHTML = TXT;//修改里面的属性s
   //ele.id = TXT;
+  ele.classList.add("li_zhu");
   ele.onmouseover = function() {yulan(TXT1,shu1);}
 
   var ul = ""
@@ -345,6 +347,7 @@ function addli(type,TXT,shu,TXT1,shu1)
 function addlifu(type,shu)
 {
   var ele = document.createElement(type);//创建一个LI
+  ele.classList.add("li_zhu");
   document.getElementById(shu).appendChild(ele);//把LI放到ID="zhu"的lu里面
 }
 //显示简介
@@ -552,6 +555,7 @@ function adddaohang(nr)
   daohang_jin(150);
   var ele = document.createElement("li");//创建一个LI
   ele.classList.add("daohang_li");
+  ele.classList.add("li_zhu");
   ele.innerHTML = nr;//修改里面的属性
 
   ele.onclick = function() {
@@ -635,6 +639,10 @@ function duqutxtneirong(URss){
 
               default:
                       var ele = document.createElement("div");//创建一个LI
+                      if(hang[index].substr(0,3) == "## "){//如果是h2就添加导航
+                        adddaohang(hang[index].substr(3,10000));
+                        ele.classList.add("daohang_biao");
+                      }
                       ele.classList.add("neirong_div");
                       ele.innerHTML = marked.parse(hang[index]);//修改里面的属性
                       document.getElementById(idming).appendChild(ele);

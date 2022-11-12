@@ -331,7 +331,7 @@ ul {
     top:0px;
 }
   
-li {
+.li_zhu {
     width: 100;
     height: 10vh;
     display:flex;  /*盒子模型*/
@@ -342,10 +342,10 @@ li {
     font-size: 2em;
     transition-duration: 0.4s;
 }
-li:hover{
+.li_zhu:hover{
     box-shadow: 0 0  2vh rgb(0, 0, 0) inset;
 }
-li:active{
+.li_zhu:active{
     box-shadow: 0 0  2vh rgba(0, 255, 115, 0.57) inset;
 
     text-shadow: 1px 1px 5px rgba(54, 247, 141, 0.9);
@@ -358,7 +358,8 @@ li:active{
     height: auto;
     width: 90%;
     left: 5%;
-    position: relative;
+    display: flex;
+    border-width: 10px;
 }
 .neirong_txt{
     white-space:pre-wrap;
@@ -371,7 +372,6 @@ blockquote {
     border-left:.5em solid rgb(147, 201, 158);
     padding: 0 2em;
     margin-left:0;
-    
 }
 
 
