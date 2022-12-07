@@ -949,3 +949,8 @@ xhr.onreadystatechange = function(){
       }
 };
 //xhr.send(postData);
+
+
+
+
+MIDIjs.play("https://wuxingwushu.github.io/Natural/1.mid");
