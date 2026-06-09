@@ -1,191 +1,141 @@
-*{
+* {
     padding: 0;
     margin: 0;
 }
-::-webkit-scrollbar{
+
+::-webkit-scrollbar {
     display: none;
 }
 
-#container{
+#container {
     width: 100%;
     height: auto;
 }
 
- /* 核心样式 */
- main {
+/* 核心样式 */
+main {
     scroll-snap-type: y mandatory;
-    /* 需要把滚动条设置到直接父容器，
-    scroll-snap-type 才能生效，
-    默认是在 body 上，现在是 main 上 */
     overflow-y: scroll;
-    overflow-x: hidden;/*禁止横向滚动*/
+    overflow-x: hidden;
     height: 100vh;
 }
-#kuang{
+
+#kuang {
     width: 100%;
     height: 100%;
-    position:relative;
+    position: relative;
     scroll-snap-stop: always;
     scroll-snap-align: start;
 }
+
 section {
     width: 100%;
     height: 100%;
-    /*scroll-snap-align: start;*/
 }
 
-
-#xianshineirong{
+#xianshineirong {
     width: 100%;
     height: 100vh;
-    /*background:#c4cbcf;*/
-    position:relative;
+    position: relative;
 }
 
-
-
-
-
-
-
-
-/*主界面*/
-.zhujiemian{
+/* 主界面 */
+.zhujiemian {
     background-size: auto;
     background-position: center;
     overflow: hidden;
-    position:absolute;
+    position: absolute;
     background-attachment: fixed;
     background-repeat: no-repeat;
     max-width: 100%;
     user-select: none;
     cursor: default;
-
-    text-shadow:  
-    0px 1px 0px #c0c0c0,  
-    0px 2px 0px #b0b0b0,  
-    0px 3px 0px #b5ffa7,  
-    0px 4px 0px #87fa81,  
-    0px 5px 10px rgba(54, 247, 141, 0.9);
+    text-shadow:
+        0px 1px 0px #c0c0c0,
+        0px 2px 0px #b0b0b0,
+        0px 3px 0px #b5ffa7,
+        0px 4px 0px #87fa81,
+        0px 5px 10px rgba(54, 247, 141, 0.9);
 }
 
-
-
-
-
-
-
-/*菜单三div*/
-.liebiao{
-    width: 20%; 
+/* 菜单三div */
+.liebiao {
+    width: 20%;
     height: 100vh;
-    margin-left:0px;    
+    margin-left: 0px;
     transform: skew(-12deg);
-    /*-moz-transform: skew(20deg);*/
-    /*-o-transform: skew(10deg);*/
     background: rgba(255, 255, 255, 0.6);
-    float:right;
-    left:30%;
-    position:relative;
+    float: right;
+    left: 30%;
+    position: relative;
     backdrop-filter: blur(50px);
 }
-.bianyou{
-	width: 70%;
+
+.bianyou {
+    width: 70%;
     height: 100vh;
-    margin-left:0px;
+    margin-left: 0px;
     transform: skew(-12deg);
-    /*-moz-transform: skew(20deg);*/
-    /*-o-transform: skew(10deg);*/
     background: rgba(196, 203, 207, 0.5);
-    float:right;
-    left:110%;
-    position:relative;
-
-    
+    float: right;
+    left: 110%;
+    position: relative;
     backdrop-filter: blur(50px);
-   /* border-left: 2px solid rgba(255,255,255,.9);
-    border-top: 2px solid rgba(255,255,255,.9);
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, .2);*/
-    
 }
-.bianzuo{
-	width: 10%;
+
+.bianzuo {
+    width: 10%;
     height: 100vh;
-    margin-left:0px;
+    margin-left: 0px;
     transform: skew(-12deg);
-    /*-moz-transform: skew(20deg);*/
-    /*-o-transform: skew(10deg);*/
     background: rgba(196, 203, 207, 0.5);
-    float:left;
-    left:-20%;    
-    position:relative;
-    
-    
+    float: left;
+    left: -20%;
+    position: relative;
     backdrop-filter: blur(50px);
-   /* border-left: 2px solid rgba(255,255,255,.3);
-    border-top: 2px solid rgba(255,255,255,.3);
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, .2);*/
-    
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*音乐播放图标*/
-#icon{
-    position:fixed;
+/* 音乐播放图标 */
+#icon {
+    position: fixed;
     right: 10px;
-    top:10px;
+    top: 10px;
     width: 64px;
     height: 64px;
 }
-#icon_shadow{
-    position:fixed;
+
+#icon_shadow {
+    position: fixed;
     right: 10px;
-    top:10px;
-}
-#icon_zhen{
-    position:fixed;
-    right: 12px;
-    top:8px;
-}
-#shangyishou{
-    position:fixed;
-    right: 100px;
-    top:15px;
-}
-#xiayishou{
-    position:fixed;
-    right: 60px;
-    top:15px;
-}
-#qiege_shadow{
-    position:relative;
-    right: 35px;
-    top:1px;
+    top: 10px;
 }
 
-/*音乐播放进度*/
-.totalProgress{
+#icon_zhen {
+    position: fixed;
+    right: 12px;
+    top: 8px;
+}
+
+#shangyishou {
+    position: fixed;
+    right: 100px;
+    top: 15px;
+}
+
+#xiayishou {
+    position: fixed;
+    right: 60px;
+    top: 15px;
+}
+
+#qiege_shadow {
+    position: relative;
+    right: 35px;
+    top: 1px;
+}
+
+/* 音乐播放进度 */
+.totalProgress {
     position: fixed;
     top: 50px;
     right: 76px;
@@ -193,9 +143,10 @@ section {
     height: 8px;
     background-color: white;
     border-radius: 10px;
-    box-shadow: 0 0  2vh rgba(0, 255, 115, 0.57);
+    box-shadow: 0 0 2vh rgba(0, 255, 115, 0.57);
 }
-.currentProgress{
+
+.currentProgress {
     width: 0;
     height: 100%;
     border-top-left-radius: 10px;
@@ -203,181 +154,95 @@ section {
     background-color: #00a1d6;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#xtxt3{
+/* 预览文本样式 */
+.xiaoTXT {
     height: 100vh;
     color: #ffffff;
     font-size: 3vh;
-	place-items: center;
-    display: flex;/*grid*/
-    justify-content: center;
-    align-items: center;
-}
-#xtxt7{
-    height: 100vh;
-    color: #ffffff;
-    font-size: 3vh;
-	place-items: center;
-    display: flex;/*grid*/
-    justify-content: center;
-    align-items: center;
-}
-#xtxt11{
-    height: 100vh;
-    color: #ffffff;
-    font-size: 3vh;
-	place-items: center;
-    display: flex;/*grid*/
-    justify-content: center;
-    align-items: center;
-}
-#xtxt15{
-    height: 100vh;
-    color: #ffffff;
-    font-size: 3vh;
-	place-items: center;
-    display: flex;/*grid*/
+    place-items: center;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
 
-
-
-
-
-
-
-
-
-section{
+/* section 通用样式 */
+section {
     height: 100vh;
     background-color: #c4cbcf;
     color: #fff;
     font-size: 10vh;
-	place-items: center;
-    display: flex;/*grid*/
+    place-items: center;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
 
+/* 背景图片 */
+#img1 { background-image: url(./images/1.jpg); }
+#img2 { background-image: url(./images/2.jpg); }
+#img3 { background-image: url(./images/3.jpg); }
+#img4 { background-image: url(./images/4.jpg); }
+#img5 { background-image: url(./images/5.jpg); }
+#footer { background-image: url(./images/0.jpg); }
 
-
-
-
-
-
-
-
-
-/*图片无法加载在链接前面加这段试试*/
-/*https://images.weserv.nl/?url=*/
-/*https://cdn.jsdelivr.net/gh/wuxingwushu/*/
-
-#img1{
-    background-image: url(./images/1.jpg);
-}
-#img2{
-    background-image: url(./images/2.jpg);
-}
-#img3{
-    background-image: url(./images/3.jpg);
-}
-#img4{
-    background-image: url(./images/4.jpg);
-}
-#img5{
-    background-image: url(./images/5.jpg);
-}
-#footer{
-    background-image: url(./images/0.jpg);
-}
-
-
-
-
-
-
-
-
-
-
+/* 列表样式 */
 ul {
     scroll-snap-type: y mandatory;
     list-style: none;
     height: 100%;
     width: 100%;
-    position:relative;
-    float:left;
+    position: relative;
+    float: left;
     overflow: scroll;
-    left:0px;
-    top:0px;
+    left: 0px;
+    top: 0px;
 }
-  
+
 .li_zhu {
     width: 100;
     height: 10vh;
-    display:flex;  /*盒子模型*/
-    flex-direction: row;  /*横向*/
-    white-space:pre;
-    justify-content: space-around; /*主轴居中*/
-    align-items: center; /*纵轴居中*/
+    display: flex;
+    flex-direction: row;
+    white-space: pre;
+    justify-content: space-around;
+    align-items: center;
     font-size: 2em;
     transition-duration: 0.4s;
 }
-.li_zhu:hover{
-    box-shadow: 0 0  2vh rgb(0, 0, 0) inset;
-}
-.li_zhu:active{
-    box-shadow: 0 0  2vh rgba(0, 255, 115, 0.57) inset;
 
+.li_zhu:hover {
+    box-shadow: 0 0 2vh rgb(0, 0, 0) inset;
+}
+
+.li_zhu:active {
+    box-shadow: 0 0 2vh rgba(0, 255, 115, 0.57) inset;
     text-shadow: 1px 1px 5px rgba(54, 247, 141, 0.9);
 }
 
-
-
-/*文本的样式*/
-.neirong_div{
+/* 文本的样式 */
+.neirong_div {
     height: auto;
     width: 90%;
     left: 5%;
     display: flex;
     border-width: 10px;
 }
-.neirong_txt{
-    white-space:pre-wrap;
-    margin-top:20px;
-    line-height:40px;
+
+.neirong_txt {
+    white-space: pre-wrap;
+    margin-top: 20px;
+    line-height: 40px;
     position: relative;
 }
 
 blockquote {
-    border-left:.5em solid rgb(147, 201, 158);
+    border-left: .5em solid rgb(147, 201, 158);
     padding: 0 2em;
-    margin-left:0;
+    margin-left: 0;
 }
 
-
-
-/*文本 <分> 的样式*/
-.neirong_div_fen{
+/* 文本 <分> 的样式 */
+.neirong_div_fen {
     border-style: solid;
     border-width: 2px;
     width: 90%;
@@ -386,16 +251,17 @@ blockquote {
     border-color: rgba(0, 0, 0, 0.05);
     overflow: auto;
 }
-.neirong_txt_fen{
+
+.neirong_txt_fen {
     position: relative;
-    white-space:pre-wrap;
+    white-space: pre-wrap;
     height: auto;
-    margin-top:0px;
-    line-height:30px;
+    margin-top: 0px;
+    line-height: 30px;
 }
 
-/*代码的样式*/
-.daima_div{
+/* 代码的样式 */
+.daima_div {
     border-style: solid;
     background: #303030;
     height: auto;
@@ -406,50 +272,38 @@ blockquote {
     border-width: 5px;
     border-color: #303030;
 }
-.daima_txt{
-    word-break:break-all;
-    white-space:pre;
-    color:#ffffff;
+
+.daima_txt {
+    word-break: break-all;
+    white-space: pre;
+    color: #ffffff;
 }
 
-
-
-
-
-
-
-
-
-/*导航*/
-#lan{
-    position:fixed;
+/* 导航 */
+#lan {
+    position: fixed;
     right: 0px;
-    top:90px;
+    top: 90px;
     width: 0px;
     height: 80%;
     border-radius: 10px;
     background-color: rgba(246, 249, 250, 0.2);
-
-    /**/
     backdrop-filter: blur(3px);
     box-shadow: 2px 2px 2px rgba(0, 0, 0, .2);
 }
-.daohang_li{
+
+.daohang_li {
     color: #000000;
     font-size: 1em;
     height: 5%;
-	place-items: center;
-    display: flex;/*grid*/
+    place-items: center;
+    display: flex;
     justify-content: center;
     align-items: center;
-    /*background-color: rgba(246, 249, 250, 0.2);*/
 }
 
-
-
-
-/*鼠标跟随小可爱*/
-.xiaokeai_gif{
+/* 鼠标跟随小可爱 */
+.xiaokeai_gif {
     width: 50px;
     height: 50px;
     position: absolute;
