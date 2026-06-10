@@ -7,8 +7,7 @@ var baidu1 = "&rsv_spt=1&rsv_iqid=0xff48a07f00019107&issp=1&f=8&rsv_bp=1&rsv_idx
 var TXTGithub = "https://wuxingwushu.github.io/";
 var TXTGitee = "https://gitee.com/daosheng0/daosheng/raw/master/";
 
-// 音乐播放器
-var audio = document.getElementById('yinyue');
+// 音乐播放器（UI 与原有保持一致，逻辑改为 Tone.js 合成 .mid）
 var totalProgress = $('.totalProgress');
 var currentProgress = $('.currentProgress');
 var daohang_sf = 1;
@@ -505,14 +504,23 @@ function duqutxtneirong(URss) {
     xhr.send();
 }
 
-// 音乐播放器相关
-var shijian_T = 0;
-var ge_Tion;
-var geid = 0;
-var gemulu = [];
+// 音乐播放器（midi 合成版）
+var shijian_T = 0;     // 暂停时记录播放位置（秒）
+var geid = 0;          // 当前播放曲目索引
+var gemulu = [];       // midi 曲目路径列表
+var synth = null;      // Tone.PolySynth 实例
+var midiData = null;   // 当前解析后的 midi 数据
+// Tone.now() 时刻 + 当前 midi 内部时间偏移（用来计算播放进度）
+var midiPlayStartAt = 0;   // Tone.now 时刻
+var midiPlayOffset = 0;    // 当前已播放到 midi 的时间点（秒）
+var midiIsPlaying = false; // 是否处于播放状态
 
+// midi 文件名后缀
+var MIDI_EXT = ".mid";
+
+// 把音乐.txt 里的每行去掉后缀，拼成 midi 路径
 function duqutxtgemulu() {
-    var file_url = TXTGithub + "Music/音乐.txt";
+    var file_url = TXTGithub + "Music/midi/音乐.txt";
     var xhr = new XMLHttpRequest();
     xhr.open("get", file_url, true);
     xhr.responseType = "blob";
@@ -521,7 +529,8 @@ function duqutxtgemulu() {
             const reader = new FileReader();
             reader.onload = function () {
                 for (var index = 0; index < reader.result.split("\n").length - 1; index++) {
-                    gemulu.push("https://cdn.jsdelivr.net/gh/wuxingwushu/wuxingwushu.github.io/Music/" + reader.result.split("\n")[index]);
+                    var name = reader.result.split("\n")[index].replace(/\.(mp3|m4a)$/i, "");
+                    gemulu.push("https://cdn.jsdelivr.net/gh/wuxingwushu/wuxingwushu.github.io/Music/midi/" + encodeURIComponent(name) + MIDI_EXT);
                 }
             };
             reader.readAsText(this.response);
@@ -530,54 +539,130 @@ function duqutxtgemulu() {
     xhr.send();
 }
 
-function bofang() {
+// 初始化合成器（首次播放时调用）
+function initSynth() {
+    if (!synth) {
+        synth = new Tone.PolySynth(Tone.Synth, {
+            oscillator: { type: "triangle" },
+            envelope: { attack: 0.02, decay: 0.1, sustain: 0.3, release: 1 }
+        }).toDestination();
+        synth.volume.value = -10;
+    }
+}
+
+// 解析并准备 midi（不立即播放）
+async function loadMidi(url) {
+    var resp = await fetch(url);
+    var buf = await resp.arrayBuffer();
+    midiData = new Midi(buf);
+}
+
+// 安排 midi 音符的播放事件
+function scheduleMidi(fromTime) {
+    if (!midiData || !synth) return 0;
+    // 第一条 track 用于合成播放（与原 mp3 单轨对应）
+    var track = midiData.tracks[0];
+    if (!track) return 0;
+
+    var endTime = fromTime;
+    for (var i = 0; i < track.notes.length; i++) {
+        var note = track.notes[i];
+        if (note.time + note.duration <= fromTime) continue; // 跳过已播部分
+        var playAt = midiPlayStartAt + (note.time - fromTime);
+        synth.triggerAttackRelease(
+            note.name,
+            note.duration,
+            playAt,
+            note.velocity
+        );
+        if (note.time + note.duration > endTime) {
+            endTime = note.time + note.duration;
+        }
+    }
+    return endTime;
+}
+
+var midiEndTime = 0;  // 当前 midi 整体时长（秒）
+
+async function bofang() {
+    // 切换按钮
     document.getElementById("bofang").style.display = "none";
     document.getElementById("zhanting").style.display = "block";
 
-    audio.src = gemulu[geid];
-    audio.currentTime = shijian_T;
-    audio.play();
+    // 浏览器自动播放策略：需要用户交互后才能启动音频
+    await Tone.start();
+    initSynth();
 
+    // 加载并合成当前曲目
+    if (!gemulu[geid]) return;
+    await loadMidi(gemulu[geid]);
+
+    midiPlayStartAt = Tone.now();
+    midiPlayOffset = shijian_T;
+    midiIsPlaying = true;
+
+    midiEndTime = scheduleMidi(shijian_T);
+
+    // 进度条定时器
     timer = setInterval(function () {
-        if (audio.ended) {
-            shijian_T = 0;
-            geid++;
-            if (geid == gemulu.length) {
-                geid = 0;
+        if (midiIsPlaying) {
+            var now = midiPlayOffset + (Tone.now() - midiPlayStartAt);
+            if (now >= midiEndTime) {
+                // 当前曲目结束
+                shijian_T = 0;
+                geid++;
+                if (geid == gemulu.length) geid = 0;
+                // 切歌
+                Tone.Draw.cancel();
+                midiIsPlaying = false;
+                clearInterval(timer);
+                bofang();
+                return;
             }
-            audio.src = gemulu[geid];
-            audio.play();
-        } else {
-            var ratio = audio.currentTime / audio.duration;
+            var ratio = now / midiEndTime;
             currentProgress.css({ 'width': ratio * 100 + '%' });
         }
     }, 100);
 }
 
 function zhanting() {
+    // 切换按钮
     document.getElementById("zhanting").style.display = "none";
     document.getElementById("bofang").style.display = "block";
 
-    audio.pause();
-    shijian_T = audio.currentTime;
+    // 记录当前播放位置并停止合成
+    if (midiIsPlaying) {
+        shijian_T = midiPlayOffset + (Tone.now() - midiPlayStartAt);
+    }
+    midiIsPlaying = false;
+
+    if (Tone.Transport.state === "started") {
+        Tone.Transport.pause();
+    }
+    if (synth) {
+        synth.releaseAll();
+    }
+    clearInterval(timer);
 }
 
 function shangyishou() {
     geid--;
-    if (geid == -1) {
-        geid = gemulu.length - 1;
-    }
-    audio.src = gemulu[geid];
-    audio.play();
+    if (geid == -1) geid = gemulu.length - 1;
+    shijian_T = 0;
+    midiIsPlaying = false;
+    if (synth) synth.releaseAll();
+    clearInterval(timer);
+    bofang();
 }
 
 function xiayishou() {
     geid++;
-    if (geid == gemulu.length) {
-        geid = 0;
-    }
-    audio.src = gemulu[geid];
-    audio.play();
+    if (geid == gemulu.length) geid = 0;
+    shijian_T = 0;
+    midiIsPlaying = false;
+    if (synth) synth.releaseAll();
+    clearInterval(timer);
+    bofang();
 }
 
 // 显示歌曲进度条的控制范围
@@ -597,9 +682,15 @@ function xianshijinduf() {
 
 // 单击进度条更改进度
 totalProgress.on('click', function (ev) {
+    if (!midiData || midiEndTime == 0) return;
     var ratio = getRatio(ev);
     currentProgress.css({ 'width': ratio * 100 + '%' });
-    audio.currentTime = audio.duration * ratio;
+    // 重新计算位置并从该点继续播放
+    var wasPlaying = midiIsPlaying;
+    shijian_T = ratio * midiEndTime;
+    if (synth) synth.releaseAll();
+    midiIsPlaying = false;
+    if (wasPlaying) bofang();
 });
 
 function getRatio(ev) {
@@ -655,6 +746,3 @@ document.addEventListener('visibilitychange', function () {
         document.title = "(=￣ω￣=)吾行误述";
     }
 }, false);
-
-// 播放背景 MIDI
-MIDIjs.play("https://wuxingwushu.github.io/Natural/1.mid");
